@@ -41,6 +41,19 @@ int main(void)
         0.5f, -0.5f
     };
 
+    /* Enable the vertex attribute */
+    glEnableVertexAttribArray(0);
+
+    /* Define the layout of data 
+        0 - index of first attribute
+        2 - 'size' or number of components representing vertex attribute position
+        GL_FLOAT - type of data
+        GL_FALSE - don't want to normalize data
+        sizeof(float) * 2 - size of stride to get to next vertex
+        nullptr - pointer to attribute in vertex, in this case, the first byte
+    */
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, nullptr);
+
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
 
     /* Loop until the user closes the window */
