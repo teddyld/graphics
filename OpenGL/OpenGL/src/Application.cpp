@@ -120,13 +120,13 @@ int main(void)
 
 	/* Specify the data */
 	float positions[] = {
-		-0.5f, -0.5f,
-		0.5f, -0.5f,
-		0.5f, 0.5f,
-		-0.5f, 0.5f,
+		-0.5f, -0.5f,	// 0
+		0.5f, -0.5f,	// 1
+		0.5f, 0.5f,		// 2
+		-0.5f, 0.5f,	// 3
 	};
 
-	/* Index buffer (could use unsigned char/short for memory optimisation) */
+	/* Index buffer (could use unsigned char/short for memory optimization) */
 	unsigned int indices[] = {
 		0, 1, 2,
 		2, 3, 0
