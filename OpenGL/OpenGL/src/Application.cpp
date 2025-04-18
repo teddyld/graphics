@@ -118,36 +118,39 @@ int main(void)
 
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
+	/* Specify the data */
+	float positions[] = {
+		-0.5f, -0.5f,
+		0.5f, -0.5f,
+		0.5f, 0.5f,
+		-0.5f, 0.5f,
+	};
+
+	/* Index buffer (could use unsigned char/short for memory optimisation) */
+	unsigned int indices[] = {
+		0, 1, 2,
+		2, 3, 0
+	};
+
 	/* Create a buffer */
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
 
-	/* Specify the data */
-	float positions[6] = {
-		-0.5f, -0.5f,
-		0.0f, 0.5f,
-		0.5f, -0.5f
-	};
-
 	/* Select the buffer by binding */
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW);
 
 	/* Enable the vertex attribute */
 	glEnableVertexAttribArray(0);
-
-	/* Define the layout of data
-		0 - index of first attribute
-		2 - 'size' or number of components representing vertex attribute position
-		GL_FLOAT - type of data
-		GL_FALSE - don't want to normalize data
-		sizeof(float) * 2 - size of stride to get to next vertex
-		nullptr - pointer to attribute in vertex, in this case, the first byte
-	*/
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, nullptr);
 
-	ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
+	/* Element array buffer */
+	unsigned int ibo;
+	glGenBuffers(1, &ibo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
+	ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 	unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
 	glUseProgram(shader);
 
@@ -158,7 +161,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		/* Draw the data currently bound */
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);
