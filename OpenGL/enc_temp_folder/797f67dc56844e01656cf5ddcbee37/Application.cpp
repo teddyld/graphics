@@ -8,21 +8,16 @@
 
 #define ASSERT(x) if (!(x)) __debugbreak();
 
-#define GLCall(x) GLClearError();\
-	x;\
-	ASSERT(GLLogCall(#x, __FILE__, __LINE__)) // #x turns x into a string
-
 static void GLClearError()
 {
 	while (glGetError() != GL_NO_ERROR);
 }
 
-static bool GLLogCall(const char* function, const char* file, int line)
+static bool GLLogCall()
 {
 	while (GLenum error = glGetError())
 	{
-		// OpenGL errors are defined in hexadecimal
-		std::cout << "[OpenGL Error] (0x" << std::hex << error << "): " << function << " " << file << ":" << line << std::endl;
+		std::cout << "[OpenGL Error] (" << error << ")" << std::endl;
 		return false;
 	}
 }
@@ -181,10 +176,9 @@ int main(void)
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		// Will cause an error:
-		// GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
-
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		GLClearError();
+		glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr);
+		ASSERT(GLLogCall());
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);
