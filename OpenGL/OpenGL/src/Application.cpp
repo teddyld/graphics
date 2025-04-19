@@ -123,7 +123,7 @@ int main(void)
 		return -1;
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "Draw Triangle", NULL, NULL);
+	window = glfwCreateWindow(640, 480, "OpenGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -132,6 +132,9 @@ int main(void)
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	// Changes screen update interval to smooth render animation
+	glfwSwapInterval(5);
 
 	/* Get access to modern OpenGL functionality */
 	if (glewInit() != GLEW_OK)
@@ -175,6 +178,14 @@ int main(void)
 	unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
 	glUseProgram(shader);
 
+	// Defining the color in the CPU
+	int location = glGetUniformLocation(shader, "u_Color");
+	ASSERT(location != -1); // Uniform not found
+	glUniform4f(location, 0.8f, 0.3f, 0.8f, 1.0f);
+
+	float r = 0.0f;
+	float increment = 0.05f;
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
@@ -185,6 +196,14 @@ int main(void)
 		// GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
+
+		if (r > 1.0f)
+			increment = -0.05f;
+		else if (r < 0.0f)
+			increment = 0.05f;
+
+		r += increment;
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);
