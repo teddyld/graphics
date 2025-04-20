@@ -122,8 +122,12 @@ int main(void)
 	if (!glfwInit())
 		return -1;
 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "OpenGL", NULL, NULL);
+	window = glfwCreateWindow(640, 480, "OpenGL", nullptr, nullptr);
 	if (!window)
 	{
 		glfwTerminate();
@@ -156,6 +160,11 @@ int main(void)
 		2, 3, 0
 	};
 
+	/* Vertex array object */
+	unsigned int vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	/* Create a buffer */
 	unsigned int buffer;
 	glGenBuffers(1, &buffer);
@@ -183,6 +192,12 @@ int main(void)
 	ASSERT(location != -1); // Uniform not found
 	glUniform4f(location, 0.8f, 0.3f, 0.8f, 1.0f);
 
+	/* Clear GL state */
+	glBindVertexArray(0);
+	glUseProgram(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 	float r = 0.0f;
 	float increment = 0.05f;
 
@@ -195,8 +210,14 @@ int main(void)
 		// Will cause an error:
 		// GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		/* Bind GL state */
+		glUseProgram(shader);
 		glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
+
+		glBindVertexArray(vao);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
 		if (r > 1.0f)
 			increment = -0.05f;
