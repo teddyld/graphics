@@ -12,6 +12,7 @@
 #include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
+#include "Texture.h"
 
 int main(void)
 {
@@ -47,10 +48,10 @@ int main(void)
 
 	/* Specify the data */
 	float positions[] = {
-		-0.5f, -0.5f,	// 0
-		0.5f, -0.5f,	// 1
-		0.5f, 0.5f,		// 2
-		-0.5f, 0.5f,	// 3
+		-0.5f, -0.5f, 0.0f, 0.0f,	// 0
+		0.5f, -0.5f, 1.0f, 0.0f,	// 1
+		0.5f, 0.5f, 1.0f, 1.0f,		// 2
+		-0.5f, 0.5f, 0.0f, 1.0f,	// 3
 	};
 
 	/* Index buffer (could use unsigned char/short for memory optimization) */
@@ -60,9 +61,10 @@ int main(void)
 	};
 
 	VertexArray va;
-	VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+	VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 
 	VertexBufferLayout layout;
+	layout.Push(GL_FLOAT, 2, GL_FALSE);
 	layout.Push(GL_FLOAT, 2, GL_FALSE);
 	va.AddBuffer(vb, layout);
 
@@ -71,6 +73,10 @@ int main(void)
 	Shader shader("res/shaders/Basic.shader");
 	shader.Bind();
 	shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+
+	Texture texture("res/textures/bear.png");
+	texture.Bind();
+	shader.SetUniform1i("u_Texture", 0);
 
 	Renderer renderer;
 
