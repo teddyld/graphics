@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexArray.h"
 
 struct ShaderProgramSource
 {
@@ -143,19 +144,13 @@ int main(void)
 		2, 3, 0
 	};
 
-	/* Vertex array object */
-	unsigned int vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	/* Create a vertex buffer */
+	VertexArray va;
 	VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
-	/* Enable the vertex attribute */
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, nullptr);
+	VertexBufferLayout layout;
+	layout.Push(GL_FLOAT, 2, GL_FALSE);
+	va.AddBuffer(vb, layout);
 
-	/* Element array buffer */
 	IndexBuffer ib(indices, 6);
 
 	ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
@@ -168,7 +163,7 @@ int main(void)
 	glUniform4f(location, 0.8f, 0.3f, 0.8f, 1.0f);
 
 	/* Clear GL state */
-	glBindVertexArray(0);
+	va.Unbind();
 	glUseProgram(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -182,16 +177,15 @@ int main(void)
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		// Will cause an error:
-		// GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
-
 		/* Bind GL state */
 		glUseProgram(shader);
 		glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
 
-		glBindVertexArray(vao);
+		va.Bind();
 		ib.Bind();
 
+		// Will cause an error:
+		// GLCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr));
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
 		if (r > 1.0f)
