@@ -1,4 +1,4 @@
-#include "Test.h"
+#include "TestClearColor.h"
 
 namespace test {
 	TestClearColor::TestClearColor()
@@ -8,10 +8,7 @@ namespace test {
 
 	TestClearColor::~TestClearColor()
 	{
-	}
-
-	void TestClearColor::OnUpdate(float deltatime)
-	{
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	void TestClearColor::OnRender()

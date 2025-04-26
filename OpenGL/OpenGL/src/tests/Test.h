@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
+#include <functional>
+#include <iostream>
+#include <vector>
 
 #include "GL/glew.h"
 #include "imgui/imgui.h"
-
-#include "Texture.h"
 
 namespace test {
 	class Test
@@ -13,21 +14,26 @@ namespace test {
 		Test() {}
 		virtual ~Test() {}
 
-		virtual void OnUpdate(float deltaTime) = 0;
-		virtual void OnRender() = 0;
-		virtual void OnImGuiRender() = 0;
+		virtual void OnUpdate(float deltaTime) {};
+		virtual void OnRender() {};
+		virtual void OnImGuiRender() {};
 	};
 
-	class TestClearColor : public Test
+	class TestMenu : public Test
 	{
 	private:
-		float m_ClearColor[4];
+		Test*& m_CurrentTest;
+		std::vector<std::pair<std::string, std::function<Test* ()>>> m_Tests;
 	public:
-		TestClearColor();
-		~TestClearColor();
+		TestMenu(Test*& currentTestPointer);
 
-		void OnUpdate(float deltatime) override;
-		void OnRender() override;
 		void OnImGuiRender() override;
+
+		template<typename T>
+		void RegisterTest(const std::string& name)
+		{
+			std::cout << "Registering test: " << name << std::endl;
+			m_Tests.push_back(std::make_pair(name, []() { return new T(); }));
+		}
 	};
 }
