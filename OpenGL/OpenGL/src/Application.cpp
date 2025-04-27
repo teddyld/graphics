@@ -24,6 +24,8 @@
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture.h"
+#include "tests/TestTeapot.h"
+#include "tests/TestEnvironment.h"
 
 int main(void)
 {
@@ -75,6 +77,8 @@ int main(void)
 
 	testMenu->RegisterTest<test::TestClearColor>("Clear Color");
 	testMenu->RegisterTest<test::TestTexture2D>("Texture2D");
+	testMenu->RegisterTest<test::TestTeapot>("3D Teapot");
+	testMenu->RegisterTest<test::TestEnvironment>("A 2D Environment");
 
 	Renderer renderer;
 
