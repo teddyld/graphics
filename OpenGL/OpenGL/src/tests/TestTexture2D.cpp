@@ -26,7 +26,7 @@ namespace test {
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		m_VAO->AddBuffer(*m_VertexBuffer, layout);
 
-		m_Shader = std::make_unique<Shader>("res/shaders/Basic.shader");
+		m_Shader = std::make_unique<Shader>("res/shaders/BasicTexture.shader");
 		m_Shader->Bind();
 		m_Shader->SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
 

@@ -477,8 +477,22 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\bear.png" />
+    <Image Include="res\textures\magic_cliffs\environment\clouds.png" />
+    <Image Include="res\textures\magic_cliffs\environment\far-grounds.png" />
+    <Image Include="res\textures\magic_cliffs\environment\sea.png" />
+    <Image Include="res\textures\magic_cliffs\environment\sky.png" />
+    <Image Include="res\textures\magic_cliffs\environment\tileset.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword2.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword3.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword4.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword5.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png" />
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\textures\magic_cliffs\source.md" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />
     <None Include="src\vendor\glm\detail\func_exponential.inl" />

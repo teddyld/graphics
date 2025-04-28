@@ -1015,6 +1015,45 @@
     <Image Include="res\textures\bear.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\magic_cliffs\environment\clouds.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\environment\far-grounds.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\environment\sea.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\environment\sky.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\environment\tileset.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1431,5 +1470,6 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\textures\magic_cliffs\source.md" />
   </ItemGroup>
 </Project>
