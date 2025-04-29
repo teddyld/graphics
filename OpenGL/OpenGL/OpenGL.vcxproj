@@ -173,7 +173,7 @@
     <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\tests\TestEnvironment.h" />
     <ClInclude Include="src\tests\TestTeapot.h" />
-    <ClInclude Include="src\tests\TestTexture.h" />
+    <ClInclude Include="src\tests\TestTexture2D.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_common.hpp" />
@@ -492,6 +492,7 @@
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png" />
+    <Image Include="res\textures\maple.PNG" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\BasicColor.shader" />

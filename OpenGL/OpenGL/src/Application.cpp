@@ -23,7 +23,7 @@
 
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
-#include "tests/TestTexture.h"
+#include "tests/TestTexture2D.h"
 #include "tests/TestBatchRendering.h"
 #include "tests/TestTeapot.h"
 #include "tests/TestEnvironment.h"
