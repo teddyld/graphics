@@ -38,8 +38,8 @@ namespace test {
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
 
 		m_VAO->Unbind();
-		m_VertexBuffer->UnBind();
-		m_IndexBuffer->UnBind();
+		m_VertexBuffer->Unbind();
+		m_IndexBuffer->Unbind();
 		m_Shader->Unbind();
 	}
 

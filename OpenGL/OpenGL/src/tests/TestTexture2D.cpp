@@ -35,8 +35,8 @@ namespace test {
 		m_Shader->SetUniform1i("u_Texture", 0);
 
 		m_VAO->Unbind();
-		m_VertexBuffer->UnBind();
-		m_IndexBuffer->UnBind();
+		m_VertexBuffer->Unbind();
+		m_IndexBuffer->Unbind();
 		m_Shader->Unbind();
 	}
 
