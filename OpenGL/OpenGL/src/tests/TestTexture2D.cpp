@@ -1,4 +1,4 @@
-#include "TestTexture.h"
+#include "TestTexture2D.h"
 
 namespace test {
 	TestTexture2D::TestTexture2D()
