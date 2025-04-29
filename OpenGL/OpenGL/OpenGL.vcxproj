@@ -492,10 +492,11 @@
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png" />
-    <Image Include="res\textures\maple.PNG" />
+    <Image Include="res\textures\maple.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\BasicColor.shader" />
+    <None Include="res\shaders\BasicTextureBatched.shader" />
+    <None Include="res\shaders\BasicTexture.shader" />
     <None Include="res\textures\magic_cliffs\source.md" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />

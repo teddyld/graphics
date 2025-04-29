@@ -1060,7 +1060,7 @@
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\maple.PNG">
+    <Image Include="res\textures\maple.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -1480,6 +1480,7 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="res\textures\magic_cliffs\source.md" />
-    <None Include="res\shaders\BasicColor.shader" />
+    <None Include="res\shaders\BasicTextureBatched.shader" />
+    <None Include="res\shaders\BasicTexture.shader" />
   </ItemGroup>
 </Project>
