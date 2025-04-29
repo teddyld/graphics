@@ -24,6 +24,7 @@
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture.h"
+#include "tests/TestBatchRendering.h"
 #include "tests/TestTeapot.h"
 #include "tests/TestEnvironment.h"
 
@@ -76,9 +77,10 @@ int main(void)
 	currentTest = testMenu;
 
 	testMenu->RegisterTest<test::TestClearColor>("Clear Color");
-	testMenu->RegisterTest<test::TestTexture2D>("Texture2D");
-	testMenu->RegisterTest<test::TestTeapot>("3D Teapot");
+	testMenu->RegisterTest<test::TestTexture2D>("Texture 2D");
+	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
 	testMenu->RegisterTest<test::TestEnvironment>("A 2D Environment");
+	testMenu->RegisterTest<test::TestTeapot>("3D Teapot");
 
 	Renderer renderer;
 
