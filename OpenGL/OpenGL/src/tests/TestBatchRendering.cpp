@@ -4,7 +4,7 @@ namespace test {
 	TestBatchRendering::TestBatchRendering()
 		: m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f))
 	{
-		float positions[] = {
+		float vertices[] = {
 			120.0f, 120.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
 			220.0f, 120.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 			220.0f, 220.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
@@ -24,7 +24,7 @@ namespace test {
 		m_VAO = std::make_unique<VertexArray>();
 		m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 12);
 
-		m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 8 * 9 * sizeof(float));
+		m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 8 * 9 * sizeof(float));
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
