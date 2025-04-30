@@ -148,6 +148,7 @@
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
     <ClCompile Include="src\tests\Test.cpp" />
     <ClCompile Include="src\tests\TestClearColor.cpp" />
+    <ClCompile Include="src\tests\TestDynamicBatchRendering.cpp" />
     <ClCompile Include="src\tests\TestEnvironment.cpp" />
     <ClCompile Include="src\tests\TestTeapot.cpp" />
     <ClCompile Include="src\tests\TestTexture2D.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="src\tests\Test.h" />
     <ClInclude Include="src\tests\TestBatchRendering.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
+    <ClInclude Include="src\tests\TestDynamicBatchRendering.h" />
     <ClInclude Include="src\tests\TestEnvironment.h" />
     <ClInclude Include="src\tests\TestTeapot.h" />
     <ClInclude Include="src\tests\TestTexture2D.h" />

@@ -24,7 +24,7 @@ namespace test {
 		m_VAO = std::make_unique<VertexArray>();
 		m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 12);
 
-		m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 8 * 9 * sizeof(float));
+		m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 8 * 9 * sizeof(float), GL_STATIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
@@ -55,6 +55,10 @@ namespace test {
 	void TestBatchRendering::OnRender()
 	{
 		Renderer renderer;
+
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
 		m_TextureBear->Bind(0);
 		m_TextureMaple->Bind(1);
 		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);

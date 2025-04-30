@@ -19,7 +19,7 @@ namespace test {
 		m_VAO = std::make_unique<VertexArray>();
 		m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6);
 
-		m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 4 * 4 * sizeof(float));
+		m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 4 * 4 * sizeof(float), GL_STATIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
@@ -43,6 +43,9 @@ namespace test {
 	void TestTexture2D::OnRender()
 	{
 		Renderer renderer;
+
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		{
 			glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
