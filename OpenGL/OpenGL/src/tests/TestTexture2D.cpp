@@ -28,7 +28,6 @@ namespace test {
 
 		m_Shader = std::make_unique<Shader>("res/shaders/BasicTexture.shader");
 		m_Shader->Bind();
-		m_Shader->SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
 
 		m_Texture = std::make_unique<Texture>("res/textures/bear.png");
 		m_Texture->Bind();
@@ -44,7 +43,6 @@ namespace test {
 	{
 		Renderer renderer;
 
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		{
