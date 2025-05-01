@@ -16,21 +16,11 @@
 #include "IndexBuffer.h"
 #include "VertexBufferLayout.h"
 
-struct Vec2
-{
-	float x, y;
-};
-
-struct Vec4
-{
-	float x, y, z, w;
-};
-
 struct Vertex
 {
-	Vec2 positions;
-	Vec4 color;
-	Vec2 texCoords;
+	glm::vec2 positions;
+	glm::vec4 color;
+	glm::vec2 texCoords;
 	float texIndex;
 };
 
