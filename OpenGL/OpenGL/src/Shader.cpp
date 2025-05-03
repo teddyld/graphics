@@ -9,20 +9,20 @@
 #include "Shader.h"
 
 Shader::Shader(const std::string& filepath)
-	: m_FilePath(filepath), m_RendererID(0)
+	: m_FilePath(filepath), m_Shader(0)
 {
 	ShaderProgramSource source = ParseShader(filepath);
-	m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
+	m_Shader = CreateShader(source.VertexSource, source.FragmentSource);
 }
 
 Shader::~Shader()
 {
-	glDeleteProgram(m_RendererID);
+	glDeleteProgram(m_Shader);
 }
 
 void Shader::Bind() const
 {
-	glUseProgram(m_RendererID);
+	glUseProgram(m_Shader);
 }
 
 void Shader::Unbind() const
@@ -58,7 +58,7 @@ unsigned int Shader::GetUniformLocation(const std::string& name)
 		return m_UniformLocationCache[name];
 	}
 
-	int location = glGetUniformLocation(m_RendererID, name.c_str());
+	int location = glGetUniformLocation(m_Shader, name.c_str());
 	m_UniformLocationCache[name] = location;
 	return location;
 }

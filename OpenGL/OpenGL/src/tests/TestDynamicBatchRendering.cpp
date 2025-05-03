@@ -78,7 +78,7 @@ namespace test {
 
 		buffer = CreateQuad(buffer, 320.0f, 120.0f, 1.0f);
 
-		for (unsigned int i = 0; i < m_NumQuadsBear + 1; i++)
+		for (int i = 0; i < m_NumQuadsBear + 1; i++)
 		{
 			indices.push_back(i * 4);
 			indices.push_back(1 + i * 4);
