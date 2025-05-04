@@ -26,7 +26,6 @@
 #include "tests/TestTexture2D.h"
 #include "tests/TestBatchRendering.h"
 #include "tests/TestDynamicBatchRendering.h"
-#include "tests/TestTeapot.h"
 #include "tests/TestEnvironment.h"
 
 int main(void)
@@ -82,7 +81,6 @@ int main(void)
 	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
 	testMenu->RegisterTest < test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
 	testMenu->RegisterTest<test::TestEnvironment>("A 2D Environment");
-	testMenu->RegisterTest<test::TestTeapot>("3D Teapot");
 
 	Renderer renderer;
 
