@@ -1,18 +1,5 @@
 #pragma once
-#include <memory>
-
 #include "Test.h"
-
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
-#include "Texture.h"
-#include "Renderer.h"
-#include "Shader.h"
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "VertexBufferLayout.h"
 
 namespace test {
 	class TestBatchRendering : public Test

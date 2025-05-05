@@ -1,4 +1,5 @@
 #include <GL/glew.h>
+#include <iostream>
 
 #include "Texture.h"
 #include "stb_image/stb_image.h"
@@ -23,6 +24,10 @@ Texture::Texture(const std::string& path)
 	if (m_LocalBuffer)
 	{
 		stbi_image_free(m_LocalBuffer);
+	}
+	else
+	{
+		std::cout << "Failed to load texture: " << path << std::endl;
 	}
 }
 

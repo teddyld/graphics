@@ -26,7 +26,7 @@ namespace test {
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		m_VAO->AddBuffer(*m_VertexBuffer, layout);
 
-		m_Shader = std::make_unique<Shader>("res/shaders/BasicTexture.shader");
+		m_Shader = std::make_unique<Shader>("res/shaders/Texture.shader");
 		m_Shader->Bind();
 
 		m_Texture = std::make_unique<Texture>("res/textures/bear.png");

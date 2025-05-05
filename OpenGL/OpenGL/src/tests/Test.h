@@ -3,9 +3,23 @@
 #include <functional>
 #include <iostream>
 #include <vector>
+#include <memory>
+#include <array>
 
 #include "GL/glew.h"
+#include "GLFW/glfw3.h"
 #include "imgui/imgui.h"
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
+#include "Texture.h"
+#include "Renderer.h"
+#include "Shader.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "VertexBufferLayout.h"
 
 namespace test {
 	class Test
