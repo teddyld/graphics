@@ -26,6 +26,7 @@
 #include "tests/TestTexture2D.h"
 #include "tests/TestBatchRendering.h"
 #include "tests/TestDynamicBatchRendering.h"
+#include "tests/TestTransform3D.h"
 #include "tests/TestEnvironment.h"
 
 int main(void)
@@ -79,7 +80,8 @@ int main(void)
 	testMenu->RegisterTest<test::TestClearColor>("Clear Color");
 	testMenu->RegisterTest<test::TestTexture2D>("Texture 2D");
 	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
-	testMenu->RegisterTest < test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
+	testMenu->RegisterTest<test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
+	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
 	testMenu->RegisterTest<test::TestEnvironment>("A 2D Environment");
 
 	Renderer renderer;
