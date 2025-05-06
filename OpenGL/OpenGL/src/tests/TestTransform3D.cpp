@@ -2,7 +2,7 @@
 
 namespace test {
 	TestTransform3D::TestTransform3D()
-		: m_View(0.0f, 0.0f, -3.0f), m_FoV(glm::radians(45.0f)), m_AspectRatio(960.0f / 540.0f), m_CubePositions{
+		: m_CubePositions{
 			glm::vec3(0.0f,  0.0f,  0.0f),
 			glm::vec3(2.0f,  5.0f, -15.0f),
 			glm::vec3(-1.5f, -2.2f, -2.5f),
@@ -91,16 +91,23 @@ namespace test {
 		glDisable(GL_DEPTH_TEST);
 	}
 
+	void TestTransform3D::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+		camera->CameraKeyboardInput(window, deltaTime);
+		m_View = camera->GetLookAt();
+		m_FoV = camera->GetZoom();
+	}
+
 	void TestTransform3D::OnRender()
 	{
 		Renderer renderer;
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::translate(view, m_View);
-
-		glm::mat4 projection = glm::perspective(m_FoV, m_AspectRatio, 0.1f, 100.0f);
+		glm::mat4 view = m_View;
+		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
 
 		for (unsigned int i = 0; i < 10; i++)
 		{
@@ -122,12 +129,5 @@ namespace test {
 
 			renderer.Draw(*m_VAO, *m_Shader, 36);
 		}
-	}
-
-	void TestTransform3D::OnImGuiRender()
-	{
-		ImGui::SliderAngle("FoV", &m_FoV, 0.0f, 90.0f);
-		ImGui::SliderFloat("Aspect Ratio", &m_AspectRatio, 1.0f, 16.0f);
-		ImGui::DragFloat3("View", &m_View[0], 0.1f, -5.0f, 5.0f);
 	}
 }

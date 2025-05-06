@@ -29,6 +29,18 @@
 #include "tests/TestTransform3D.h"
 #include "tests/TestEnvironment.h"
 
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 10.0f, 0.0f));
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+	camera.CameraMouseInput(static_cast<float>(xposIn), static_cast<float>(yposIn));
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	camera.CameraMouseScroll(static_cast<float>(yoffset));
+}
+
 int main(void)
 {
 	GLFWwindow* window;
@@ -49,8 +61,10 @@ int main(void)
 		return -1;
 	}
 
-	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 
 	// Enable vsync
 	glfwSwapInterval(1);
@@ -86,10 +100,17 @@ int main(void)
 
 	Renderer renderer;
 
+	float deltaTime = 0.0f;	// Time between current frame and last frame
+	float lastFrame = 0.0f; // Time of last frame
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
 		renderer.Clear();
+
+		float currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
 
 		// Start the Dear ImGui frame
 		ImGui_ImplOpenGL3_NewFrame();
@@ -98,12 +119,13 @@ int main(void)
 
 		if (currentTest)
 		{
-			currentTest->OnUpdate(0.0f);
+			currentTest->OnUpdate(window, deltaTime, &camera);
 			currentTest->OnRender();
 			ImGui::Begin("Test");
 
-			if (currentTest != testMenu && ImGui::Button("<-"))
+			if (currentTest != testMenu && (ImGui::Button("<-") || glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS))
 			{
+				glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 				delete currentTest;
 				currentTest = testMenu;
 			}
