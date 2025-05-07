@@ -27,9 +27,8 @@
 #include "tests/TestBatchRendering.h"
 #include "tests/TestDynamicBatchRendering.h"
 #include "tests/TestTransform3D.h"
-#include "tests/TestEnvironment.h"
 
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 10.0f, 0.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
@@ -96,7 +95,6 @@ int main(void)
 	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
 	testMenu->RegisterTest<test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
 	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
-	testMenu->RegisterTest<test::TestEnvironment>("A 2D Environment");
 
 	Renderer renderer;
 

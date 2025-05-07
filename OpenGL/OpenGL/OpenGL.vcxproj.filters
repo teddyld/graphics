@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,28 +60,7 @@
     <ClCompile Include="src\vendor\imgui\imgui_impl_opengl3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tests\TestClearColor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\TestTexture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\TestEnvironment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\TestBatchRendering.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\TestDynamicBatchRendering.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\TestTransform3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1004,93 +980,12 @@
     <ClInclude Include="src\vendor\imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tests\Test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestTexture2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestClearColor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestBatchRendering.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestDynamicBatchRendering.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tests\TestTransform3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\bear.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\clouds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\far-grounds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sea.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\tileset.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword5.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\maple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="..\..\..\..\Users\Vincent\Downloads\container.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\opengl\container.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\opengl\awesomeface.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\minecraft\grass_side.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\minecraft\grass_top.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\minecraft\grass_bottom.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -1509,8 +1404,5 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="res\textures\magic_cliffs\source.md" />
-    <None Include="res\shaders\Texture16.shader" />
-    <None Include="res\shaders\Texture.shader" />
   </ItemGroup>
 </Project>

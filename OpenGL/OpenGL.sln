@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL", "OpenGL\OpenGL.vcxproj", "{79673A27-392C-408B-89A5-2DD9F8987C94}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SnakeGame", "SnakeGame\SnakeGame.vcxproj", "{D298FC36-7574-484D-85DE-B4A9C4C2831C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL_Examples", "OpenGL_Examples\OpenGL_Examples.vcxproj", "{38E09A36-AB3C-46B7-A022-2E7408FD023A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,22 @@ Global
 		{79673A27-392C-408B-89A5-2DD9F8987C94}.Release|x64.Build.0 = Release|x64
 		{79673A27-392C-408B-89A5-2DD9F8987C94}.Release|x86.ActiveCfg = Release|Win32
 		{79673A27-392C-408B-89A5-2DD9F8987C94}.Release|x86.Build.0 = Release|Win32
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Debug|x64.ActiveCfg = Debug|x64
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Debug|x64.Build.0 = Debug|x64
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Debug|x86.ActiveCfg = Debug|Win32
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Debug|x86.Build.0 = Debug|Win32
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Release|x64.ActiveCfg = Release|x64
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Release|x64.Build.0 = Release|x64
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Release|x86.ActiveCfg = Release|Win32
+		{D298FC36-7574-484D-85DE-B4A9C4C2831C}.Release|x86.Build.0 = Release|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Debug|x64.ActiveCfg = Debug|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Debug|x64.Build.0 = Debug|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Debug|x86.ActiveCfg = Debug|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Debug|x86.Build.0 = Debug|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Release|x64.ActiveCfg = Release|x64
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Release|x64.Build.0 = Release|x64
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Release|x86.ActiveCfg = Release|Win32
+		{38E09A36-AB3C-46B7-A022-2E7408FD023A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

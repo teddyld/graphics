@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera(glm::vec3 pos, glm::vec3 up)
-	: m_CameraPosition(pos), m_CameraUp(up), m_WorldUp(up), m_Yaw(-90.0f), m_Pitch(0.0f), m_CameraSpeed(2.5f), m_MouseSensitivity(0.1f), m_Zoom(45.0f), m_FirstMouse(true), m_LastX(480.0f), m_LastY(270.0f)
+	: m_CameraPosition(pos), m_CameraUp(up), m_WorldUp(up), m_Yaw(0.0f), m_Pitch(0.0f), m_CameraSpeed(2.5f), m_MouseSensitivity(0.1f), m_Zoom(45.0f), m_FirstMouse(true), m_LastX(480.0f), m_LastY(270.0f)
 {
 	UpdateCameraVectors();
 }
