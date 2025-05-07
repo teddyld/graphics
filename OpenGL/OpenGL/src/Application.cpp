@@ -108,7 +108,7 @@ int main(void)
 	{
 		renderer.Clear();
 
-		float currentFrame = glfwGetTime();
+		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
