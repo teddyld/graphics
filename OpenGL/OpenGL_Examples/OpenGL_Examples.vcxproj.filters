@@ -60,48 +60,8 @@
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
     <None Include="res\shaders\Texture16.shader" />
-    <None Include="res\textures\magic_cliffs\source.md" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\magic_cliffs\environment\clouds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\far-grounds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sea.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\tileset.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword5.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword6.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword7.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
       <Filter>Resource Files</Filter>
     </Image>
