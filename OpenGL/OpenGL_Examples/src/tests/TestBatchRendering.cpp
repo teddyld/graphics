@@ -36,9 +36,6 @@ namespace test {
 		m_TextureBear = std::make_unique<Texture>("res/textures/bear.png");
 		m_TextureMaple = std::make_unique<Texture>("res/textures/maple.png");
 
-		m_TextureBear->Bind(0);
-		m_TextureMaple->Bind(1);
-
 		m_Shader = std::make_unique<Shader>("res/shaders/Texture16.shader");
 		m_Shader->Bind();
 
@@ -59,7 +56,8 @@ namespace test {
 	{
 		Renderer renderer;
 
-		glClear(GL_COLOR_BUFFER_BIT);
+		m_TextureBear->Bind(0);
+		m_TextureMaple->Bind(1);
 
 		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
 	}

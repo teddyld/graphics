@@ -30,7 +30,6 @@ namespace test {
 		m_Shader->Bind();
 
 		m_Texture = std::make_unique<Texture>("res/textures/bear.png");
-		m_Texture->Bind();
 		m_Shader->SetUniform1i("u_Texture", 0);
 
 		m_VAO->Unbind();
@@ -43,7 +42,8 @@ namespace test {
 	{
 		Renderer renderer;
 
-		glClear(GL_COLOR_BUFFER_BIT);
+		m_Texture->Bind();
+		m_Shader->Bind();
 
 		{
 			glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);

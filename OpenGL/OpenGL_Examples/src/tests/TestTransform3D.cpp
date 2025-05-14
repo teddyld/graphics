@@ -73,8 +73,6 @@ namespace test {
 
 		m_TextureGrassBottom = std::make_unique<Texture>("res/textures/minecraft/grass_bottom.jpg");
 
-		m_TextureGrassBottom->Bind(0);
-
 		m_Shader = std::make_unique<Shader>("res/shaders/Texture16.shader");
 		m_Shader->Bind();
 
@@ -104,7 +102,7 @@ namespace test {
 	{
 		Renderer renderer;
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		m_TextureGrassBottom->Bind(0);
 
 		glm::mat4 view = m_View;
 		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
