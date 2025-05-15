@@ -27,6 +27,7 @@
 #include "tests/TestBatchRendering.h"
 #include "tests/TestDynamicBatchRendering.h"
 #include "tests/TestTransform3D.h"
+#include "tests/TestChangeTexture.h"
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -95,6 +96,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
 	testMenu->RegisterTest<test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
 	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
+	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
 
 	Renderer renderer;
 

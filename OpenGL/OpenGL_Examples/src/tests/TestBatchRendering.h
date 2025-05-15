@@ -17,6 +17,5 @@ namespace test {
 		TestBatchRendering();
 
 		void OnRender() override;
-		void OnImGuiRender() override;
 	};
 }

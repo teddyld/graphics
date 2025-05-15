@@ -14,6 +14,12 @@ VertexBuffer::~VertexBuffer()
 	glDeleteBuffers(1, &m_VBO);
 }
 
+void VertexBuffer::UpdateBufferSubData(int offset, int size, const void* data) const
+{
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+	glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+}
+
 void VertexBuffer::Bind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

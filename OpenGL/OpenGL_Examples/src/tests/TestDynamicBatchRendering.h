@@ -1,13 +1,6 @@
 #pragma once
-#include "Test.h"
 
-struct Vertex
-{
-	glm::vec2 positions;
-	glm::vec4 color;
-	glm::vec2 texCoords;
-	float texIndex;
-};
+#include "Test.h"
 
 namespace test {
 	class TestDynamicBatchRendering : public Test

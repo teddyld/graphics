@@ -5,15 +5,15 @@ namespace test {
 		: m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f))
 	{
 		float vertices[] = {
-			120.0f, 120.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-			220.0f, 120.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-			220.0f, 220.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-			120.0f, 220.0f, 0.2f, 0.2f, 0.2f, 1.0f, 0.0f, 1.0f, 0.0f,
+			120.0f, 120.0f, 0.0f, 0.0f, 0.0f,
+			220.0f, 120.0f, 1.0f, 0.0f, 0.0f,
+			220.0f, 220.0f, 1.0f, 1.0f, 0.0f,
+			120.0f, 220.0f, 0.0f, 1.0f, 0.0f,
 
-			320.0f, 120.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-			420.0f, 120.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-			420.0f, 220.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-			320.0f, 220.0f, 0.2f, 0.2f, 0.2f, 1.0f, 0.0f, 1.0f, 1.0f,
+			320.0f, 120.0f, 0.0f, 0.0f, 1.0f,
+			420.0f, 120.0f, 1.0f, 0.0f, 1.0f,
+			420.0f, 220.0f, 1.0f, 1.0f, 1.0f,
+			320.0f, 220.0f, 0.0f, 1.0f, 1.0f,
 		};
 
 		unsigned int indices[] = {
@@ -28,7 +28,6 @@ namespace test {
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
-		layout.Push(GL_FLOAT, 4, GL_FALSE);
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		layout.Push(GL_FLOAT, 1, GL_FALSE);
 		m_VAO->AddBuffer(*m_VertexBuffer, layout);
@@ -60,9 +59,5 @@ namespace test {
 		m_TextureMaple->Bind(1);
 
 		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
-	}
-
-	void TestBatchRendering::OnImGuiRender()
-	{
 	}
 }

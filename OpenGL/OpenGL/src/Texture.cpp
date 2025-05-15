@@ -46,3 +46,8 @@ void Texture::Unbind() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+void Texture::_Debug() const
+{
+	std::cout << "Path: " << m_FilePath << " Texture: " << m_Texture << '\n';
+}
