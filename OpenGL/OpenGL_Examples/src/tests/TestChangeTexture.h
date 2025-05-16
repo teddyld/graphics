@@ -23,7 +23,6 @@ namespace test {
 	public:
 		TestChangeTexture();
 
-		void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) override;
 		void OnRender() override;
 		void OnImGuiRender() override;
 	};

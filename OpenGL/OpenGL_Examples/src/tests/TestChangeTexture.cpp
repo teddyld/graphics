@@ -37,11 +37,6 @@ namespace test {
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
 	}
 
-	void TestChangeTexture::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
-	{
-		float currentFrame = (float)glfwGetTime();
-	}
-
 	void TestChangeTexture::OnRender()
 	{
 		Renderer renderer;
