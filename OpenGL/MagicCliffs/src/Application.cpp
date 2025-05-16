@@ -17,6 +17,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "Entity/Fox.h"
+
 int main(void)
 {
 	GLFWwindow* window;
@@ -30,7 +32,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(960, 540, "OpenGL", nullptr, nullptr);
+	window = glfwCreateWindow(1920, 1080, "Magic Cliff", nullptr, nullptr);
 	if (!window)
 	{
 		glfwTerminate();
@@ -53,6 +55,13 @@ int main(void)
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
 
+	Fox fox;
+
+	glEnable(GL_DEPTH_TEST);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
@@ -61,6 +70,8 @@ int main(void)
 		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+
+		fox.OnRender(deltaTime);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
