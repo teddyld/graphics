@@ -4,7 +4,7 @@
 glm::mat4 foxModel = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 145.0f, 0.0f));
 
 Fox::Fox()
-	: Entity(foxModel, 0.15f, glm::vec3(1.0f, 1.0f, 1.0f)), m_TextureID(0.0f)
+	: Entity(foxModel, 100.0f, glm::vec3(1.0f, 1.0f, 1.0f)), m_TextureID(0.0f)
 {
 	unsigned int indices[] = {
 		0, 1, 2, 2, 3, 0,
@@ -50,15 +50,16 @@ void Fox::OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime)
 		m_TextureID = 0.0f;
 	}
 
-	// Update position
-	glm::vec3 direction = glm::vec3(1.0f, 0.0f, 0.0f);
-	m_Position = m_Position + m_Speed * deltaTime;
+	// Update position and loop animation
+	m_Position.x = (m_Position.x + m_Speed * deltaTime);
+	if (m_Position.x > 520.0f)
+	{
+		m_Position.x = -50.0f;
+	}
 
-	std::cout << m_Position.x << " " << m_Position.y << " " << m_Position.z << "\n";
+	glm::mat4 modelPosition = glm::translate(m_Model, glm::vec3(m_Position.x, 0.0f, 0.0f));
 
-	m_Model = glm::translate(m_Model, m_Position * direction);
-
-	glm::mat4 mvp = projection * view * m_Model;
+	glm::mat4 mvp = projection * view * modelPosition;
 
 	m_Shader->Bind();
 	m_Shader->SetUniformMat4f("u_MVP", mvp);

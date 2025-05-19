@@ -14,7 +14,7 @@
 
 struct EntityVertex
 {
-	glm::vec2 position;
+	glm::vec3 position;
 	glm::vec2 texCoords;
 	float texIndex;
 };
