@@ -28,6 +28,7 @@
 #include "tests/TestDynamicBatchRendering.h"
 #include "tests/TestTransform3D.h"
 #include "tests/TestChangeTexture.h"
+#include "tests/TestShaders.h"
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -53,8 +54,9 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(960, 540, "OpenGL", nullptr, nullptr);
+	const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+	window = glfwCreateWindow(mode->width, mode->height, "OpenGL", nullptr, nullptr);
 	if (!window)
 	{
 		glfwTerminate();
@@ -97,6 +99,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
 	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
 	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
+	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
 
 	Renderer renderer;
 
