@@ -10,5 +10,5 @@ private:
 public:
 	Fox();
 
-	void OnRender(float deltaTime) override;
+	void OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime) override;
 };

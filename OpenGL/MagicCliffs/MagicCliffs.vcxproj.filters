@@ -15,21 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\magic_cliffs\environment\clouds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\far-grounds.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sea.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\sky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\magic_cliffs\environment\tileset.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -54,11 +39,18 @@
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\magic_cliffs\environment\magic-cliffs-preview-detail.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\magic_cliffs\environment\sea.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\textures\magic_cliffs\source.md" />
     <None Include="res\shaders\Texture16.shader" />
     <None Include="res\shaders\Water.shader" />
+    <None Include="res\shaders\Texture1.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -67,16 +59,10 @@
     <ClCompile Include="src\Entity\Fox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Environment\Sea.cpp">
+    <ClCompile Include="src\Environment\Water.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entity\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Environment\Environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Environment\Sky.cpp">
+    <ClCompile Include="src\Environment\Landscape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,19 +70,13 @@
     <ClInclude Include="src\Entity\Fox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Environment\Sea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entity\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity\Player.h">
+    <ClInclude Include="src\Environment\Water.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Environment\Environment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Environment\Sky.h">
+    <ClInclude Include="src\Environment\Landscape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

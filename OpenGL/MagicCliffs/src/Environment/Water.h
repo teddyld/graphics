@@ -1,4 +1,5 @@
 #pragma once
+
 #include <memory>
 
 #include "glm/glm.hpp"
@@ -12,28 +13,16 @@
 #include "Shader.h"
 #include "Texture.h"
 
-struct EntityVertex
+class Water
 {
-	glm::vec2 position;
-	glm::vec2 texCoords;
-	float texIndex;
-};
-
-class Entity
-{
-protected:
-	float m_Speed;
-	glm::vec3 m_Position;
-	glm::mat4 m_Model;
-
+private:
 	std::unique_ptr<VertexArray> m_VAO;
 	std::unique_ptr<VertexBuffer> m_VBO;
 	std::unique_ptr<IndexBuffer> m_EBO;
 	std::unique_ptr<Shader> m_Shader;
+	std::unique_ptr<Texture> m_Texture;
 public:
-	Entity(glm::mat4 model, float speed, glm::vec3 position)
-		: m_Model(model), m_Speed(speed), m_Position(position) {}
-	virtual ~Entity() {}
+	Water();
 
-	virtual void OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime) {}
+	void OnRender(glm::mat4 view, glm::mat4 projection);
 };

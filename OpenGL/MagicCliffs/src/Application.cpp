@@ -18,6 +18,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Entity/Fox.h"
+#include "Environment/Water.h"
+#include "Environment/Landscape.h"
 
 int main(void)
 {
@@ -32,7 +34,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(1920, 1080, "Magic Cliff", nullptr, nullptr);
+	window = glfwCreateWindow(512, 302, "Magic Cliff", nullptr, nullptr);
 	if (!window)
 	{
 		glfwTerminate();
@@ -55,7 +57,12 @@ int main(void)
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
 
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::ortho(0.0f, 512.0f, 0.0f, 302.0f, -1.0f, 1.0f);
+
 	Fox fox;
+	Water water;
+	Landscape landscape;
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -67,11 +74,15 @@ int main(void)
 	{
 		renderer.Clear();
 
+		glClearColor(16.0f, 33.0f, 36.0f, 1.0f);
+
 		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		fox.OnRender(deltaTime);
+		landscape.OnRender(view, projection);
+		water.OnRender(view, projection);
+		fox.OnRender(view, projection, deltaTime);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
