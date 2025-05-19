@@ -24,7 +24,7 @@ Water::Water()
 	layout.Push(GL_FLOAT, 2, GL_FALSE);
 	m_VAO->AddBuffer(*m_VBO, layout);
 
-	std::map<GLenum, GLfloat> options = {
+	std::map<GLenum, GLint> options = {
 		{ GL_TEXTURE_MIN_FILTER, GL_LINEAR },
 		{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
 		{ GL_TEXTURE_WRAP_S, GL_REPEAT },

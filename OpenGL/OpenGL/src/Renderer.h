@@ -7,14 +7,9 @@
 #include "Shader.h"
 
 #define ASSERT(x) if (!(x)) __debugbreak();
+#define glCheckError() glCheckError_(__FILE__, __LINE__)
 
-#define GLCall(x) GLClearError();\
-	x;\
-	ASSERT(GLLogCall(#x, __FILE__, __LINE__)) // #x turns x into a string
-
-void GLClearError();
-
-bool GLLogCall(const char* function, const char* file, int line);
+GLenum glCheckError_(const char* file, int line);
 
 class Renderer
 {
