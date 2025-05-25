@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec3 pos, glm::vec3 up)
-	: m_CameraPosition(pos), m_CameraUp(up), m_WorldUp(up), m_Yaw(0.0f), m_Pitch(0.0f), m_CameraSpeed(2.5f), m_MouseSensitivity(0.1f), m_Zoom(45.0f), m_FirstMouse(true), m_LastX(480.0f), m_LastY(270.0f)
+Camera::Camera(glm::vec3 pos, float width, float height)
+	: m_CameraPosition(pos), m_Width(width), m_Height(height)
 {
 	UpdateCameraVectors();
 }
@@ -10,12 +10,22 @@ Camera::~Camera()
 {
 }
 
-void Camera::CameraKeyboardInput(GLFWwindow* window, float deltaTime)
+void Camera::CameraInput(GLFWwindow* window, float deltaTime)
 {
+	// Control speed of camera
 	float multiplier = 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT))
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+	{
 		multiplier = 3.0f;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
+	{
+		multiplier = 0.2f;
+	}
+
 	float velocity = m_CameraSpeed * deltaTime * multiplier;
+
+	// Control camera position
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		m_CameraPosition += velocity * m_CameraFront;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -24,40 +34,49 @@ void Camera::CameraKeyboardInput(GLFWwindow* window, float deltaTime)
 		m_CameraPosition -= glm::normalize(glm::cross(m_CameraFront, m_CameraUp)) * velocity;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		m_CameraPosition += glm::normalize(glm::cross(m_CameraFront, m_CameraUp)) * velocity;
-}
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+		m_CameraPosition += velocity * m_CameraUp;
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		m_CameraPosition += velocity * -m_CameraUp;
 
-void Camera::CameraMouseInput(float xpos, float ypos)
-{
-	if (m_FirstMouse)
+	// Control camera mouse mode
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+		m_MouseEnabled = true;
+	else if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
-		m_LastX = xpos;
-		m_LastY = ypos;
-		m_FirstMouse = false;
+		// Exit camera mode
+		m_MouseEnabled = false;
+		m_FirstMouse = true;
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
 
-	float xoffset = (xpos - m_LastX) * m_MouseSensitivity;
-	float yoffset = (m_LastY - ypos) * m_MouseSensitivity; // reversed since y-coordinates go from bottom to top
+	if (m_MouseEnabled)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-	m_LastX = xpos;
-	m_LastY = ypos;
+		// Centre cursor to screen
+		if (m_FirstMouse)
+		{
+			glfwSetCursorPos(window, (m_Width / 2), (m_Height / 2));
+			m_FirstMouse = false;
+		}
 
-	m_Yaw += xoffset;
-	m_Pitch += yoffset;
+		double mouseX;
+		double mouseY;
+		glfwGetCursorPos(window, &mouseX, &mouseY);
 
-	// Constraints
-	if (m_Pitch > 89.0f)
-		m_Pitch = 89.0f;
-	if (m_Pitch < -89.0f)
-		m_Pitch = -89.0f;
+		m_Yaw += m_MouseSensitivity * (float)(mouseX - (m_Width / 2)) / m_Width;
+		m_Pitch += m_MouseSensitivity * (float)((m_Height / 2) - mouseY) / m_Height; // reversed since y-coordinates go from bottom to top
 
-	UpdateCameraVectors();
-}
+		// Constrain pitch so that the camera does not flip
+		if (m_Pitch > 89.0f)
+			m_Pitch = 89.0f;
+		if (m_Pitch < -89.0f)
+			m_Pitch = -89.0f;
 
-void Camera::CameraMouseScroll(float yoffset)
-{
-	m_Zoom -= (float)yoffset;
-	if (m_Zoom < 1.0f)
-		m_Zoom = 1.0f;
-	if (m_Zoom > 45.0f)
-		m_Zoom = 45.0f;
+		UpdateCameraVectors();
+
+		// Set mouse cursor to the centre of the screen
+		glfwSetCursorPos(window, (m_Width / 2), (m_Height / 2));
+	}
 }

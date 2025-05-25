@@ -90,9 +90,7 @@ namespace test {
 
 	void TestTransform3D::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
 	{
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-		camera->CameraKeyboardInput(window, deltaTime);
+		camera->CameraInput(window, deltaTime);
 		m_View = camera->GetLookAt();
 		m_FoV = camera->GetZoom();
 	}

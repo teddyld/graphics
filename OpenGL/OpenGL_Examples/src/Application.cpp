@@ -30,18 +30,6 @@
 #include "tests/TestChangeTexture.h"
 #include "tests/TestShaders.h"
 
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-	camera.CameraMouseInput(static_cast<float>(xposIn), static_cast<float>(yposIn));
-}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-	camera.CameraMouseScroll(static_cast<float>(yoffset));
-}
-
 int main(void)
 {
 	GLFWwindow* window;
@@ -64,9 +52,6 @@ int main(void)
 	}
 
 	glfwMakeContextCurrent(window);
-
-	glfwSetCursorPosCallback(window, mouse_callback);
-	glfwSetScrollCallback(window, scroll_callback);
 
 	// Enable vsync
 	glfwSwapInterval(1);
@@ -102,6 +87,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
 
 	Renderer renderer;
+	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), mode->width, mode->height);
 
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame
@@ -126,7 +112,7 @@ int main(void)
 			currentTest->OnRender();
 			ImGui::Begin("Test");
 
-			if (currentTest != testMenu && (ImGui::Button("<-") || glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS))
+			if (currentTest != testMenu && ImGui::Button("<-"))
 			{
 				glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 				delete currentTest;

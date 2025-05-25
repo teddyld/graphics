@@ -5,34 +5,31 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
 class Camera
 {
 private:
-	glm::vec3 m_CameraPosition;
-	glm::vec3 m_CameraUp;
+	glm::vec3 m_CameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 m_CameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	glm::vec3 m_WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::vec3 m_CameraFront;
 	glm::vec3 m_CameraRight;
-	glm::vec3 m_WorldUp;
 
-	float m_Yaw;
-	float m_Pitch;
+	float m_Yaw = 0.0f;
+	float m_Pitch = 0.0f;
 
-	float m_CameraSpeed;
-	float m_MouseSensitivity;
-	float m_Zoom;
-	bool m_FirstMouse;
-	float m_LastX;
-	float m_LastY;
+	float m_CameraSpeed = 2.5f;
+	float m_MouseSensitivity = 100.0f;
+	float m_Zoom = 45.0f;
+	bool m_FirstMouse = true;
+	float m_MouseEnabled = false;
+
+	float m_Width;
+	float m_Height;
 public:
-	Camera(glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f));
+	Camera(glm::vec3 pos, float width, float height);
 	~Camera();
 
-	void CameraKeyboardInput(GLFWwindow* window, float deltaTime);
-	void CameraMouseInput(float xpos, float ypos);
-	void CameraMouseScroll(float yoffset);
+	void CameraInput(GLFWwindow* window, float deltaTime);
 
 	void UpdateCameraVectors()
 	{
