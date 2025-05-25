@@ -7,19 +7,19 @@ IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count)
 {
 	ASSERT(sizeof(unsigned int) == sizeof(GLuint));
 
-	glGenBuffers(1, &m_EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glGenBuffers(1, &m_ID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_STATIC_DRAW);
 }
 
 IndexBuffer::~IndexBuffer()
 {
-	glDeleteBuffers(1, &m_EBO);
+	glDeleteBuffers(1, &m_ID);
 }
 
 void IndexBuffer::Bind() const
 {
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 }
 
 void IndexBuffer::Unbind() const

@@ -9,20 +9,20 @@
 #include "Shader.h"
 
 Shader::Shader(const std::string& filepath)
-	: m_FilePath(filepath), m_Shader(0)
+	: m_FilePath(filepath), m_ID(0)
 {
 	ShaderProgramSource source = ParseShader(filepath);
-	m_Shader = CreateShader(source.VertexSource, source.FragmentSource);
+	m_ID = CreateShader(source.VertexSource, source.FragmentSource);
 }
 
 Shader::~Shader()
 {
-	glDeleteProgram(m_Shader);
+	glDeleteProgram(m_ID);
 }
 
 void Shader::Bind() const
 {
-	glUseProgram(m_Shader);
+	glUseProgram(m_ID);
 }
 
 void Shader::Unbind() const
@@ -68,11 +68,12 @@ unsigned int Shader::GetUniformLocation(const std::string& name)
 		return m_UniformLocationCache[name];
 	}
 
-	int location = glGetUniformLocation(m_Shader, name.c_str());
+	int location = glGetUniformLocation(m_ID, name.c_str());
 	m_UniformLocationCache[name] = location;
 	return location;
 }
 
+// Reads from shader file and outputs string of vertex and fragment shader
 ShaderProgramSource Shader::ParseShader(const std::string& filepath)
 {
 	std::ifstream stream(filepath);

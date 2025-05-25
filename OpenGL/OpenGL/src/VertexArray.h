@@ -7,7 +7,7 @@ class VertexBufferLayout;
 class VertexArray
 {
 private:
-	unsigned int m_VAO;
+	unsigned int m_ID;
 public:
 	VertexArray();
 	~VertexArray();

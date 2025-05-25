@@ -3,7 +3,7 @@
 class IndexBuffer
 {
 private:
-	unsigned int m_EBO;
+	unsigned int m_ID;
 	unsigned int m_Count;
 public:
 	IndexBuffer(const unsigned int* data, unsigned int count);

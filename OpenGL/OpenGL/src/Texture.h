@@ -7,7 +7,7 @@
 class Texture
 {
 private:
-	unsigned int m_Texture;
+	unsigned int m_ID;
 	std::string m_FilePath;
 	unsigned char* m_LocalBuffer;
 	int m_Width, m_Height, m_BPP;
