@@ -34,15 +34,8 @@ Fox::Fox()
 	m_Shader->SetUniform1iv("u_Textures", 8, samplers);
 }
 
-void Fox::OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime)
+void Fox::OnUpdate(float deltaTime)
 {
-	Renderer renderer;
-
-	for (unsigned int i = 0; i < m_Textures.size(); i++)
-	{
-		m_Textures[i]->Bind(i);
-	}
-
 	// Animate texture
 	m_TextureID = m_TextureID + 0.07f;
 	if (m_TextureID > 7.0f)
@@ -55,6 +48,16 @@ void Fox::OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime)
 	if (m_Position.x > 520.0f)
 	{
 		m_Position.x = -50.0f;
+	}
+}
+
+void Fox::OnRender(glm::mat4 view, glm::mat4 projection)
+{
+	Renderer renderer;
+
+	for (unsigned int i = 0; i < m_Textures.size(); i++)
+	{
+		m_Textures[i]->Bind(i);
 	}
 
 	glm::mat4 modelPosition = glm::translate(m_Model, glm::vec3(m_Position.x, 0.0f, 0.0f));

@@ -35,5 +35,6 @@ public:
 		: m_Model(model), m_Speed(speed), m_Position(position) {}
 	virtual ~Entity() {}
 
-	virtual void OnRender(glm::mat4 view, glm::mat4 projection, float deltaTime) {}
+	virtual void OnUpdate(float deltaTime) {}
+	virtual void OnRender(glm::mat4 view, glm::mat4 projection) {}
 };

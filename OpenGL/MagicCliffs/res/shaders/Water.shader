@@ -18,13 +18,25 @@ void main()
 #shader fragment
 #version 450 core
 
-layout(location = 0) out vec4 o_Color;
+layout(location = 0) out vec4 FragColor;
 
 in vec2 v_TexCoord;
 
+uniform float u_Strength;
+uniform vec2 u_Offset; 
 uniform sampler2D u_Texture;
+uniform sampler2D u_Normal;
 
 void main()
 {
-	o_Color = texture(u_Texture, v_TexCoord);
+	// Reflect the texture coordinates on the y-axis
+	vec2 reflectionUV = vec2(v_TexCoord.x, 1.0 - v_TexCoord.y);
+
+	// Apply normal texture and offset by u_Offset; fract() to keep the normal in view
+	vec4 waterColor = texture(u_Normal, fract(reflectionUV + u_Offset));
+	
+	// Apply reflected texture modified by normal UV, adjusted by u_Strength
+	waterColor = texture(u_Texture, reflectionUV + (waterColor.rg * u_Strength));
+
+	FragColor = waterColor;
 };

@@ -45,21 +45,22 @@
     <Image Include="res\textures\magic_cliffs\environment\sea.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\magic_cliffs\environment\water_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\textures\magic_cliffs\source.md" />
     <None Include="res\shaders\Texture16.shader" />
     <None Include="res\shaders\Water.shader" />
     <None Include="res\shaders\Texture1.shader" />
+    <None Include="res\shaders\Screen.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entity\Fox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Environment\Water.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Environment\Landscape.cpp">
@@ -71,9 +72,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Environment\Water.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Environment\Landscape.h">

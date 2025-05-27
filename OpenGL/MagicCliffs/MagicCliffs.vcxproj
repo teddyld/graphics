@@ -145,6 +145,7 @@
   <ItemGroup>
     <Image Include="res\textures\magic_cliffs\environment\magic-cliffs-preview-detail.png" />
     <Image Include="res\textures\magic_cliffs\environment\sea.png" />
+    <Image Include="res\textures\magic_cliffs\environment\water_normal.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword1.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword2.png" />
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword3.png" />
@@ -155,6 +156,7 @@
     <Image Include="res\textures\magic_cliffs\fox_sword\fox-sword8.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\Screen.shader" />
     <None Include="res\shaders\Texture1.shader" />
     <None Include="res\shaders\Texture16.shader" />
     <None Include="res\shaders\Water.shader" />
@@ -164,7 +166,6 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Entity\Fox.cpp" />
     <ClCompile Include="src\Environment\Landscape.cpp" />
-    <ClCompile Include="src\Environment\Water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenGL\OpenGL.vcxproj">
@@ -175,7 +176,6 @@
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Fox.h" />
     <ClInclude Include="src\Environment\Landscape.h" />
-    <ClInclude Include="src\Environment\Water.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
