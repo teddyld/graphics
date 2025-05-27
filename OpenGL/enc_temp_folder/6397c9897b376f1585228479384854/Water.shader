@@ -32,7 +32,7 @@ void main()
 	// Reflect the texture coordinates on the y-axis
 	vec2 reflectionUV = vec2(v_TexCoord.x, 1.0 - v_TexCoord.y);
 
-	// Apply normal texture and offset by u_Offset to move the normal; fract() to keep the normal in view
+	// Apply normal texture and offset by u_Offset; fract() to keep the normal in view
 	vec4 waterColor = texture(u_Normal, fract(reflectionUV + u_Offset));
 	
 	// Apply reflected texture modified by normal UV, adjusted by u_Strength
