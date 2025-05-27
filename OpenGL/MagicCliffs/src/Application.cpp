@@ -95,7 +95,7 @@ int main(void)
 	glm::vec2 offset = glm::vec2(0.0f, 0.0f);
 	float speed = 0.05f;
 
-	glm::mat4 waterModel = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -15.0f, 0.0f));
+	glm::mat4 waterModel = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -15.0f, 0.0f));
 
 	waterShader.SetUniformMat4f("u_MVP", projection * view * waterModel);
 	waterShader.Unbind();
