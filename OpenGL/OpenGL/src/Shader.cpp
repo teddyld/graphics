@@ -1,11 +1,3 @@
-#include <GL/glew.h>
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-
-#include "Renderer.h"
 #include "Shader.h"
 
 Shader::Shader(const std::string& filepath)

@@ -1,8 +1,11 @@
 #pragma once
 
-#include <map>
+#include <GL/glew.h>
 
-#include "Renderer.h"
+#include <map>
+#include <iostream>
+
+#include "stb_image/stb_image.h"
 
 class Texture
 {
@@ -22,4 +25,5 @@ public:
 
 	inline int GetWidth() const { return m_Width; }
 	inline int GetHeight() const { return m_Height; }
+	inline int GetID() const { return m_ID; }
 };

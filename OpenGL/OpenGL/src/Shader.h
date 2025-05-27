@@ -1,8 +1,12 @@
 #pragma once
 #include "glm/glm.hpp"
+#include <GL/glew.h>
 
 #include <string>
 #include <unordered_map>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 struct ShaderProgramSource
 {

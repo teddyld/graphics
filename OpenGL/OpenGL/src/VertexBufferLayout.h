@@ -3,8 +3,7 @@
 #include <GL/glew.h>
 
 #include <vector>
-
-#include "Renderer.h"
+#include <iostream>
 
 struct VertexBufferElement
 {
@@ -25,7 +24,7 @@ struct VertexBufferElement
 		case GL_UNSIGNED_INT: return 4;
 		case GL_UNSIGNED_BYTE: return 1;
 		}
-		ASSERT(false);
+		std::cout << type << " has is not defined in GetSizeOfType" << '\n';
 		return 0;
 	}
 };

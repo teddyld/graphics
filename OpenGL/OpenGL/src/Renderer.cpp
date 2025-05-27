@@ -1,7 +1,3 @@
-#include <GL/glew.h>
-
-#include <iostream>
-
 #include "Renderer.h"
 
 GLenum glCheckError_(const char* file, int line)

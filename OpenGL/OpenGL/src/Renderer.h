@@ -2,11 +2,12 @@
 
 #include <GL/glew.h>
 
+#include <iostream>
+
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
 
-#define ASSERT(x) if (!(x)) __debugbreak();
 #define glCheckError() glCheckError_(__FILE__, __LINE__)
 
 GLenum glCheckError_(const char* file, int line);
