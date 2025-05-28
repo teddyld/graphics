@@ -15,8 +15,6 @@ namespace test {
 			glm::vec3(-1.3f,  1.0f, -1.5f)
 		}
 	{
-		glEnable(GL_DEPTH_TEST);
-
 		float vertices[] = {
 			 -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
@@ -62,7 +60,7 @@ namespace test {
 		};
 
 		m_VAO = std::make_unique<VertexArray>();
-		m_VBO = std::make_unique<VertexBuffer>(vertices, 36 * 10 * sizeof(float), GL_STATIC_DRAW);
+		m_VBO = std::make_unique<VertexBuffer>(vertices, 36 * 6 * sizeof(float), GL_STATIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 3, GL_FALSE);
@@ -98,6 +96,8 @@ namespace test {
 	void TestTransform3D::OnRender()
 	{
 		Renderer renderer;
+
+		glEnable(GL_DEPTH_TEST);
 
 		m_TextureGrassBottom->Bind(0);
 

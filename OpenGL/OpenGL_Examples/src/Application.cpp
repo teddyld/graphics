@@ -29,6 +29,7 @@
 #include "tests/TestTransform3D.h"
 #include "tests/TestChangeTexture.h"
 #include "tests/TestShaders.h"
+#include "tests/TestLighting.h"
 
 int main(void)
 {
@@ -85,6 +86,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
 	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
 	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
+	testMenu->RegisterTest<test::TestLighting>("Lighting");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), mode->width, mode->height);

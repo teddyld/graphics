@@ -42,6 +42,9 @@
     <ClCompile Include="src\tests\TestShaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestLighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -68,11 +71,17 @@
     <ClInclude Include="src\tests\TestShaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestLighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
     <None Include="res\shaders\Texture16.shader" />
     <None Include="res\shaders\Fractal.shader" />
+    <None Include="res\shaders\Light.shader" />
+    <None Include="res\shaders\PhongObject.shader" />
+    <None Include="res\shaders\GouradObject.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
