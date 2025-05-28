@@ -40,7 +40,7 @@ void Camera::CameraInput(GLFWwindow* window, float deltaTime)
 		m_CameraPosition += velocity * -m_CameraUp;
 
 	// Control camera mouse mode
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 		m_MouseEnabled = true;
 	else if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
