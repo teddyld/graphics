@@ -181,6 +181,7 @@
   <ItemGroup>
     <Image Include="res\textures\bear.png" />
     <Image Include="res\textures\maple.png" />
+    <Image Include="res\textures\minecraft\glowstone.jpg" />
     <Image Include="res\textures\minecraft\grass_bottom.jpg" />
     <Image Include="res\textures\minecraft\grass_side.jpg" />
     <Image Include="res\textures\minecraft\grass_top.jpg" />

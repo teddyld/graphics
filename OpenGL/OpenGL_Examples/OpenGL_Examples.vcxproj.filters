@@ -105,5 +105,8 @@
     <Image Include="res\textures\maple.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\minecraft\glowstone.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

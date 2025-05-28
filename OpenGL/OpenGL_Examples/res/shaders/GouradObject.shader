@@ -3,14 +3,15 @@
 
 layout(location = 0) in vec4 a_Position;
 layout(location = 1) in vec3 a_Normal;
+layout(location = 2) in vec2 a_TexCoords;
 
 out vec3 v_Result;
+out vec2 v_TexCoords;
 
 uniform mat4 u_Model;
 uniform mat4 u_Projection;
 uniform mat4 u_View;
 
-uniform vec3 u_ObjectColor;
 uniform vec3 u_LightColor;
 uniform vec3 u_LightPosition;
 uniform vec3 u_ViewPosition;
@@ -44,7 +45,8 @@ void main()
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shininess);
 	vec3 specular = specularStrength * spec * u_LightColor;
 
-	v_Result = (ambient + diffuse + specular) * u_ObjectColor;
+	v_Result = ambient + diffuse + specular;
+	v_TexCoords = a_TexCoords;
 
 	gl_Position = u_Projection * u_View * u_Model * a_Position;
 
@@ -56,8 +58,12 @@ void main()
 layout(location = 0) out vec4 FragColor;
 
 in vec3 v_Result;
+in vec2 v_TexCoords;
+
+uniform sampler2D u_Texture;
 
 void main()
 {
-	FragColor = vec4(v_Result, 1.0);
+	vec3 result = v_Result * vec3(texture(u_Texture, v_TexCoords));
+	FragColor = vec4(result, 1.0);
 }
