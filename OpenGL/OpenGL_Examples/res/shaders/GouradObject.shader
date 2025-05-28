@@ -29,8 +29,7 @@ void main()
 	vec3 v_Normal = mat3(transpose(inverse(u_Model))) * a_Normal;
 
 	// Ambient component
-	float ambientStrength = u_AmbientStrength;
-	vec3 ambient = ambientStrength * u_LightColor;
+	vec3 ambient = u_AmbientStrength * u_LightColor;
 
 	// Diffuse component
 	vec3 norm = normalize(v_Normal);
@@ -39,11 +38,10 @@ void main()
 	vec3 diffuse = diff * u_LightColor;
 
 	// Specular component
-	float specularStrength = u_SpecularStrength;
 	vec3 viewDir = normalize(u_ViewPosition - v_FragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm); // Negating lightDir to get direction of light source to frag
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shininess);
-	vec3 specular = specularStrength * spec * u_LightColor;
+	vec3 specular = u_SpecularStrength * spec * u_LightColor;
 
 	v_Result = ambient + diffuse + specular;
 	v_TexCoords = a_TexCoords;
