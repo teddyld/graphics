@@ -34,31 +34,47 @@ in vec3 v_FragPosition;
 in vec3 v_Normal;
 in vec2 v_TexCoords;
 
-uniform vec3 u_LightColor;
-uniform vec3 u_LightPosition;
+struct Material
+{
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+	float shininess;
+};
+
+struct Light 
+{
+	vec3 position;
+	vec3 color;
+
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+};
+
+uniform Material u_Material;
+uniform Light u_Light;
+
 uniform vec3 u_ViewPosition;
-uniform float u_AmbientStrength; 
-uniform float u_SpecularStrength;
-uniform int u_Shininess; // Impacts the scattering/radius of the specular highlight
 uniform sampler2D u_Texture;
 
 // Phong lighting model
 void main()
 {
 	// Ambient component
-	vec3 ambient = u_AmbientStrength * u_LightColor;
+	vec3 ambient = (u_Light.ambient * u_Material.ambient) * u_Light.color;
 
 	// Diffuse component
 	vec3 norm = normalize(v_Normal);
-	vec3 lightDir = normalize(u_LightPosition - v_FragPosition);
+	vec3 lightDir = normalize(u_Light.position - v_FragPosition);
 	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = diff * u_LightColor;
+	vec3 diffuse = (diff * u_Light.diffuse * u_Material.diffuse) *  u_Light.color;
 
 	// Specular component
 	vec3 viewDir = normalize(u_ViewPosition - v_FragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm); // Negating lightDir to get direction of light source to frag
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shininess);
-	vec3 specular = u_SpecularStrength * spec * u_LightColor;
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
+	vec3 specular = (spec * u_Light.specular * u_Material.specular) *  u_Light.color;
 
 	vec3 result = (ambient + diffuse + specular) * vec3(texture(u_Texture, v_TexCoords));
 	FragColor = vec4(result, 1.0);
