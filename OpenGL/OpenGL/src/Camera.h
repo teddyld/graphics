@@ -45,4 +45,5 @@ public:
 
 	inline glm::mat4 GetLookAt() const { return glm::lookAt(m_CameraPosition, m_CameraPosition + m_CameraFront, m_CameraUp); }
 	inline float GetZoom() const { return m_Zoom; }
+	inline glm::vec3 GetPosition() const { return m_CameraPosition; }
 };
