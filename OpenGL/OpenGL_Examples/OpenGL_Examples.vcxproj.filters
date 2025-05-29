@@ -48,6 +48,9 @@
     <ClCompile Include="src\tests\TestMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestLightCasters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -113,6 +116,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\minecraft\glowstone.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\container2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\container2_specular.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\matrix.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

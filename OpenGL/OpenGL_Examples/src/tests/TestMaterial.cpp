@@ -63,11 +63,16 @@ namespace test {
 		m_MaterialShader = std::make_unique<Shader>("res/shaders/Material.shader");
 		m_LightShader = std::make_unique<Shader>("res/shaders/Light.shader");
 
-		m_Container = std::make_unique<Texture>("res/textures/opengl/container.jpg");
+		m_Container = std::make_unique<Texture>("res/textures/opengl/container2.png");
+		m_ContainerSpecular = std::make_unique<Texture>("res/textures/opengl/container2_specular.png");
+		m_ContainerEmission = std::make_unique<Texture>("res/textures/opengl/matrix.jpg");
+
 		m_Glowstone = std::make_unique<Texture>("res/textures/minecraft/glowstone.jpg");
 
 		m_MaterialShader->Bind();
-		m_MaterialShader->SetUniform1i("u_Texture", 0);
+		m_MaterialShader->SetUniform1i("u_Material.diffuse", 0);
+		m_MaterialShader->SetUniform1i("u_Material.specular", 1);
+		m_MaterialShader->SetUniform1i("u_Material.emission", 2);
 
 		m_LightShader->Bind();
 		m_LightShader->SetUniform1i("u_Texture", 0);
@@ -90,6 +95,8 @@ namespace test {
 
 		// Render the cube object
 		m_Container->Bind(0);
+		m_ContainerSpecular->Bind(1);
+		m_ContainerEmission->Bind(2);
 
 		m_MaterialShader->Bind();
 
@@ -98,10 +105,8 @@ namespace test {
 		m_MaterialShader->SetUniformMat4f("u_Projection", projection);
 
 		m_MaterialShader->SetUniform3f("u_ViewPosition", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
+		m_MaterialShader->SetUniform1f("u_Time", glfwGetTime());
 
-		m_MaterialShader->SetUniform3f("u_Material.ambient", 1.0f, 0.5f, 0.31f);
-		m_MaterialShader->SetUniform3f("u_Material.diffuse", 1.0f, 0.5f, 0.31f);
-		m_MaterialShader->SetUniform3f("u_Material.specular", 0.5f, 0.5f, 0.5f);
 		m_MaterialShader->SetUniform1f("u_Material.shininess", 32.0f);
 
 		m_MaterialShader->SetUniform3f("u_Light.color", 1.0f, 1.0f, 1.0f);

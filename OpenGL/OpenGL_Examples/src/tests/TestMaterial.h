@@ -21,6 +21,8 @@ namespace test {
 		std::unique_ptr<Shader> m_LightShader;
 
 		std::unique_ptr<Texture> m_Container;
+		std::unique_ptr<Texture> m_ContainerSpecular;
+		std::unique_ptr<Texture> m_ContainerEmission;
 		std::unique_ptr<Texture> m_Glowstone;
 	public:
 		TestMaterial();
