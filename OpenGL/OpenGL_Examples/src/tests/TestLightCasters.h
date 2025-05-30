@@ -2,11 +2,6 @@
 
 #include "Test.h"
 
-enum LightType
-{
-	DIRECTIONAL = 0, POINT = 1, SPOT = 2, AREA = 3
-};
-
 namespace test {
 	class TestLightCasters : public Test
 	{
@@ -18,8 +13,6 @@ namespace test {
 		glm::vec3 m_ViewFront;
 
 		glm::vec3 m_CubePositions[10];
-
-		int m_LightType;
 
 		std::unique_ptr<VertexArray> m_ContainerVAO;
 		std::unique_ptr<VertexArray> m_LightVAO;
@@ -38,6 +31,5 @@ namespace test {
 
 		void OnRender() override;
 		void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) override;
-		void OnImGuiRender() override;
 	};
 }
