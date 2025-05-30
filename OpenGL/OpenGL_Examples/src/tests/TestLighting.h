@@ -7,10 +7,9 @@ namespace test {
 	{
 	private:
 		glm::mat4 m_View;
-		glm::mat4 m_Proj;
+		glm::vec3 m_ViewPos;
 		float m_FoV;
 
-		glm::vec3 m_ViewPos;
 		float m_AmbientStrength;
 		float m_SpecularStrength;
 		int m_Shininess;

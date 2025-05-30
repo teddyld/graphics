@@ -162,6 +162,7 @@
     <ClInclude Include="src\tests\TestChangeTexture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\tests\TestDynamicBatchRendering.h" />
+    <ClInclude Include="src\tests\TestLightCasters.h" />
     <ClInclude Include="src\tests\TestLighting.h" />
     <ClInclude Include="src\tests\TestMaterial.h" />
     <ClInclude Include="src\tests\TestShaders.h" />
@@ -176,7 +177,8 @@
   <ItemGroup>
     <None Include="res\shaders\Fractal.shader" />
     <None Include="res\shaders\GouradObject.shader" />
-    <None Include="res\shaders\Light.shader" />
+    <None Include="res\shaders\LightCube.shader" />
+    <None Include="res\shaders\LightCast.shader" />
     <None Include="res\shaders\Material.shader" />
     <None Include="res\shaders\PhongObject.shader" />
     <None Include="res\shaders\Texture.shader" />

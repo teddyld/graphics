@@ -61,7 +61,7 @@ namespace test {
 		m_LightVAO = std::make_unique<VertexArray>();
 		m_LightVAO->AddBuffer(*m_VBO, layout);
 
-		m_LightShader = std::make_unique<Shader>("res/shaders/Light.shader");
+		m_LightShader = std::make_unique<Shader>("res/shaders/LightCube.shader");
 
 		m_Container = std::make_unique<Texture>("res/textures/opengl/container.jpg");
 		m_Glowstone = std::make_unique<Texture>("res/textures/minecraft/glowstone.jpg");

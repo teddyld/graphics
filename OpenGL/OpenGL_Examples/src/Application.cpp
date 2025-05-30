@@ -31,6 +31,7 @@
 #include "tests/TestShaders.h"
 #include "tests/TestLighting.h"
 #include "tests/TestMaterial.h"
+#include "tests/TestLightCasters.h"
 
 int main(void)
 {
@@ -89,6 +90,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
 	testMenu->RegisterTest<test::TestLighting>("Lighting");
 	testMenu->RegisterTest<test::TestMaterial>("Materials");
+	testMenu->RegisterTest<test::TestLightCasters>("Light casting: directional, point, and area");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), mode->width, mode->height);

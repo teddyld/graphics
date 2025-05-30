@@ -33,10 +33,11 @@ public:
 
 	void UpdateCameraVectors()
 	{
-		glm::vec3 direction;
-		direction.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
-		direction.y = sin(glm::radians(m_Pitch));
-		direction.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+		glm::vec3 direction(
+			cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch)),
+			sin(glm::radians(m_Pitch)),
+			sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch))
+		);
 
 		m_CameraFront = glm::normalize(direction);
 		m_CameraRight = glm::normalize(glm::cross(m_CameraFront, m_WorldUp));
@@ -46,4 +47,5 @@ public:
 	inline glm::mat4 GetLookAt() const { return glm::lookAt(m_CameraPosition, m_CameraPosition + m_CameraFront, m_CameraUp); }
 	inline float GetZoom() const { return m_Zoom; }
 	inline glm::vec3 GetPosition() const { return m_CameraPosition; }
+	inline glm::vec3 GetFront() const { return m_CameraFront; }
 };
