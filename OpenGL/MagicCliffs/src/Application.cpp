@@ -83,7 +83,7 @@ int main(void)
 	waterVAO.AddBuffer(waterVBO, layout);
 
 	FrameBuffer fbo;
-	RenderBuffer rbo(758.0f, 453.0f);
+	RenderBuffer rbo(758, 453);
 
 	Texture waterNormal("res/textures/magic_cliffs/environment/water_normal.png");
 	Shader waterShader("res/shaders/Water.shader");
@@ -100,7 +100,7 @@ int main(void)
 	waterShader.SetUniformMat4f("u_MVP", projection * view * waterModel);
 	waterShader.Unbind();
 
-	fbo.AttachTexture(758.0f, 453.0f);
+	fbo.AttachTexture(758, 453);
 	rbo.AttachBuffer();
 	fbo.Unbind();
 

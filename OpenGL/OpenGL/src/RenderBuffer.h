@@ -10,7 +10,7 @@ class RenderBuffer
 private:
 	unsigned int m_ID;
 public:
-	RenderBuffer(float width, float height);
+	RenderBuffer(int width, int height);
 	~RenderBuffer();
 
 	void AttachBuffer();

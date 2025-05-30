@@ -1,6 +1,6 @@
 #include "RenderBuffer.h"
 
-RenderBuffer::RenderBuffer(float width, float height)
+RenderBuffer::RenderBuffer(int width, int height)
 {
 	glGenRenderbuffers(1, &m_ID);
 	glBindRenderbuffer(GL_RENDERBUFFER, m_ID);

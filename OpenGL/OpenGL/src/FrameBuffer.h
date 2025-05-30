@@ -17,8 +17,8 @@ public:
 	FrameBuffer();
 	~FrameBuffer();
 
-	void AttachTexture(float width, float height);
-	void AttachTexture(float width, float height, std::map<GLenum, GLint> options);
+	void AttachTexture(int width, int height);
+	void AttachTexture(int width, int height, std::map<GLenum, GLint> options);
 	void BindTexture(unsigned int slot) const;
 	void AttachRenderbuffer(const RenderBuffer& rbo);
 

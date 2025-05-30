@@ -11,7 +11,7 @@ FrameBuffer::~FrameBuffer()
 	glDeleteFramebuffers(1, &m_ID);
 }
 
-void FrameBuffer::AttachTexture(float width, float height)
+void FrameBuffer::AttachTexture(int width, int height)
 {
 	// Allocate memory for texture
 	glGenTextures(1, &m_Texture);
@@ -31,7 +31,7 @@ void FrameBuffer::AttachTexture(float width, float height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void FrameBuffer::AttachTexture(float width, float height, std::map<GLenum, GLint> options)
+void FrameBuffer::AttachTexture(int width, int height, std::map<GLenum, GLint> options)
 {
 	// Allocate memory for texture
 	glGenTextures(1, &m_Texture);
