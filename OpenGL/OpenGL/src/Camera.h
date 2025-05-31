@@ -23,10 +23,10 @@ private:
 	bool m_FirstMouse = true;
 	float m_MouseEnabled = false;
 
-	float m_Width;
-	float m_Height;
+	int m_Width;
+	int m_Height;
 public:
-	Camera(glm::vec3 pos, float width, float height);
+	Camera(glm::vec3 pos, int width, int height);
 	~Camera();
 
 	void CameraInput(GLFWwindow* window, float deltaTime);

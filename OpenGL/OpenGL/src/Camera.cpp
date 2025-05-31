@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec3 pos, float width, float height)
+Camera::Camera(glm::vec3 pos, int width, int height)
 	: m_CameraPosition(pos), m_Width(width), m_Height(height)
 {
 	UpdateCameraVectors();
