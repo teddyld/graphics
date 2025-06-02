@@ -12,8 +12,6 @@ void Mesh::setupMesh()
 	layout.Push(GL_FLOAT, 2, GL_FALSE);
 	layout.Push(GL_FLOAT, 3, GL_FALSE);
 	layout.Push(GL_FLOAT, 3, GL_FALSE);
-	layout.Push(GL_INT, 4, GL_FALSE);
-	layout.Push(GL_FLOAT, 4, GL_FALSE);
 	m_VAO->AddBuffer(*m_VBO, layout);
 }
 
@@ -28,10 +26,12 @@ void Mesh::Draw(Shader& shader)
 	Renderer renderer;
 
 	shader.Bind();
-	m_VAO->Bind();
 
 	unsigned int diffuseNr = 1;
 	unsigned int specularNr = 1;
+	unsigned int normalNr = 1;
+	unsigned int heightNr = 1;
+
 	for (unsigned int i = 0; i < m_Textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i);
@@ -43,12 +43,14 @@ void Mesh::Draw(Shader& shader)
 			number = std::to_string(diffuseNr++);
 		else if (name == "texture_specular")
 			number = std::to_string(specularNr++);
+		else if (name == "texture_normal")
+			number = std::to_string(normalNr++);
+		else if (name == "texture_height")
+			number = std::to_string(heightNr++);
 
-		shader.SetUniform1i(("material." + name + number).c_str(), i);
+		shader.SetUniform1i((name + number).c_str(), i);
 		glBindTexture(GL_TEXTURE_2D, m_Textures[i].id);
 	}
 
 	renderer.Draw(*m_VAO, *m_EBO, shader);
-
-	glActiveTexture(GL_TEXTURE0);
 }

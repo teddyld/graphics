@@ -95,7 +95,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestModel>("Model loading -> Backpack");
 
 	Renderer renderer;
-	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), mode->width, mode->height);
+	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);
 
 	float deltaTime = 0.0f;	// Time between current frame and last frame
 	float lastFrame = 0.0f; // Time of last frame

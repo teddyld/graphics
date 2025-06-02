@@ -7,18 +7,12 @@
 #include "Shader.h"
 #include "Renderer.h"
 
-#define MAX_BONE_INFLUENCE 4
-
 struct MeshVertex {
 	glm::vec3 Position;
 	glm::vec3 Normal;
 	glm::vec2 TexCoords;
 	glm::vec3 Tangent;
 	glm::vec3 Bitangent;
-	// Bone indexes which will influence this vertex
-	int m_BoneIDs[MAX_BONE_INFLUENCE];
-	// Weights from each bone
-	float m_Weights[MAX_BONE_INFLUENCE];
 };
 
 struct MeshTexture {

@@ -8,6 +8,8 @@
 #include "Texture.h"
 #include "Mesh.h"
 
+static unsigned int TextureFromFile(const char* path, const std::string& directory);
+
 class Model
 {
 private:

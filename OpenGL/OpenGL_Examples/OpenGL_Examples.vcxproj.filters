@@ -51,6 +51,12 @@
     <ClCompile Include="src\tests\TestLightCasters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestDepth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tests\TestModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -86,6 +92,12 @@
     <ClInclude Include="src\tests\TestLightCasters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestDepth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tests\TestModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -96,6 +108,9 @@
     <None Include="res\shaders\GouradObject.shader" />
     <None Include="res\shaders\Material.shader" />
     <None Include="res\shaders\LightCast.shader" />
+    <None Include="res\shaders\Depth.shader" />
+    <None Include="res\objects\backpack\backpack.mtl" />
+    <None Include="res\shaders\Model.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
@@ -131,5 +146,24 @@
     <Image Include="res\textures\opengl\matrix.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\objects\backpack\diffuse.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\backpack\normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\backpack\roughness.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\backpack\specular.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\backpack\ao.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\backpack\backpack.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\objects\backpack\source_attribution.txt" />
   </ItemGroup>
 </Project>
