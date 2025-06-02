@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera(glm::vec3 pos, int width, int height)
-	: m_CameraPosition(pos), m_Width(width), m_Height(height)
+	: m_CameraPosition(pos), m_CameraFirstPosition(pos), m_Width(width), m_Height(height)
 {
 	UpdateCameraVectors();
 }
@@ -79,4 +79,25 @@ void Camera::CameraInput(GLFWwindow* window, float deltaTime)
 		// Set mouse cursor to the centre of the screen
 		glfwSetCursorPos(window, (m_Width / 2), (m_Height / 2));
 	}
+}
+
+void Camera::CameraReset()
+{
+	m_Yaw = 0.0f;
+	m_Pitch = 0.0f;
+	m_CameraPosition = m_CameraFirstPosition;
+	UpdateCameraVectors();
+}
+
+void Camera::UpdateCameraVectors()
+{
+	glm::vec3 direction(
+		cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch)),
+		sin(glm::radians(m_Pitch)),
+		sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch))
+	);
+
+	m_CameraFront = glm::normalize(direction);
+	m_CameraRight = glm::normalize(glm::cross(m_CameraFront, m_WorldUp));
+	m_CameraUp = glm::normalize(glm::cross(m_CameraRight, m_CameraFront));
 }

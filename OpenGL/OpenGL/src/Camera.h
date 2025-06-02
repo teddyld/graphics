@@ -8,7 +8,8 @@
 class Camera
 {
 private:
-	glm::vec3 m_CameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 m_CameraPosition;
+	glm::vec3 m_CameraFirstPosition;
 	glm::vec3 m_CameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::vec3 m_WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::vec3 m_CameraFront;
@@ -30,19 +31,8 @@ public:
 	~Camera();
 
 	void CameraInput(GLFWwindow* window, float deltaTime);
-
-	void UpdateCameraVectors()
-	{
-		glm::vec3 direction(
-			cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch)),
-			sin(glm::radians(m_Pitch)),
-			sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch))
-		);
-
-		m_CameraFront = glm::normalize(direction);
-		m_CameraRight = glm::normalize(glm::cross(m_CameraFront, m_WorldUp));
-		m_CameraUp = glm::normalize(glm::cross(m_CameraRight, m_CameraFront));
-	}
+	void CameraReset();
+	void UpdateCameraVectors();
 
 	inline glm::mat4 GetLookAt() const { return glm::lookAt(m_CameraPosition, m_CameraPosition + m_CameraFront, m_CameraUp); }
 	inline float GetZoom() const { return m_Zoom; }

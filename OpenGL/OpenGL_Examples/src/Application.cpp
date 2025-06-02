@@ -32,6 +32,7 @@
 #include "tests/TestLighting.h"
 #include "tests/TestMaterial.h"
 #include "tests/TestLightCasters.h"
+#include "tests/TestModel.h"
 
 int main(void)
 {
@@ -91,6 +92,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestLighting>("Lighting");
 	testMenu->RegisterTest<test::TestMaterial>("Materials");
 	testMenu->RegisterTest<test::TestLightCasters>("Light casting: directional, point, and area");
+	testMenu->RegisterTest<test::TestModel>("Model loading -> Backpack");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), mode->width, mode->height);
@@ -123,6 +125,7 @@ int main(void)
 				glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 				delete currentTest;
 				currentTest = testMenu;
+				camera.CameraReset();
 			}
 
 			currentTest->OnImGuiRender();
