@@ -116,7 +116,7 @@ int main(void)
 
 		if (currentTest)
 		{
-			currentTest->OnUpdate(window, deltaTime, &camera);
+			currentTest->OnUpdate(window, deltaTime, camera);
 			currentTest->OnRender();
 			ImGui::Begin("Test");
 

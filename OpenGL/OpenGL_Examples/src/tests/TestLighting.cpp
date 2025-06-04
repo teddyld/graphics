@@ -123,12 +123,12 @@ namespace test {
 		renderer.Draw(*m_LightVAO, *m_LightShader, 36);
 	}
 
-	void TestLighting::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
+	void TestLighting::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
-		camera->CameraInput(window, deltaTime);
-		m_View = camera->GetLookAt();
-		m_FoV = camera->GetZoom();
-		m_ViewPos = camera->GetPosition();
+		camera.CameraInput(window, deltaTime);
+		m_View = camera.GetLookAt();
+		m_FoV = camera.GetZoom();
+		m_ViewPos = camera.GetPosition();
 	}
 
 	void TestLighting::OnImGuiRender()

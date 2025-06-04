@@ -28,7 +28,7 @@ namespace test {
 		~TestMaterial();
 
 		void OnRender() override;
-		void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) override;
+		void OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera) override;
 		void OnImGuiRender() override;
 	};
 }

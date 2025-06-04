@@ -16,7 +16,7 @@ namespace test {
 		TestModel();
 		~TestModel();
 
-		void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) override;
+		void OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera) override;
 		void OnRender() override;
 	};
 }

@@ -25,7 +25,7 @@ namespace test {
 		m_Shader = std::make_unique<Shader>("res/shaders/Fractal.shader");
 	}
 
-	void TestShaders::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
+	void TestShaders::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		m_Shader->Bind();
 

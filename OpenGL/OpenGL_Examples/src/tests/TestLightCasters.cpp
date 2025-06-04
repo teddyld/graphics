@@ -182,12 +182,12 @@ namespace test {
 		}
 	}
 
-	void TestLightCasters::OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera)
+	void TestLightCasters::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
-		camera->CameraInput(window, deltaTime);
-		m_View = camera->GetLookAt();
-		m_FoV = camera->GetZoom();
-		m_ViewPos = camera->GetPosition();
-		m_ViewFront = camera->GetFront();
+		camera.CameraInput(window, deltaTime);
+		m_View = camera.GetLookAt();
+		m_FoV = camera.GetZoom();
+		m_ViewPos = camera.GetPosition();
+		m_ViewFront = camera.GetFront();
 	}
 }

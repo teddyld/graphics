@@ -29,7 +29,7 @@ namespace test {
 		TestLightCasters();
 		~TestLightCasters();
 
+		void OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera) override;
 		void OnRender() override;
-		void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) override;
 	};
 }

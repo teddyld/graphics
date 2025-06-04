@@ -64,7 +64,7 @@ namespace test {
 		Test() {}
 		virtual ~Test() {}
 
-		virtual void OnUpdate(GLFWwindow* window, float deltaTime, Camera* camera) {};
+		virtual void OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera) {};
 		virtual void OnRender() {};
 		virtual void OnImGuiRender() {};
 	};
