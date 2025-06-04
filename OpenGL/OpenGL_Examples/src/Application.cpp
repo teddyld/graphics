@@ -33,6 +33,7 @@
 #include "tests/TestMaterial.h"
 #include "tests/TestLightCasters.h"
 #include "tests/TestModel.h"
+#include "tests/TestDepth.h"
 
 int main(void)
 {
@@ -93,6 +94,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestMaterial>("Materials");
 	testMenu->RegisterTest<test::TestLightCasters>("Light casting: directional, point, and area");
 	testMenu->RegisterTest<test::TestModel>("Model loading -> Backpack");
+	testMenu->RegisterTest<test::TestDepth>("Depth testing");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

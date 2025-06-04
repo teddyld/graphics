@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Test.h"
-#include "Model.h"
 
 namespace test {
 	class TestModel : public Test
