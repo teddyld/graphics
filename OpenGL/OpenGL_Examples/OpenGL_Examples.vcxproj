@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\tests\TestBlending.cpp" />
     <ClCompile Include="src\tests\TestChangeTexture.cpp" />
     <ClCompile Include="src\tests\Test.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
@@ -155,12 +156,14 @@
     <ClCompile Include="src\tests\TestMaterial.cpp" />
     <ClCompile Include="src\tests\TestModel.cpp" />
     <ClCompile Include="src\tests\TestShaders.cpp" />
+    <ClCompile Include="src\tests\TestStencil.cpp" />
     <ClCompile Include="src\tests\TestTexture2D.cpp" />
     <ClCompile Include="src\tests\TestTransform3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h" />
     <ClInclude Include="src\tests\TestBatchRendering.h" />
+    <ClInclude Include="src\tests\TestBlending.h" />
     <ClInclude Include="src\tests\TestChangeTexture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\tests\TestDepth.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="src\tests\TestMaterial.h" />
     <ClInclude Include="src\tests\TestModel.h" />
     <ClInclude Include="src\tests\TestShaders.h" />
+    <ClInclude Include="src\tests\TestStencil.h" />
     <ClInclude Include="src\tests\TestTexture2D.h" />
     <ClInclude Include="src\tests\TestTransform3D.h" />
   </ItemGroup>
@@ -188,6 +192,7 @@
     <None Include="res\shaders\Material.shader" />
     <None Include="res\shaders\Model.shader" />
     <None Include="res\shaders\PhongObject.shader" />
+    <None Include="res\shaders\Outline.shader" />
     <None Include="res\shaders\Texture.shader" />
     <None Include="res\shaders\Texture16.shader" />
   </ItemGroup>

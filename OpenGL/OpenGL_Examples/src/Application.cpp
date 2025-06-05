@@ -34,6 +34,8 @@
 #include "tests/TestLightCasters.h"
 #include "tests/TestModel.h"
 #include "tests/TestDepth.h"
+#include "tests/TestStencil.h"
+#include "tests/TestBlending.h"
 
 int main(void)
 {
@@ -90,11 +92,13 @@ int main(void)
 	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
 	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
 	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
-	testMenu->RegisterTest<test::TestLighting>("Lighting");
+	testMenu->RegisterTest<test::TestLighting>("Simple Lighting Types");
 	testMenu->RegisterTest<test::TestMaterial>("Materials");
 	testMenu->RegisterTest<test::TestLightCasters>("Light casting: directional, point, and area");
-	testMenu->RegisterTest<test::TestModel>("Model loading -> Backpack");
+	testMenu->RegisterTest<test::TestModel>("Model loading: Backpack");
 	testMenu->RegisterTest<test::TestDepth>("Depth testing");
+	testMenu->RegisterTest<test::TestStencil>("Object outlining using stencil testing");
+	testMenu->RegisterTest<test::TestBlending>("Blending testing");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

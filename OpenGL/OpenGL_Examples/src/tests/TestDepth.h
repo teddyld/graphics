@@ -6,13 +6,15 @@ namespace test {
 	class TestDepth : public Test
 	{
 	private:
-		std::unique_ptr<VertexArray> m_VAO;
-		std::unique_ptr<VertexBuffer> m_VBO;
+		std::unique_ptr<VertexArray> m_CubeVAO;
+		std::unique_ptr<VertexBuffer> m_CubeVBO;
+		std::unique_ptr<VertexArray> m_PlaneVAO;
+		std::unique_ptr<VertexBuffer> m_PlaneVBO;
+
 		std::unique_ptr<Shader> m_Shader;
 
 		glm::mat4 m_View;
 		float m_FoV;
-		glm::vec3 m_CubePositions[10];
 
 		int m_DepthFunc;
 		std::map<const char*, GLenum> m_Functions = {
