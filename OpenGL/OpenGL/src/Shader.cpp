@@ -75,6 +75,11 @@ ShaderProgramSource Shader::ParseShader(const std::string& filepath)
 {
 	std::ifstream stream(filepath);
 
+	if (!stream.good())
+	{
+		std::cout << "File " << filepath << " does not exist." << "\n";
+	}
+
 	enum class ShaderType
 	{
 		NONE = -1, VERTEX = 0, FRAGMENT = 1
