@@ -209,6 +209,7 @@
     <Image Include="res\textures\minecraft\grass_side.jpg" />
     <Image Include="res\textures\minecraft\grass_top.jpg" />
     <Image Include="res\textures\opengl\awesomeface.png" />
+    <Image Include="res\textures\opengl\blending_transparent_window.png" />
     <Image Include="res\textures\opengl\container.jpg" />
     <Image Include="res\textures\opengl\container2.png" />
     <Image Include="res\textures\opengl\container2_specular.png" />

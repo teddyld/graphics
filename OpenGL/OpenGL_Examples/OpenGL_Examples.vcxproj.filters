@@ -175,6 +175,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\objects\backpack\backpack.obj" />
+    <Image Include="res\textures\opengl\blending_transparent_window.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\objects\backpack\source_attribution.txt" />
