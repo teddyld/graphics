@@ -1,6 +1,6 @@
 #include "VertexBuffer.h"
 
-VertexBuffer::VertexBuffer(const void* data, unsigned int size, unsigned int usage)
+VertexBuffer::VertexBuffer(const void* data, GLsizeiptr size, unsigned int usage)
 {
 	glGenBuffers(1, &m_ID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
@@ -12,7 +12,7 @@ VertexBuffer::~VertexBuffer()
 	glDeleteBuffers(1, &m_ID);
 }
 
-void VertexBuffer::UpdateBufferSubData(int offset, int size, const void* data) const
+void VertexBuffer::UpdateBufferSubData(int offset, GLsizeiptr size, const void* data) const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
 	glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);

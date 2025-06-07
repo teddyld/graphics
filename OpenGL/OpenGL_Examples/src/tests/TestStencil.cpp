@@ -81,7 +81,7 @@ namespace test {
 		};
 
 		m_CubeTexture = std::make_unique<Texture>("res/textures/minecraft/grass_bottom.jpg");
-		m_PlaneTexture = std::make_unique<Texture>("res/textures/minecraft/grass_top.jpg", options);
+		m_PlaneTexture = std::make_unique<Texture>("res/textures/minecraft/grass_top.jpg", GL_TEXTURE_2D, options);
 	}
 
 	TestStencil::~TestStencil()

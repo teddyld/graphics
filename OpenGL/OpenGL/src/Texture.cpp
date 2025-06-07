@@ -1,34 +1,12 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string& path)
-	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
+unsigned int Texture::loadCubemap(std::vector<std::string> faces)
 {
-	stbi_set_flip_vertically_on_load(1);
-	m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
-
-	glGenTextures(1, &m_ID);
-	glBindTexture(GL_TEXTURE_2D, m_ID);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	if (m_LocalBuffer)
-	{
-		stbi_image_free(m_LocalBuffer);
-	}
-	else
-	{
-		std::cout << "Failed to load texture: " << path << "\n";
-	}
+	return 0;
 }
 
-Texture::Texture(const std::string& path, std::map<GLenum, GLint> options)
-	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
+Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */)
+	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0), m_Target(target)
 {
 	if (options.size() != 4)
 	{
@@ -39,23 +17,30 @@ Texture::Texture(const std::string& path, std::map<GLenum, GLint> options)
 	m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
 
 	glGenTextures(1, &m_ID);
-	glBindTexture(GL_TEXTURE_2D, m_ID);
+	glBindTexture(target, m_ID);
 
-	for (const auto& [pname, param] : options)
+	if (target == GL_TEXTURE_2D)
 	{
-		glTexParameteri(GL_TEXTURE_2D, pname, param);
+		for (const auto& [pname, param] : options)
+		{
+			glTexParameteri(target, pname, param);
+		}
+
+		glTexImage2D(target, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+		glBindTexture(target, 0);
+
+		if (m_LocalBuffer)
+		{
+			stbi_image_free(m_LocalBuffer);
+		}
+		else
+		{
+			std::cout << "Failed to load texture: " << path << "\n";
+		}
 	}
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	if (m_LocalBuffer)
+	else if (target == GL_TEXTURE_CUBE_MAP)
 	{
-		stbi_image_free(m_LocalBuffer);
-	}
-	else
-	{
-		std::cout << "Failed to load texture: " << path << std::endl;
+		// Not yet implemented
 	}
 }
 
@@ -67,12 +52,12 @@ Texture::~Texture()
 void Texture::Bind(unsigned int slot /*= 0*/) const
 {
 	glActiveTexture(GL_TEXTURE0 + slot);
-	glBindTexture(GL_TEXTURE_2D, m_ID);
+	glBindTexture(m_Target, m_ID);
 }
 
 void Texture::Unbind() const
 {
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(m_Target, 0);
 }
 
 void Texture::_Debug() const

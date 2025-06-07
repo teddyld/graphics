@@ -6,13 +6,13 @@ class IndexBuffer
 {
 private:
 	unsigned int m_ID;
-	unsigned int m_Count;
+	GLsizeiptr m_Count;
 public:
-	IndexBuffer(const unsigned int* data, unsigned int count);
+	IndexBuffer(const unsigned int* data, GLsizeiptr count);
 	~IndexBuffer();
 
 	void Bind() const;
 	void Unbind() const;
 
-	inline unsigned int GetCount() const { return m_Count; }
+	inline GLsizei GetCount() const { return (GLsizei)m_Count; }
 };

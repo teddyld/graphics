@@ -138,7 +138,7 @@ namespace test {
 		m_ContainerShader->SetUniform3f("u_SpotLight.position", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
 		// Calculating the cosine value of the cutof angle saves performance in the shader
 		m_ContainerShader->SetUniform1f("u_SpotLight.innerCutOff", glm::cos(glm::radians(12.5f)));
-		m_ContainerShader->SetUniform1f("u_SpotLight.outerCutOff", glm::cos(glm::radians(17.5)));
+		m_ContainerShader->SetUniform1f("u_SpotLight.outerCutOff", (float)glm::cos(glm::radians(17.5)));
 
 		m_ContainerShader->SetUniform3f("u_SpotLight.properties.ambient", 0.2f, 0.2f, 0.2f);
 		m_ContainerShader->SetUniform3f("u_SpotLight.properties.diffuse", 0.5f, 0.5f, 0.5f);

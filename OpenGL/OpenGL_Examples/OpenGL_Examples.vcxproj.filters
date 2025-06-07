@@ -63,6 +63,9 @@
     <ClCompile Include="src\tests\TestBlending.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestCubemaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\tests\TestBlending.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tests\TestCubemaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

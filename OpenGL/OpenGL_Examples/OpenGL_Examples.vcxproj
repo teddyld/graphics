@@ -149,6 +149,7 @@
     <ClCompile Include="src\tests\Test.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
     <ClCompile Include="src\tests\TestClearColor.cpp" />
+    <ClCompile Include="src\tests\TestCubemaps.cpp" />
     <ClCompile Include="src\tests\TestDepth.cpp" />
     <ClCompile Include="src\tests\TestDynamicBatchRendering.cpp" />
     <ClCompile Include="src\tests\TestLightCasters.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\tests\TestBlending.h" />
     <ClInclude Include="src\tests\TestChangeTexture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
+    <ClInclude Include="src\tests\TestCubemaps.h" />
     <ClInclude Include="src\tests\TestDepth.h" />
     <ClInclude Include="src\tests\TestDynamicBatchRendering.h" />
     <ClInclude Include="src\tests\TestLightCasters.h" />

@@ -32,8 +32,8 @@ namespace test {
 		int width, height;
 		glfwGetFramebufferSize(window, &width, &height);
 
-		m_Shader->SetUniform1f("u_Time", glfwGetTime());
-		m_Shader->SetUniform2f("u_Resolution", width, height);
+		m_Shader->SetUniform1f("u_Time", (float)glfwGetTime());
+		m_Shader->SetUniform2i("u_Resolution", width, height);
 	}
 
 	void TestShaders::OnRender()

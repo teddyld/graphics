@@ -105,7 +105,7 @@ namespace test {
 		m_ContainerShader->SetUniformMat4f("u_Projection", projection);
 
 		m_ContainerShader->SetUniform3f("u_ViewPosition", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
-		m_ContainerShader->SetUniform1f("u_Time", glfwGetTime());
+		m_ContainerShader->SetUniform1f("u_Time", (float)glfwGetTime());
 
 		m_ContainerShader->SetUniform1f("u_Material.shininess", 32.0f);
 

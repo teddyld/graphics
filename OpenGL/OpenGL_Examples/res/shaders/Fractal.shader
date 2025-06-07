@@ -17,7 +17,7 @@ layout(location = 0) out vec4 o_FragColor;
 
 in vec4 gl_FragCoord;
 
-uniform vec2 u_Resolution;
+uniform ivec2 u_Resolution;
 uniform float u_Time;
 
 vec3 palette(float t)
