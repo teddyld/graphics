@@ -92,7 +92,7 @@ namespace test {
 
 		glEnable(GL_DEPTH_TEST);
 
-		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
 
 		m_Shader->Bind();
 

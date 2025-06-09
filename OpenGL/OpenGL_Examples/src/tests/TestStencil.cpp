@@ -113,7 +113,7 @@ namespace test {
 		// 3) when both stencil and depth test pass
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
-		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
 
 		// Render scene
 		glStencilMask(0x00); // Ensure that the stencil buffer is not updated for the plane

@@ -103,7 +103,7 @@ namespace test {
 
 		m_ContainerShader->Bind();
 
-		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
 
 		m_ContainerShader->SetUniformMat4f("u_View", m_View);
 		m_ContainerShader->SetUniformMat4f("u_Projection", projection);

@@ -102,7 +102,7 @@ namespace test {
 		m_TextureGrassBottom->Bind(0);
 
 		glm::mat4 view = m_View;
-		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
 
 		for (unsigned int i = 0; i < 10; i++)
 		{

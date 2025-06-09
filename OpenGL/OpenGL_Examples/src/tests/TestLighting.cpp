@@ -82,7 +82,7 @@ namespace test {
 		glEnable(GL_DEPTH_TEST);
 
 		glm::vec3 lightPosition(2.0 * sin(glfwGetTime()), 1.5f, 2.0 * cos(glfwGetTime()));
-		glm::mat4 projection = glm::perspective(m_FoV, 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
 		glm::mat4 objectModel = glm::mat4(1.0f);
 
 		// Render the cube object
