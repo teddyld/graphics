@@ -36,6 +36,7 @@
 #include "tests/TestDepth.h"
 #include "tests/TestStencil.h"
 #include "tests/TestBlending.h"
+#include "tests/TestCubemaps.h"
 
 int main(void)
 {
@@ -99,6 +100,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestDepth>("Depth testing");
 	testMenu->RegisterTest<test::TestStencil>("Object outlining using stencil testing");
 	testMenu->RegisterTest<test::TestBlending>("Blending testing");
+	testMenu->RegisterTest<test::TestCubemaps>("Skyboxes using cubemaps");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

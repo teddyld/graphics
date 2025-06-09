@@ -130,6 +130,9 @@
     <None Include="res\objects\backpack\backpack.mtl" />
     <None Include="res\shaders\Model.shader" />
     <None Include="res\shaders\Outline.shader" />
+    <None Include="res\shaders\Skybox.shader" />
+    <None Include="res\shaders\CubemapReflective.shader" />
+    <None Include="res\shaders\CubemapRefractive.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
@@ -182,6 +185,24 @@
     </Image>
     <Image Include="res\objects\backpack\backpack.obj" />
     <Image Include="res\textures\opengl\blending_transparent_window.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\bottom.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\front.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\left.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\right.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

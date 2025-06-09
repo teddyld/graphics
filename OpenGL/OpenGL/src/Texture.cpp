@@ -1,30 +1,42 @@
 #include "Texture.h"
 
-unsigned int Texture::loadCubemap(std::vector<std::string> faces)
-{
-	return 0;
-}
-
 Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */)
 	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0), m_Target(target)
 {
-	if (options.size() != 4)
-	{
-		std::cout << "Expected 4 options, got only " << options.size() << "\n";
-	}
-
-	stbi_set_flip_vertically_on_load(1);
-	m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
-
 	glGenTextures(1, &m_ID);
 	glBindTexture(target, m_ID);
 
-	if (target == GL_TEXTURE_2D)
+	std::vector<GLenum> validOptions;
+	for (const auto& [pname, param] : defaultOptions)
 	{
-		for (const auto& [pname, param] : options)
+		validOptions.push_back(pname);
+	}
+
+	// Set provided parameters
+	for (const auto& [pname, param] : options)
+	{
+		if (!defaultOptions.count(pname))
+			std::cout << "Invalid option attribute \"" << pname << "\" \n";
+		else
 		{
 			glTexParameteri(target, pname, param);
+			auto it = std::find(validOptions.begin(), validOptions.end(), pname);
+			if (it != validOptions.end())
+				validOptions.erase(it);
 		}
+	}
+
+	// Give remaining parameters default values
+	for (const auto& pname : validOptions)
+	{
+		std::cout << defaultOptions.at(pname) << "\n";
+		glTexParameteri(target, pname, defaultOptions.at(pname));
+	}
+
+	if (target == GL_TEXTURE_2D)
+	{
+		stbi_set_flip_vertically_on_load(1);
+		m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
 
 		glTexImage2D(target, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
 		glBindTexture(target, 0);
@@ -40,7 +52,31 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 	}
 	else if (target == GL_TEXTURE_CUBE_MAP)
 	{
-		// Not yet implemented
+		std::vector<std::string> faces =
+		{
+			"right.jpg",
+			"left.jpg",
+			"top.jpg",
+			"bottom.jpg",
+			"front.jpg",
+			"back.jpg"
+		};
+
+		for (unsigned int i = 0; i < faces.size(); i++)
+		{
+			m_LocalBuffer = stbi_load((path + "/" + faces[i]).c_str(), &m_Width, &m_Height, &m_BPP, 4);
+
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+
+			if (m_LocalBuffer)
+			{
+				stbi_image_free(m_LocalBuffer);
+			}
+			else
+			{
+				std::cout << "Failed to load texture: " << path << "\n";
+			}
+		}
 	}
 }
 
