@@ -194,11 +194,6 @@ namespace test {
 				{
 					m_EnvironmentMapping = options[n] == "Reflection" ? EnvironmentMapping::REFLECTIVE : EnvironmentMapping::REFRACTION;
 				}
-
-				if (is_selected)
-				{
-					ImGui::SetItemDefaultFocus();
-				}
 			}
 			ImGui::EndCombo();
 		}
@@ -225,11 +220,6 @@ namespace test {
 					m_From = n;
 					m_RefractiveIndex = refractiveMaterials[materials[m_From]] / refractiveMaterials[materials[m_To]];
 				}
-
-				if (is_selected)
-				{
-					ImGui::SetItemDefaultFocus();
-				}
 			}
 			ImGui::EndCombo();
 		}
@@ -243,11 +233,6 @@ namespace test {
 				{
 					m_To = n;
 					m_RefractiveIndex = refractiveMaterials[materials[m_From]] / refractiveMaterials[materials[m_To]];
-				}
-
-				if (is_selected)
-				{
-					ImGui::SetItemDefaultFocus();
 				}
 			}
 			ImGui::EndCombo();

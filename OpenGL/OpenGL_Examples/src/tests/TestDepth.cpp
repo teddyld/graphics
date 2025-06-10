@@ -123,11 +123,6 @@ namespace test {
 					m_DepthFunc = n;
 					glDepthFunc(m_Functions[m_Options[m_DepthFunc]]);
 				}
-
-				if (is_selected)
-				{
-					ImGui::SetItemDefaultFocus();
-				}
 			}
 			ImGui::EndCombo();
 		}
