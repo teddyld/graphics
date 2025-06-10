@@ -113,15 +113,26 @@ namespace test {
 
 	void TestDepth::OnImGuiRender()
 	{
-		if (ImGui::BeginCombo("Depth test function", m_Options[m_DepthFunc]))
+		std::vector<std::pair<const char*, float>> m_Options = {
+			{ "GL_ALWAYS", GL_ALWAYS },
+			{ "GL_NEVER", GL_NEVER },
+			{ "GL_LESS", GL_LESS },
+			{ "GL_EQUAL", GL_EQUAL },
+			{ "GL_LEQUAL", GL_LEQUAL },
+			{ "GL_GREATER", GL_GREATER },
+			{ "GL_NOTEQUAL", GL_NOTEQUAL },
+			{ "GL_GEQUAL", GL_GEQUAL }
+		};
+
+		if (ImGui::BeginCombo("Depth test function", m_Options[m_DepthFunc].first))
 		{
 			for (int n = 0; n < m_Options.size(); n++)
 			{
 				bool is_selected = m_DepthFunc == n;
-				if (ImGui::Selectable(m_Options[n], is_selected))
+				if (ImGui::Selectable(m_Options[n].first, is_selected))
 				{
 					m_DepthFunc = n;
-					glDepthFunc(m_Functions[m_Options[m_DepthFunc]]);
+					glDepthFunc(m_Options[m_DepthFunc].second);
 				}
 			}
 			ImGui::EndCombo();

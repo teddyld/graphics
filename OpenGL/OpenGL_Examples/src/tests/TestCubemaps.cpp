@@ -201,8 +201,7 @@ namespace test {
 		ImGui::Spacing();
 		ImGui::Text("Refractive index");
 
-		std::vector<const char*> materials = { "Air", "Water", "Ice", "Glass", "Diamond" };
-		std::map<const char*, float> refractiveMaterials = {
+		std::vector<std::pair<const char*, float>> materials = {
 			{ "Air", 1.00f },
 			{ "Water", 1.33f },
 			{ "Ice", 1.309f },
@@ -210,29 +209,29 @@ namespace test {
 			{ "Diamond", 2.42f }
 		};
 
-		if (ImGui::BeginCombo("From", materials[m_From]))
+		if (ImGui::BeginCombo("From", materials[m_From].first))
 		{
 			for (int n = 0; n < materials.size(); n++)
 			{
 				bool is_selected = m_From == n;
-				if (ImGui::Selectable(materials[n], is_selected))
+				if (ImGui::Selectable(materials[n].first, is_selected))
 				{
 					m_From = n;
-					m_RefractiveIndex = refractiveMaterials[materials[m_From]] / refractiveMaterials[materials[m_To]];
+					m_RefractiveIndex = materials[m_From].second / materials[m_To].second;
 				}
 			}
 			ImGui::EndCombo();
 		}
 
-		if (ImGui::BeginCombo("To", materials[m_To]))
+		if (ImGui::BeginCombo("To", materials[m_To].first))
 		{
 			for (int n = 0; n < materials.size(); n++)
 			{
 				bool is_selected = m_To == n;
-				if (ImGui::Selectable(materials[n], is_selected))
+				if (ImGui::Selectable(materials[n].first, is_selected))
 				{
 					m_To = n;
-					m_RefractiveIndex = refractiveMaterials[materials[m_From]] / refractiveMaterials[materials[m_To]];
+					m_RefractiveIndex = materials[m_From].second / materials[m_To].second;
 				}
 			}
 			ImGui::EndCombo();

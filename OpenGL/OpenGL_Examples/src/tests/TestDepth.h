@@ -17,17 +17,6 @@ namespace test {
 		float m_FoV;
 
 		int m_DepthFunc;
-		std::map<const char*, GLenum> m_Functions = {
-			{ "GL_ALWAYS", GL_ALWAYS },
-			{ "GL_NEVER", GL_NEVER },
-			{ "GL_LESS", GL_LESS },
-			{ "GL_EQUAL", GL_EQUAL },
-			{ "GL_LEQUAL", GL_LEQUAL },
-			{ "GL_GREATER", GL_GREATER },
-			{ "GL_NOTEQUAL", GL_NOTEQUAL },
-			{ "GL_GEQUAL", GL_GEQUAL }
-		};
-		std::vector<const char*> m_Options = { "GL_ALWAYS", "GL_NEVER", "GL_LESS", "GL_EQUAL", "GL_LEQUAL", "GL_GREATER", "GL_NOTEQUAL", "GL_GEQUAL" };
 	public:
 		TestDepth();
 		~TestDepth();
