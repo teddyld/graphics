@@ -113,7 +113,7 @@ namespace test {
 
 	void TestDepth::OnImGuiRender()
 	{
-		std::vector<std::pair<const char*, float>> m_Options = {
+		std::vector<std::pair<const char*, GLenum>> m_Options = {
 			{ "GL_ALWAYS", GL_ALWAYS },
 			{ "GL_NEVER", GL_NEVER },
 			{ "GL_LESS", GL_LESS },
