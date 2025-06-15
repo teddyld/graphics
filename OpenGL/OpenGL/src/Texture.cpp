@@ -29,7 +29,6 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 	// Give remaining parameters default values
 	for (const auto& pname : validOptions)
 	{
-		std::cout << defaultOptions.at(pname) << "\n";
 		glTexParameteri(target, pname, defaultOptions.at(pname));
 	}
 
