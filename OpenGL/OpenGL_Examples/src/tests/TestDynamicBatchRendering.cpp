@@ -6,13 +6,13 @@ namespace test {
 		: m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f)), m_QuadPosition{ 120.0f, 120.0f }, m_NumQuadsBear(0)
 	{
 		m_VAO = std::make_unique<VertexArray>();
-		m_VertexBuffer = std::make_unique<VertexBuffer>(nullptr, sizeof(Vertex2D) * 1000, GL_DYNAMIC_DRAW);
+		m_VBO = std::make_unique<VertexBuffer>(nullptr, sizeof(Vertex2D) * 1000, GL_DYNAMIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		layout.Push(GL_FLOAT, 1, GL_FALSE);
-		m_VAO->AddBuffer(*m_VertexBuffer, layout);
+		m_VAO->AddBuffer(*m_VBO, layout);
 
 		m_TextureBear = std::make_unique<Texture>("res/textures/bear.png");
 		m_TextureMaple = std::make_unique<Texture>("res/textures/maple.png");
@@ -27,7 +27,8 @@ namespace test {
 		glm::mat4 mvp = m_Proj * m_View;
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
 
-		m_VertexBuffer->Unbind();
+		m_VAO->Unbind();
+		m_VBO->Unbind();
 		m_Shader->Unbind();
 	}
 
@@ -35,6 +36,7 @@ namespace test {
 	{
 		Renderer renderer;
 
+		m_VAO->Bind();
 		m_TextureBear->Bind(0);
 		m_TextureMaple->Bind(1);
 
@@ -57,11 +59,10 @@ namespace test {
 			buffer = CreateQuad(buffer, m_QuadPosition[0] + 10.0f * i, m_QuadPosition[1] + 10.0f * i, 0.0f);
 		}
 
-		m_IndexBuffer = std::make_unique<IndexBuffer>(&indices[0], (m_NumQuadsBear + 1) * 6);
+		m_EBO = std::make_unique<IndexBuffer>(&indices[0], (m_NumQuadsBear + 1) * 6);
+		m_VBO->UpdateBufferSubData(0, sizeof(Vertex2D) * vertices.size(), vertices.data());
 
-		m_VertexBuffer->UpdateBufferSubData(0, sizeof(Vertex2D) * vertices.size(), vertices.data());
-
-		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
+		renderer.Draw(*m_VAO, *m_EBO, *m_Shader);
 	}
 
 	void TestDynamicBatchRendering::OnImGuiRender()

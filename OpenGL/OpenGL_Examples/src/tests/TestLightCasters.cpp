@@ -85,6 +85,12 @@ namespace test {
 
 		m_LightShader->Bind();
 		m_LightShader->SetUniform1i("u_Texture", 0);
+
+		m_ContainerVAO->Unbind();
+		m_LightVAO->Unbind();
+		m_VBO->Unbind();
+		m_ContainerShader->Unbind();
+		m_LightShader->Unbind();
 	}
 
 	TestLightCasters::~TestLightCasters()

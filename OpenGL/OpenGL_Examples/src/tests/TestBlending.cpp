@@ -104,6 +104,14 @@ namespace test {
 		m_CubeTexture = std::make_unique<Texture>("res/textures/minecraft/grass_bottom.jpg");
 		m_PlaneTexture = std::make_unique<Texture>("res/textures/minecraft/grass_top.jpg", GL_TEXTURE_2D, options);
 		m_WindowTexture = std::make_unique<Texture>("res/textures/opengl/blending_transparent_window.png");
+
+		m_CubeVAO->Unbind();
+		m_CubeVBO->Unbind();
+		m_PlaneVAO->Unbind();
+		m_PlaneVBO->Unbind();
+		m_WindowVAO->Unbind();
+		m_WindowVBO->Unbind();
+		m_Shader->Unbind();
 	}
 
 	TestBlending::~TestBlending()

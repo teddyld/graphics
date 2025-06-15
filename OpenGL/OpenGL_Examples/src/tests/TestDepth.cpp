@@ -71,6 +71,11 @@ namespace test {
 		m_PlaneVAO->AddBuffer(*m_PlaneVBO, layout);
 
 		m_Shader = std::make_unique<Shader>("res/shaders/Depth.shader");
+
+		m_CubeVAO->Unbind();
+		m_CubeVBO->Unbind();
+		m_PlaneVAO->Unbind();
+		m_PlaneVBO->Unbind();
 	}
 
 	TestDepth::~TestDepth()

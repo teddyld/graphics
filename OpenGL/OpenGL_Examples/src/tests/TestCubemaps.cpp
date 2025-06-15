@@ -103,8 +103,6 @@ namespace test {
 		m_SkyboxShader->Bind();
 		m_SkyboxShader->SetUniform1i("u_Skybox", 0);
 
-		m_SkyboxShader->Unbind();
-
 		m_ObjectVAO = std::make_unique<VertexArray>();
 		m_ObjectVBO = std::make_unique<VertexBuffer>(cubeVertices, 6 * 36 * sizeof(float), GL_STATIC_DRAW);
 		VertexBufferLayout objectLayout;
@@ -115,11 +113,17 @@ namespace test {
 		m_ReflectiveShader = std::make_unique<Shader>("res/shaders/CubemapReflective.shader");
 		m_ReflectiveShader->Bind();
 		m_ReflectiveShader->SetUniform1i("u_Skybox", 0);
-		m_ReflectiveShader->Unbind();
 
 		m_RefractiveShader = std::make_unique<Shader>("res/shaders/CubemapRefractive.shader");
 		m_RefractiveShader->Bind();
 		m_RefractiveShader->SetUniform1i("u_Skybox", 0);
+
+		m_ObjectVAO->Unbind();
+		m_ObjectVBO->Unbind();
+		m_SkyboxVAO->Unbind();
+		m_SkyboxVBO->Unbind();
+		m_SkyboxShader->Unbind();
+		m_ReflectiveShader->Unbind();
 		m_RefractiveShader->Unbind();
 	}
 

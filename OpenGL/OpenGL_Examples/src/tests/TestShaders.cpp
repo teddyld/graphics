@@ -23,6 +23,10 @@ namespace test {
 		m_VAO->AddBuffer(*m_VBO, layout);
 
 		m_Shader = std::make_unique<Shader>("res/shaders/Fractal.shader");
+
+		m_VAO->Unbind();
+		m_VBO->Unbind();
+		m_EBO->Unbind();
 	}
 
 	void TestShaders::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)

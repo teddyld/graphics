@@ -3,7 +3,7 @@
 VertexBuffer::VertexBuffer(const void* data, GLsizeiptr size, unsigned int usage)
 {
 	glGenBuffers(1, &m_ID);
-	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
+	Bind();
 	glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 }
 

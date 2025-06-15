@@ -68,6 +68,11 @@ namespace test {
 
 		m_LightShader->Bind();
 		m_LightShader->SetUniform1i("u_Texture", 0);
+
+		m_ObjectVAO->Unbind();
+		m_LightVAO->Unbind();
+		m_VBO->Unbind();
+		m_LightShader->Unbind();
 	}
 
 	TestLighting::~TestLighting()

@@ -22,15 +22,15 @@ namespace test {
 		};
 
 		m_VAO = std::make_unique<VertexArray>();
-		m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 12);
+		m_EBO = std::make_unique<IndexBuffer>(indices, 12);
 
-		m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 8 * 9 * sizeof(float), GL_STATIC_DRAW);
+		m_VBO = std::make_unique<VertexBuffer>(vertices, 8 * 9 * sizeof(float), GL_STATIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
 		layout.Push(GL_FLOAT, 1, GL_FALSE);
-		m_VAO->AddBuffer(*m_VertexBuffer, layout);
+		m_VAO->AddBuffer(*m_VBO, layout);
 
 		m_TextureBear = std::make_unique<Texture>("res/textures/bear.png");
 		m_TextureMaple = std::make_unique<Texture>("res/textures/maple.png");
@@ -46,8 +46,8 @@ namespace test {
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
 
 		m_VAO->Unbind();
-		m_VertexBuffer->Unbind();
-		m_IndexBuffer->Unbind();
+		m_VBO->Unbind();
+		m_EBO->Unbind();
 		m_Shader->Unbind();
 	}
 
@@ -58,6 +58,6 @@ namespace test {
 		m_TextureBear->Bind(0);
 		m_TextureMaple->Bind(1);
 
-		renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
+		renderer.Draw(*m_VAO, *m_EBO, *m_Shader);
 	}
 }

@@ -35,6 +35,10 @@ namespace test {
 
 		glm::mat4 mvp = m_Proj * m_View;
 		m_Shader->SetUniformMat4f("u_MVP", mvp);
+
+		m_VAO->Unbind();
+		m_VBO->Unbind();
+		m_Shader->Unbind();
 	}
 
 	void TestChangeTexture::OnRender()
