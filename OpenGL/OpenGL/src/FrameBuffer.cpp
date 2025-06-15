@@ -26,9 +26,9 @@ void FrameBuffer::AttachTexture(int width, int height)
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
+	Bind();
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	Unbind();
 }
 
 void FrameBuffer::AttachTexture(int width, int height, std::map<GLenum, GLint> options)
@@ -46,9 +46,9 @@ void FrameBuffer::AttachTexture(int width, int height, std::map<GLenum, GLint> o
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
+	Bind();
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	Unbind();
 }
 
 void FrameBuffer::BindTexture(unsigned int slot /*= 0*/) const
