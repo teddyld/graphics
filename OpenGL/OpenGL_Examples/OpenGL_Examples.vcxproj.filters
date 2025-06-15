@@ -66,6 +66,9 @@
     <ClCompile Include="src\tests\TestCubemaps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestGLSL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -116,6 +119,9 @@
     <ClInclude Include="src\tests\TestCubemaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestGLSL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -133,6 +139,10 @@
     <None Include="res\shaders\Skybox.shader" />
     <None Include="res\shaders\CubemapReflective.shader" />
     <None Include="res\shaders\CubemapRefractive.shader" />
+    <None Include="res\shaders\advanced_glsl\Red.shader" />
+    <None Include="res\shaders\advanced_glsl\Blue.shader" />
+    <None Include="res\shaders\advanced_glsl\Green.shader" />
+    <None Include="res\shaders\advanced_glsl\Yellow.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">

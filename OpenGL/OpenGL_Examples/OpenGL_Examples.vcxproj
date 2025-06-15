@@ -152,6 +152,7 @@
     <ClCompile Include="src\tests\TestCubemaps.cpp" />
     <ClCompile Include="src\tests\TestDepth.cpp" />
     <ClCompile Include="src\tests\TestDynamicBatchRendering.cpp" />
+    <ClCompile Include="src\tests\TestGLSL.cpp" />
     <ClCompile Include="src\tests\TestLightCasters.cpp" />
     <ClCompile Include="src\tests\TestLighting.cpp" />
     <ClCompile Include="src\tests\TestMaterial.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="src\tests\TestCubemaps.h" />
     <ClInclude Include="src\tests\TestDepth.h" />
     <ClInclude Include="src\tests\TestDynamicBatchRendering.h" />
+    <ClInclude Include="src\tests\TestGLSL.h" />
     <ClInclude Include="src\tests\TestLightCasters.h" />
     <ClInclude Include="src\tests\TestLighting.h" />
     <ClInclude Include="src\tests\TestMaterial.h" />
@@ -186,6 +188,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\objects\backpack\backpack.mtl" />
+    <None Include="res\shaders\advanced_glsl\Blue.shader" />
+    <None Include="res\shaders\advanced_glsl\Green.shader" />
+    <None Include="res\shaders\advanced_glsl\Red.shader" />
+    <None Include="res\shaders\advanced_glsl\Yellow.shader" />
     <None Include="res\shaders\CubemapReflective.shader" />
     <None Include="res\shaders\CubemapRefractive.shader" />
     <None Include="res\shaders\Depth.shader" />

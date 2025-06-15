@@ -21,6 +21,7 @@
 #include "IndexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "Model.h"
+#include "UniformBuffer.h"
 
 #include "Camera.h"
 

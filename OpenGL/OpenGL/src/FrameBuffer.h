@@ -20,7 +20,6 @@ public:
 	void AttachTexture(int width, int height);
 	void AttachTexture(int width, int height, std::map<GLenum, GLint> options);
 	void BindTexture(unsigned int slot) const;
-	void AttachRenderbuffer(const RenderBuffer& rbo);
 
 	void Bind() const;
 	void Unbind() const;
