@@ -62,7 +62,7 @@ int main(void)
 	Fox fox;
 	Landscape landscape;
 
-	float vertices[] = {
+	float waterVertices[] = {
 		0.0f, 0.0f, 0.6f, 0.0f, 0.0f,
 		512.0f, 0.0f, 0.6f, 1.0f, 0.0f,
 		512.0f, 96.0f, 0.6f, 1.0f, 0.65f,
@@ -75,15 +75,16 @@ int main(void)
 
 	VertexArray waterVAO;
 	IndexBuffer waterEBO(indices, 6);
-	VertexBuffer waterVBO(vertices, 4 * 5 * sizeof(float), GL_STATIC_DRAW);
+	VertexBuffer waterVBO(waterVertices, 4 * 5 * sizeof(float), GL_STATIC_DRAW);
 
 	VertexBufferLayout layout;
 	layout.Push(GL_FLOAT, 3, GL_FALSE);
 	layout.Push(GL_FLOAT, 2, GL_FALSE);
 	waterVAO.AddBuffer(waterVBO, layout);
 
-	FrameBuffer fbo;
-	RenderBuffer rbo(758, 453);
+	waterVAO.Unbind();
+	waterVBO.Unbind();
+	waterEBO.Unbind();
 
 	Texture waterNormal("res/textures/magic_cliffs/environment/water_normal.png");
 	Shader waterShader("res/shaders/Water.shader");
@@ -99,6 +100,34 @@ int main(void)
 
 	waterShader.SetUniformMat4f("u_MVP", projection * view * waterModel);
 	waterShader.Unbind();
+
+	float screenVertices[] = {
+		0.0f, 0.0f, 0.0f, 0.0f,
+		512.0f, 0.0f, 1.0f, 0.0f,
+		512.0f, 302.0f, 1.0f, 1.0f,
+		0.0f,  302.0f, 0.0f, 1.0f,
+	};
+
+	VertexArray screenVAO;
+	IndexBuffer screenEBO(indices, 6);
+	VertexBuffer screenVBO(screenVertices, 4 * 4 * sizeof(float), GL_STATIC_DRAW);
+
+	VertexBufferLayout screenLayout;
+	screenLayout.Push(GL_FLOAT, 2, GL_FALSE);
+	screenLayout.Push(GL_FLOAT, 2, GL_FALSE);
+	screenVAO.AddBuffer(screenVBO, screenLayout);
+
+	screenVAO.Unbind();
+	screenVBO.Unbind();
+	screenVBO.Unbind();
+
+	Shader screenShader("res/shaders/Screen.shader");
+	screenShader.Bind();
+	screenShader.SetUniform1i("u_Texture", 0);
+	screenShader.SetUniformMat4f("u_MVP", projection);
+
+	FrameBuffer fbo;
+	RenderBuffer rbo(758, 453);
 
 	fbo.AttachTexture(758, 453);
 	rbo.AttachBuffer();
@@ -123,26 +152,29 @@ int main(void)
 
 		landscape.OnRender(view, projection);
 		fox.OnRender(view, projection);
+		fox.OnUpdate(deltaTime);
 
 		fbo.Unbind();
 
-		// Render scene
-		landscape.OnRender(view, projection);
-		fox.OnRender(view, projection);
-		fox.OnUpdate(deltaTime);
-
-		// Render water shader
-		waterVAO.Bind();
-		waterShader.Bind();
-
+		// Render water shader using current frame buffer
 		fbo.BindTexture(0);
 		waterNormal.Bind(1);
+		waterShader.Bind();
 
 		offset += glm::vec2(1.0f, 0.0f) * deltaTime * speed;
 
 		waterShader.SetUniform2f("u_Offset", offset.x, offset.y);
 
+		fbo.Bind();
+
+		// Render water to frame buffer
 		renderer.Draw(waterVAO, waterEBO, waterShader);
+
+		fbo.Unbind();
+
+		// Render screen-space quad
+		fbo.BindTexture(0);
+		renderer.Draw(screenVAO, screenEBO, screenShader);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

@@ -28,6 +28,11 @@ Landscape::Landscape()
 	m_Shader->Bind();
 
 	m_Shader->SetUniform1i("u_Texture", 0);
+	m_Shader->Unbind();
+
+	m_VAO->Unbind();
+	m_VBO->Unbind();
+	m_EBO->Unbind();
 }
 
 void Landscape::OnRender(glm::mat4 view, glm::mat4 projection)

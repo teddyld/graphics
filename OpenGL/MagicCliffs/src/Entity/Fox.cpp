@@ -32,6 +32,11 @@ Fox::Fox()
 
 	int samplers[8] = { 0, 1, 2, 3, 4, 5, 6, 7 };
 	m_Shader->SetUniform1iv("u_Textures", 8, samplers);
+	m_Shader->Unbind();
+
+	m_VAO->Unbind();
+	m_VBO->Unbind();
+	m_EBO->Unbind();
 }
 
 void Fox::OnUpdate(float deltaTime)

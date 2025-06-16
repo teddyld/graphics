@@ -10,8 +10,8 @@ uniform mat4 u_MVP;
 
 void main()
 {
-    gl_Position = u_MVP * vec4(a_Position, 0.0, 1.0); 
     v_TexCoord = a_TexCoord;
+    gl_Position = u_MVP * vec4(a_Position, 0.0, 1.0); 
 }  
 
 #shader fragment
@@ -29,7 +29,7 @@ const float offset = 1.0 / 300.0;
 void main()
 { 
     // Normal
-    FragColor = texture(u_Texture, v_TexCoord);
+    //FragColor = texture(u_Texture, v_TexCoord);
 
     // Inversion
     //FragColor = vec4(vec3(1.0 - texture(u_Texture, v_TexCoord)), 1.0); 
@@ -40,7 +40,7 @@ void main()
     //FragColor = vec4(average, average, average, 1.0);
 
     // Kernel effects
-    /*
+    
     vec2 offsets[9] = vec2[](
         vec2(-offset,  offset), // top-left
         vec2( 0.0f,    offset), // top-center
@@ -69,5 +69,4 @@ void main()
         col += sampleTex[i] * kernel[i];
     
     FragColor = vec4(col, 1.0);
-    */
 }
