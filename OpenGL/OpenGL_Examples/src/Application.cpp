@@ -38,6 +38,7 @@
 #include "tests/TestBlending.h"
 #include "tests/TestCubemaps.h"
 #include "tests/TestGLSL.h"
+#include "tests/TestGeometry.h"
 
 int main(void)
 {
@@ -103,6 +104,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestBlending>("Blending testing");
 	testMenu->RegisterTest<test::TestCubemaps>("Skyboxes using cubemaps");
 	testMenu->RegisterTest<test::TestGLSL>("Advanced GLSL using the uniform buffer");
+	testMenu->RegisterTest<test::TestGeometry>("Geometry shader");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);
