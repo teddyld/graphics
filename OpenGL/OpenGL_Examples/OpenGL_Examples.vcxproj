@@ -152,6 +152,7 @@
     <ClCompile Include="src\tests\TestCubemaps.cpp" />
     <ClCompile Include="src\tests\TestDepth.cpp" />
     <ClCompile Include="src\tests\TestDynamicBatchRendering.cpp" />
+    <ClCompile Include="src\tests\TestExploding.cpp" />
     <ClCompile Include="src\tests\TestGeometry.cpp" />
     <ClCompile Include="src\tests\TestGLSL.cpp" />
     <ClCompile Include="src\tests\TestLightCasters.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="src\tests\TestCubemaps.h" />
     <ClInclude Include="src\tests\TestDepth.h" />
     <ClInclude Include="src\tests\TestDynamicBatchRendering.h" />
+    <ClInclude Include="src\tests\TestExploding.h" />
     <ClInclude Include="src\tests\TestGeometry.h" />
     <ClInclude Include="src\tests\TestGLSL.h" />
     <ClInclude Include="src\tests\TestLightCasters.h" />
@@ -197,6 +199,8 @@
     <None Include="res\shaders\CubemapReflective.shader" />
     <None Include="res\shaders\CubemapRefractive.shader" />
     <None Include="res\shaders\Depth.shader" />
+    <None Include="res\shaders\geometry\DisplayNormals.shader" />
+    <None Include="res\shaders\geometry\Exploding.shader" />
     <None Include="res\shaders\Fractal.shader" />
     <None Include="res\shaders\Geometry.shader" />
     <None Include="res\shaders\GouradObject.shader" />

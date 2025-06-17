@@ -72,6 +72,9 @@
     <ClCompile Include="src\tests\TestGeometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestExploding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -128,6 +131,9 @@
     <ClInclude Include="src\tests\TestGeometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestExploding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -150,6 +156,8 @@
     <None Include="res\shaders\advanced_glsl\Green.shader" />
     <None Include="res\shaders\advanced_glsl\Yellow.shader" />
     <None Include="res\shaders\Geometry.shader" />
+    <None Include="res\shaders\geometry\Exploding.shader" />
+    <None Include="res\shaders\geometry\DisplayNormals.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
