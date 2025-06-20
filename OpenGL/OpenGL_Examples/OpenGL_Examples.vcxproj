@@ -144,6 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\tests\TestAA.cpp" />
+    <ClCompile Include="src\tests\TestAsteroids.cpp" />
     <ClCompile Include="src\tests\TestBlending.cpp" />
     <ClCompile Include="src\tests\TestChangeTexture.cpp" />
     <ClCompile Include="src\tests\Test.cpp" />
@@ -155,6 +157,7 @@
     <ClCompile Include="src\tests\TestExploding.cpp" />
     <ClCompile Include="src\tests\TestGeometry.cpp" />
     <ClCompile Include="src\tests\TestGLSL.cpp" />
+    <ClCompile Include="src\tests\TestInstancing.cpp" />
     <ClCompile Include="src\tests\TestLightCasters.cpp" />
     <ClCompile Include="src\tests\TestLighting.cpp" />
     <ClCompile Include="src\tests\TestMaterial.cpp" />
@@ -166,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h" />
+    <ClInclude Include="src\tests\TestAA.h" />
+    <ClInclude Include="src\tests\TestAsteroids.h" />
     <ClInclude Include="src\tests\TestBatchRendering.h" />
     <ClInclude Include="src\tests\TestBlending.h" />
     <ClInclude Include="src\tests\TestChangeTexture.h" />
@@ -176,6 +181,7 @@
     <ClInclude Include="src\tests\TestExploding.h" />
     <ClInclude Include="src\tests\TestGeometry.h" />
     <ClInclude Include="src\tests\TestGLSL.h" />
+    <ClInclude Include="src\tests\TestInstancing.h" />
     <ClInclude Include="src\tests\TestLightCasters.h" />
     <ClInclude Include="src\tests\TestLighting.h" />
     <ClInclude Include="src\tests\TestMaterial.h" />
@@ -192,6 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\objects\backpack\backpack.mtl" />
+    <None Include="res\objects\planet\planet.mtl" />
+    <None Include="res\objects\rock\rock.mtl" />
     <None Include="res\shaders\advanced_glsl\Blue.shader" />
     <None Include="res\shaders\advanced_glsl\Green.shader" />
     <None Include="res\shaders\advanced_glsl\Red.shader" />
@@ -204,6 +212,9 @@
     <None Include="res\shaders\Fractal.shader" />
     <None Include="res\shaders\Geometry.shader" />
     <None Include="res\shaders\GouradObject.shader" />
+    <None Include="res\shaders\instancing\Instance1.shader" />
+    <None Include="res\shaders\instancing\Instance2.shader" />
+    <None Include="res\shaders\instancing\InstanceModel.shader" />
     <None Include="res\shaders\LightCube.shader" />
     <None Include="res\shaders\LightCast.shader" />
     <None Include="res\shaders\Material.shader" />
@@ -220,6 +231,8 @@
     <Image Include="res\objects\backpack\normal.png" />
     <Image Include="res\objects\backpack\roughness.jpg" />
     <Image Include="res\objects\backpack\specular.jpg" />
+    <Image Include="res\objects\planet\mars.png" />
+    <Image Include="res\objects\rock\rock.png" />
     <Image Include="res\textures\bear.png" />
     <Image Include="res\textures\maple.png" />
     <Image Include="res\textures\minecraft\glowstone.jpg" />
@@ -250,6 +263,17 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\objects\backpack\source_attribution.txt" />
+    <Text Include="res\objects\planet\source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="res\objects\planet\planet.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="res\objects\rock\rock.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

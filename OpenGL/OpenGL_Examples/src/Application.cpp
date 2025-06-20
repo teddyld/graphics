@@ -40,6 +40,8 @@
 #include "tests/TestGLSL.h"
 #include "tests/TestGeometry.h"
 #include "tests/TestExploding.h"
+#include "tests/TestInstancing.h"
+#include "tests/TestAsteroids.h"
 
 int main(void)
 {
@@ -107,6 +109,8 @@ int main(void)
 	testMenu->RegisterTest<test::TestGLSL>("Advanced GLSL using the uniform buffer");
 	testMenu->RegisterTest<test::TestGeometry>("Geometry shader");
 	testMenu->RegisterTest<test::TestExploding>("Exploding shader");
+	testMenu->RegisterTest<test::TestInstancing>("Instancing objects");
+	testMenu->RegisterTest<test::TestAsteroids>("Asteroids using instancing");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

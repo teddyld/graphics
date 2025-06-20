@@ -2,9 +2,9 @@
 
 void Mesh::setupMesh()
 {
-	m_VAO = std::make_unique<VertexArray>();
+	m_VAO = std::make_shared<VertexArray>();
 	m_VBO = std::make_unique<VertexBuffer>(&m_Vertices[0], m_Vertices.size() * sizeof(MeshVertex), GL_STATIC_DRAW);
-	m_EBO = std::make_unique<IndexBuffer>(&m_Indices[0], m_Indices.size());
+	m_EBO = std::make_shared<IndexBuffer>(&m_Indices[0], m_Indices.size());
 
 	VertexBufferLayout layout;
 	layout.Push(GL_FLOAT, 3, GL_FALSE);

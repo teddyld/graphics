@@ -26,10 +26,13 @@ namespace test {
 
 	TestGeometry::~TestGeometry()
 	{
+		glDisable(GL_DEPTH_TEST);
 	}
 
 	void TestGeometry::OnRender()
 	{
+		glEnable(GL_DEPTH_TEST);
+
 		m_Shader->Bind();
 		m_VAO->Bind();
 

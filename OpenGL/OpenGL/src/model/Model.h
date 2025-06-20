@@ -13,7 +13,6 @@ static unsigned int TextureFromFile(const char* path, const std::string& directo
 class Model
 {
 private:
-	std::vector<Mesh> m_Meshes;
 	std::string m_Directory;
 	std::vector<MeshTexture> m_LoadedTextures;
 
@@ -22,6 +21,8 @@ private:
 	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 	std::vector<MeshTexture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, const std::string& typeName);
 public:
+	std::vector<Mesh> m_Meshes;
+
 	Model(const std::string& path)
 	{
 		loadModel(path);

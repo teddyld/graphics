@@ -25,7 +25,7 @@ struct VertexBufferElement
 		case GL_UNSIGNED_INT: return 4;
 		case GL_UNSIGNED_BYTE: return 1;
 		}
-		std::cout << type << " has is not defined in GetSizeOfType" << '\n';
+		std::cout << type << " is not defined in GetSizeOfType" << '\n';
 		return 0;
 	}
 };

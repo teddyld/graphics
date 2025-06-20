@@ -24,9 +24,9 @@ struct MeshTexture {
 class Mesh
 {
 private:
-	std::unique_ptr<VertexArray> m_VAO;
+	std::shared_ptr<VertexArray> m_VAO;
 	std::unique_ptr<VertexBuffer> m_VBO;
-	std::unique_ptr<IndexBuffer> m_EBO;
+	std::shared_ptr<IndexBuffer> m_EBO;
 
 	void setupMesh();
 public:
@@ -36,4 +36,7 @@ public:
 
 	Mesh(std::vector<MeshVertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures);
 	void Draw(Shader& shader);
+
+	inline std::shared_ptr<VertexArray> GetMeshVAO() const { return m_VAO; }
+	inline std::shared_ptr<IndexBuffer> GetMeshEBO() const { return m_EBO; }
 };

@@ -41,3 +41,19 @@ void Renderer::Draw(const VertexArray& va, const Shader& shader, int count) cons
 
 	glDrawArrays(GL_TRIANGLES, 0, count);
 }
+
+void Renderer::DrawInstance(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, int instanceCount) const
+{
+	shader.Bind();
+	va.Bind();
+
+	glDrawElementsInstanced(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr, instanceCount);
+}
+
+void Renderer::DrawInstance(const VertexArray& va, const Shader& shader, int count, int instanceCount) const
+{
+	shader.Bind();
+	va.Bind();
+
+	glDrawArraysInstanced(GL_TRIANGLES, 0, count, instanceCount);
+}

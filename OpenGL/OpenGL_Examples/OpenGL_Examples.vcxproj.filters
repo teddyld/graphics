@@ -75,6 +75,15 @@
     <ClCompile Include="src\tests\TestExploding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestInstancing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tests\TestAA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tests\TestAsteroids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -134,6 +143,15 @@
     <ClInclude Include="src\tests\TestExploding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestInstancing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tests\TestAA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tests\TestAsteroids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -158,6 +176,11 @@
     <None Include="res\shaders\Geometry.shader" />
     <None Include="res\shaders\geometry\Exploding.shader" />
     <None Include="res\shaders\geometry\DisplayNormals.shader" />
+    <None Include="res\shaders\instancing\Instance1.shader" />
+    <None Include="res\shaders\instancing\Instance2.shader" />
+    <None Include="res\objects\planet\planet.mtl" />
+    <None Include="res\objects\rock\rock.mtl" />
+    <None Include="res\shaders\instancing\InstanceModel.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
@@ -230,8 +253,19 @@
     <Image Include="res\textures\opengl\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\objects\planet\mars.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\rock\rock.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\objects\backpack\source_attribution.txt" />
+    <Text Include="res\objects\planet\source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="res\objects\planet\planet.obj" />
+    <Object Include="res\objects\rock\rock.obj" />
   </ItemGroup>
 </Project>
