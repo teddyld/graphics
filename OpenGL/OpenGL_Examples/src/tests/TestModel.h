@@ -6,11 +6,10 @@ namespace test {
 	class TestModel : public Test
 	{
 	private:
-		glm::mat4 m_View;
-		float m_FoV;
-
 		std::unique_ptr<Model> m_Model;
 		std::unique_ptr<Shader> m_Shader;
+
+		CameraTransformMatrices m_Transforms;
 	public:
 		TestModel();
 		~TestModel();

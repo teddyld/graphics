@@ -64,19 +64,19 @@ namespace test {
 	void TestAsteroids::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 	}
 
 	void TestAsteroids::OnRender()
 	{
 		Renderer renderer;
 		glEnable(GL_DEPTH_TEST);
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
 
 		m_InstanceShader->Bind();
 		m_InstanceShader->SetUniformMat4f("u_Projection", projection);
-		m_InstanceShader->SetUniformMat4f("u_View", m_View);
+		m_InstanceShader->SetUniformMat4f("u_View", view);
 
 		for (unsigned int i = 0; i < m_RockObj->m_Meshes.size(); i++)
 		{
@@ -89,7 +89,7 @@ namespace test {
 		m_PlanetShader->Bind();
 		m_PlanetShader->SetUniformMat4f("u_Model", glm::mat4(1.0f));
 		m_PlanetShader->SetUniformMat4f("u_Projection", projection);
-		m_PlanetShader->SetUniformMat4f("u_View", m_View);
+		m_PlanetShader->SetUniformMat4f("u_View", view);
 
 		m_PlanetObj->Draw(*m_PlanetShader);
 	}

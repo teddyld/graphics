@@ -18,8 +18,7 @@ namespace test {
 		std::unique_ptr<Texture> m_PlaneTexture;
 		std::unique_ptr<Texture> m_WindowTexture;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 		glm::vec3 m_Position;
 
 		std::vector<glm::vec3> m_WindowPos;

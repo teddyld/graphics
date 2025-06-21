@@ -101,8 +101,7 @@ namespace test {
 	void TestStencil::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 	}
 
 	void TestStencil::OnRender()
@@ -118,12 +117,13 @@ namespace test {
 		// 3) when both stencil and depth test pass
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
 
 		// Render scene
 		glStencilMask(0x00); // Ensure that the stencil buffer is not updated for the plane
 		m_PlaneTexture->Bind(0);
-		m_TextureShader->SetUniformMat4f("u_MVP", projection * m_View);
+		m_TextureShader->SetUniformMat4f("u_MVP", projection * view);
 		renderer.Draw(*m_PlaneVAO, *m_TextureShader, 6);
 
 		// First pass; draw objects as normal and write to stencil buffer
@@ -135,11 +135,11 @@ namespace test {
 		m_CubeTexture->Bind(0);
 
 		glm::mat4 modelCube1 = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
-		m_TextureShader->SetUniformMat4f("u_MVP", projection * m_View * modelCube1);
+		m_TextureShader->SetUniformMat4f("u_MVP", projection * view * modelCube1);
 		renderer.Draw(*m_CubeVAO, *m_TextureShader, 36);
 
 		glm::mat4 modelCube2 = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, 0.0f));
-		m_TextureShader->SetUniformMat4f("u_MVP", projection * m_View * modelCube2);
+		m_TextureShader->SetUniformMat4f("u_MVP", projection * view * modelCube2);
 		renderer.Draw(*m_CubeVAO, *m_TextureShader, 36);
 
 		// Second pass; draw slightly scaled versions of cubes and disable stencil writing
@@ -151,11 +151,11 @@ namespace test {
 		m_OutlineShader->Bind();
 
 		glm::mat4 modelCube1Outlined = glm::scale(modelCube1, glm::vec3(scale));
-		m_OutlineShader->SetUniformMat4f("u_MVP", projection * m_View * modelCube1Outlined);
+		m_OutlineShader->SetUniformMat4f("u_MVP", projection * view * modelCube1Outlined);
 		renderer.Draw(*m_CubeVAO, *m_OutlineShader, 36);
 
 		glm::mat4 modelCube2Outlined = glm::scale(modelCube2, glm::vec3(scale));
-		m_OutlineShader->SetUniformMat4f("u_MVP", projection * m_View * modelCube2Outlined);
+		m_OutlineShader->SetUniformMat4f("u_MVP", projection * view * modelCube2Outlined);
 		renderer.Draw(*m_CubeVAO, *m_OutlineShader, 36);
 
 		glStencilMask(0xFF);

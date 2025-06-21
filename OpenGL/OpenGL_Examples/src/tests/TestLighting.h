@@ -6,9 +6,8 @@ namespace test {
 	class TestLighting : public Test
 	{
 	private:
-		glm::mat4 m_View;
+		CameraTransformMatrices m_Transforms;
 		glm::vec3 m_ViewPos;
-		float m_FoV;
 
 		float m_AmbientStrength;
 		float m_SpecularStrength;

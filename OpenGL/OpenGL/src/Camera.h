@@ -5,6 +5,12 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+struct CameraTransformMatrices
+{
+	glm::mat4 projection;
+	glm::mat4 view;
+};
+
 class Camera
 {
 private:
@@ -33,9 +39,9 @@ public:
 	void CameraInput(GLFWwindow* window, float deltaTime);
 	void CameraReset();
 	void UpdateCameraVectors();
+	CameraTransformMatrices GetTransformMatrices(float near = 0.1f, float far = 100.0f);
 
 	inline glm::mat4 GetLookAt() const { return glm::lookAt(m_CameraPosition, m_CameraPosition + m_CameraFront, m_CameraUp); }
-	inline float GetZoom() const { return m_Zoom; }
 	inline glm::vec3 GetPosition() const { return m_CameraPosition; }
 	inline glm::vec3 GetFront() const { return m_CameraFront; }
 };

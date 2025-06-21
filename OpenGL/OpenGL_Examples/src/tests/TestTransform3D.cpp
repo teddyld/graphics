@@ -89,8 +89,7 @@ namespace test {
 	void TestTransform3D::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 	}
 
 	void TestTransform3D::OnRender()
@@ -101,8 +100,8 @@ namespace test {
 
 		m_TextureGrassBottom->Bind(0);
 
-		glm::mat4 view = m_View;
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 view = m_Transforms.view;
+		glm::mat4 projection = m_Transforms.projection;
 
 		for (unsigned int i = 0; i < 10; i++)
 		{

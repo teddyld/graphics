@@ -89,6 +89,13 @@ namespace test {
 		glDisable(GL_DEPTH_TEST);
 	}
 
+	void TestMaterial::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
+	{
+		camera.CameraInput(window, deltaTime);
+		m_Transforms = camera.GetTransformMatrices();
+		m_ViewPos = camera.GetPosition();
+	}
+
 	void TestMaterial::OnRender()
 	{
 		Renderer renderer;
@@ -96,7 +103,9 @@ namespace test {
 		glEnable(GL_DEPTH_TEST);
 
 		glm::vec3 lightPosition(2.0 * sin(glfwGetTime()), 1.5f, 2.0 * cos(glfwGetTime()));
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
 		glm::mat4 objectModel = glm::mat4(1.0f);
 
 		// Render the cube object
@@ -107,7 +116,7 @@ namespace test {
 		m_ContainerShader->Bind();
 
 		m_ContainerShader->SetUniformMat4f("u_Model", objectModel);
-		m_ContainerShader->SetUniformMat4f("u_View", m_View);
+		m_ContainerShader->SetUniformMat4f("u_View", view);
 		m_ContainerShader->SetUniformMat4f("u_Projection", projection);
 
 		m_ContainerShader->SetUniform3f("u_ViewPosition", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
@@ -129,20 +138,8 @@ namespace test {
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), lightPosition);
 		model = glm::scale(model, glm::vec3(0.2f));
 
-		m_LightShader->SetUniformMat4f("u_MVP", projection * m_View * model);
+		m_LightShader->SetUniformMat4f("u_MVP", projection * view * model);
 
 		renderer.Draw(*m_LightVAO, *m_LightShader, 36);
-	}
-
-	void TestMaterial::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
-	{
-		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
-		m_ViewPos = camera.GetPosition();
-	}
-
-	void TestMaterial::OnImGuiRender()
-	{
 	}
 }

@@ -17,8 +17,7 @@ namespace test {
 		std::unique_ptr<Shader> m_TextureShader;
 		std::unique_ptr<Shader> m_OutlineShader;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 	public:
 		TestStencil();
 		~TestStencil();

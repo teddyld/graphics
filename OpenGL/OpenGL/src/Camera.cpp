@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 Camera::Camera(glm::vec3 pos, int width, int height)
 	: m_CameraPosition(pos), m_CameraFirstPosition(pos), m_Width(width), m_Height(height)
@@ -100,4 +101,15 @@ void Camera::UpdateCameraVectors()
 	m_CameraFront = glm::normalize(direction);
 	m_CameraRight = glm::normalize(glm::cross(m_CameraFront, m_WorldUp));
 	m_CameraUp = glm::normalize(glm::cross(m_CameraRight, m_CameraFront));
+}
+
+CameraTransformMatrices Camera::GetTransformMatrices(float near /*= 0.1f */, float far /*= 100.0f */)
+{
+	float aspect = (float)m_Width / (float)m_Height;
+	glm::mat4 projection = glm::perspective(glm::radians(m_Zoom), aspect, near, far);
+	glm::mat4 view = GetLookAt();
+
+	return {
+		projection, view
+	};
 }

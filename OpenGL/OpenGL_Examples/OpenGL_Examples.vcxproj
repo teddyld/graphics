@@ -204,6 +204,7 @@
     <None Include="res\shaders\advanced_glsl\Green.shader" />
     <None Include="res\shaders\advanced_glsl\Red.shader" />
     <None Include="res\shaders\advanced_glsl\Yellow.shader" />
+    <None Include="res\shaders\AntiAliasing.shader" />
     <None Include="res\shaders\CubemapReflective.shader" />
     <None Include="res\shaders\CubemapRefractive.shader" />
     <None Include="res\shaders\Depth.shader" />

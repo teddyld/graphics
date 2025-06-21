@@ -7,8 +7,7 @@ namespace test {
 	class TestMaterial : public Test
 	{
 	private:
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 
 		glm::vec3 m_ViewPos;
 
@@ -27,8 +26,7 @@ namespace test {
 		TestMaterial();
 		~TestMaterial();
 
-		void OnRender() override;
 		void OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera) override;
-		void OnImGuiRender() override;
+		void OnRender() override;
 	};
 }

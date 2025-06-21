@@ -15,8 +15,7 @@ namespace test {
 
 		std::unique_ptr<UniformBuffer> m_UniformBuffer;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 	public:
 		TestGLSL();
 		~TestGLSL();

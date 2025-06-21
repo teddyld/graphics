@@ -10,8 +10,7 @@ namespace test {
 		std::unique_ptr<Shader> m_ObjectShader;
 		std::unique_ptr<Shader> m_NormalsShader;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 	public:
 		TestExploding();
 		~TestExploding();

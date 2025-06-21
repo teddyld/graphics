@@ -81,8 +81,7 @@ namespace test {
 	void TestGLSL::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 	}
 
 	void TestGLSL::OnRender()
@@ -90,9 +89,11 @@ namespace test {
 		Renderer renderer;
 		glEnable(GL_DEPTH_TEST);
 
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
+
 		m_UniformBuffer->UpdateBufferSubData(0, sizeof(glm::mat4), &projection);
-		m_UniformBuffer->UpdateBufferSubData(sizeof(glm::mat4), sizeof(glm::mat4), &m_View);
+		m_UniformBuffer->UpdateBufferSubData(sizeof(glm::mat4), sizeof(glm::mat4), &view);
 
 		std::vector<glm::vec3> positions = {
 			glm::vec3(-0.75f, 0.75f, 0.0f),

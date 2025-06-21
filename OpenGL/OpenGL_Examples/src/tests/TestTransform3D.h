@@ -10,8 +10,8 @@ namespace test {
 		std::unique_ptr<VertexBuffer> m_VBO;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<Texture> m_TextureGrassBottom;
-		glm::mat4 m_View;
-		float m_FoV;
+
+		CameraTransformMatrices m_Transforms;
 		glm::vec3 m_CubePositions[10];
 	public:
 		TestTransform3D();

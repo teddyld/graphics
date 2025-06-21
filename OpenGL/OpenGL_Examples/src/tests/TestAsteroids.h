@@ -13,8 +13,7 @@ namespace test {
 		std::unique_ptr<Shader> m_InstanceShader;
 		std::unique_ptr<Shader> m_PlanetShader;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 
 		unsigned int m_Amount;
 	public:

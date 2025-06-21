@@ -20,8 +20,7 @@ namespace test {
 		std::unique_ptr<Texture> m_SkyboxTexture;
 		std::unique_ptr<Shader> m_SkyboxShader;
 
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 		glm::vec3 m_CameraPos;
 
 		EnvironmentMapping m_EnvironmentMapping;

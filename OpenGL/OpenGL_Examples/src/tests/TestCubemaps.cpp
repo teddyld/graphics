@@ -135,8 +135,7 @@ namespace test {
 	void TestCubemaps::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 		m_CameraPos = camera.GetPosition();
 	}
 
@@ -145,7 +144,9 @@ namespace test {
 		Renderer renderer;
 
 		glEnable(GL_DEPTH_TEST);
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
+
 		m_SkyboxTexture->Bind(0);
 
 		if (m_EnvironmentMapping == EnvironmentMapping::REFLECTIVE)
@@ -153,7 +154,7 @@ namespace test {
 			m_ReflectiveShader->Bind();
 
 			m_ReflectiveShader->SetUniformMat4f("u_Model", glm::mat4(1.0f));
-			m_ReflectiveShader->SetUniformMat4f("u_View", m_View);
+			m_ReflectiveShader->SetUniformMat4f("u_View", view);
 			m_ReflectiveShader->SetUniformMat4f("u_Projection", projection);
 			m_ReflectiveShader->SetUniform3f("u_CameraPos", m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);
 
@@ -165,7 +166,7 @@ namespace test {
 			m_RefractiveShader->SetUniform1f("u_RefractiveIndex", m_RefractiveIndex);
 
 			m_RefractiveShader->SetUniformMat4f("u_Model", glm::mat4(1.0f));
-			m_RefractiveShader->SetUniformMat4f("u_View", m_View);
+			m_RefractiveShader->SetUniformMat4f("u_View", view);
 			m_RefractiveShader->SetUniformMat4f("u_Projection", projection);
 			m_RefractiveShader->SetUniform3f("u_CameraPos", m_CameraPos.x, m_CameraPos.y, m_CameraPos.z);
 
@@ -176,8 +177,8 @@ namespace test {
 		m_SkyboxShader->Bind();
 		m_SkyboxTexture->Bind(0);
 
-		glm::mat4 view = glm::mat4(glm::mat3(m_View)); // Remove the translation component of the view matrix so that the skybox does not move with the camera
-		glm::mat4 skyboxMVP = projection * view;
+		glm::mat4 viewNoTranslation = glm::mat4(glm::mat3(view)); // Remove the translation component of the view matrix so that the skybox does not move with the camera
+		glm::mat4 skyboxMVP = projection * viewNoTranslation;
 		m_SkyboxShader->SetUniformMat4f("u_MVP", skyboxMVP);
 
 		renderer.Draw(*m_SkyboxVAO, *m_SkyboxShader, 36);

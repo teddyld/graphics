@@ -6,8 +6,7 @@ namespace test {
 	class TestLightCasters : public Test
 	{
 	private:
-		glm::mat4 m_View;
-		float m_FoV;
+		CameraTransformMatrices m_Transforms;
 
 		glm::vec3 m_ViewPos;
 		glm::vec3 m_ViewFront;

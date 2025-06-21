@@ -87,8 +87,7 @@ namespace test {
 	void TestDepth::OnUpdate(GLFWwindow* window, float deltaTime, Camera& camera)
 	{
 		camera.CameraInput(window, deltaTime);
-		m_View = camera.GetLookAt();
-		m_FoV = camera.GetZoom();
+		m_Transforms = camera.GetTransformMatrices();
 	}
 
 	void TestDepth::OnRender()
@@ -97,22 +96,23 @@ namespace test {
 
 		glEnable(GL_DEPTH_TEST);
 
-		glm::mat4 projection = glm::perspective(glm::radians(m_FoV), 960.0f / 540.0f, 0.1f, 100.0f);
+		glm::mat4 projection = m_Transforms.projection;
+		glm::mat4 view = m_Transforms.view;
 
 		m_Shader->Bind();
 
 		// First cube
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f, 0.0f, -1.0f));
-		m_Shader->SetUniformMat4f("u_MVP", projection * m_View * model);
+		m_Shader->SetUniformMat4f("u_MVP", projection * view * model);
 		renderer.Draw(*m_CubeVAO, *m_Shader, 36);
 
 		// Second cube
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, 0.0f));
-		m_Shader->SetUniformMat4f("u_MVP", projection * m_View * model);
+		m_Shader->SetUniformMat4f("u_MVP", projection * view * model);
 		renderer.Draw(*m_CubeVAO, *m_Shader, 36);
 
 		// Plane
-		m_Shader->SetUniformMat4f("u_MVP", projection * m_View);
+		m_Shader->SetUniformMat4f("u_MVP", projection * view);
 		renderer.Draw(*m_PlaneVAO, *m_Shader, 6);
 	}
 
