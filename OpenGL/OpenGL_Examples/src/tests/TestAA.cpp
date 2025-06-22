@@ -84,7 +84,9 @@ namespace test {
 		m_FBO = std::make_unique<FrameBuffer>(SCR_WIDTH, SCR_HEIGHT, GL_TEXTURE_2D_MULTISAMPLE);
 		m_FBO->AttachTexture(m_Samples);
 
-		// Create multisampled renderbuffer object for depth and stencil attachments
+		// Create multisampled renderbuffer object so all depth and stencil operations read from the currently bound framebuffer's depth and stencil attachments
+		// Because the rbo is write-only (except using the slow glReadPixels) and the data is in native format (stored directly without conversions to texture-specific formats), rbo's are quite fast for writing data or copying data to other buffers
+		// ... OpenGL can do memory optimisations that boost performance over textures for off-screen rendering to a framebuffer
 		m_RBO = std::make_unique<RenderBuffer>(SCR_WIDTH, SCR_HEIGHT);
 		m_RBO->ConfigureMultisampled(m_Samples);
 		m_RBO->AttachBuffer();
