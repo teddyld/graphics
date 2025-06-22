@@ -8,6 +8,12 @@
 #include "Texture.h"
 #include "RenderBuffer.h"
 
+static std::map<GLenum, GLint> fboDefaultOptions =
+{
+	{ GL_TEXTURE_MIN_FILTER, GL_LINEAR },
+	{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
+};
+
 class FrameBuffer
 {
 private:
@@ -20,8 +26,8 @@ public:
 	FrameBuffer(int width, int height, GLenum target = GL_TEXTURE_2D);
 	~FrameBuffer();
 
-	void AttachTexture(std::map<GLenum, GLint> options = defaultOptions);
-	void AttachTexture(int samples, std::map<GLenum, GLint> options = defaultOptions);
+	void AttachTexture(std::map<GLenum, GLint> options = fboDefaultOptions);
+	void AttachTexture(int samples, std::map<GLenum, GLint> options = fboDefaultOptions);
 	void BindTexture(unsigned int slot) const;
 	void CopyToScreen(GLbitfield mask = GL_COLOR_BUFFER_BIT, GLenum filter = GL_NEAREST);
 	void CopyToBuffer(const FrameBuffer& fbo, GLbitfield mask = GL_COLOR_BUFFER_BIT, GLenum filter = GL_NEAREST);
