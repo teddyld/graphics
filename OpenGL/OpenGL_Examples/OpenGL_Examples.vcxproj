@@ -147,6 +147,7 @@
     <ClCompile Include="src\tests\TestAA.cpp" />
     <ClCompile Include="src\tests\TestAsteroids.cpp" />
     <ClCompile Include="src\tests\TestBlending.cpp" />
+    <ClCompile Include="src\tests\TestBlinnPhong.cpp" />
     <ClCompile Include="src\tests\TestChangeTexture.cpp" />
     <ClCompile Include="src\tests\Test.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="src\tests\TestAsteroids.h" />
     <ClInclude Include="src\tests\TestBatchRendering.h" />
     <ClInclude Include="src\tests\TestBlending.h" />
+    <ClInclude Include="src\tests\TestBlinnPhong.h" />
     <ClInclude Include="src\tests\TestChangeTexture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\tests\TestCubemaps.h" />

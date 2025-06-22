@@ -80,7 +80,8 @@ namespace test {
 	{
 	private:
 		Test*& m_CurrentTest;
-		std::vector<std::pair<std::string, std::function<Test* ()>>> m_Tests;
+		std::vector<std::tuple<std::string, std::string, std::function<Test* ()>>> m_Tests;
+		std::string m_CurrentGroup;
 	public:
 		TestMenu(Test*& currentTestPointer);
 
@@ -90,7 +91,12 @@ namespace test {
 		void RegisterTest(const std::string& name)
 		{
 			std::cout << "Registering test: " << name << std::endl;
-			m_Tests.push_back(std::make_pair(name, []() { return new T(); }));
+			m_Tests.push_back(std::tuple(name, m_CurrentGroup, []() { return new T(); }));
+		}
+
+		void RegisterGroup(const std::string& name)
+		{
+			m_CurrentGroup = name;
 		}
 	};
 }

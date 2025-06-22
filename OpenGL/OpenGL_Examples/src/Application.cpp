@@ -92,17 +92,22 @@ int main(void)
 	test::TestMenu* testMenu = new test::TestMenu(currentTest);
 	currentTest = testMenu;
 
+	testMenu->RegisterGroup("Basic");
 	testMenu->RegisterTest<test::TestClearColor>("Clear Color");
+	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
 	testMenu->RegisterTest<test::TestTexture2D>("Texture 2D");
+	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
+	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
+	testMenu->RegisterGroup("Batching");
 	testMenu->RegisterTest<test::TestBatchRendering>("Batch Rendering");
 	testMenu->RegisterTest<test::TestDynamicBatchRendering>("Dynamic Batch Rendering");
-	testMenu->RegisterTest<test::TestTransform3D>("A 3D scene");
-	testMenu->RegisterTest<test::TestChangeTexture>("Changing textures dynamically");
-	testMenu->RegisterTest<test::TestShaders>("Exploring shaders");
+	testMenu->RegisterGroup("Lighting");
 	testMenu->RegisterTest<test::TestLighting>("Simple Lighting Types");
 	testMenu->RegisterTest<test::TestMaterial>("Materials");
 	testMenu->RegisterTest<test::TestLightCasters>("Light casting: directional, point, and area");
+	testMenu->RegisterGroup("Model Loading");
 	testMenu->RegisterTest<test::TestModel>("Model loading: Backpack");
+	testMenu->RegisterGroup("Advanced OpenGL");
 	testMenu->RegisterTest<test::TestDepth>("Depth testing");
 	testMenu->RegisterTest<test::TestStencil>("Object outlining using stencil testing");
 	testMenu->RegisterTest<test::TestBlending>("Blending testing");

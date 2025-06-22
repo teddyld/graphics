@@ -8,10 +8,18 @@ namespace test {
 
 	void TestMenu::OnImGuiRender()
 	{
+		std::string curr = "";
 		for (auto& test : m_Tests)
 		{
-			if (ImGui::Button(test.first.c_str()))
-				m_CurrentTest = test.second();
+			if (curr != std::get<1>(test))
+			{
+				ImGui::Text(std::get<1>(test).c_str());
+				ImGui::Separator();
+				curr = std::get<1>(test);
+			}
+
+			if (ImGui::Button(std::get<0>(test).c_str()))
+				m_CurrentTest = std::get<2>(test)();
 		}
 	}
 }
