@@ -126,11 +126,13 @@ int main(void)
 	screenShader.SetUniform1i("u_Texture", 0);
 	screenShader.SetUniformMat4f("u_MVP", projection);
 
-	FrameBuffer fbo;
-	RenderBuffer rbo(758, 453);
+	FrameBuffer fbo(758, 453, GL_TEXTURE_2D);
+	fbo.AttachTexture();
 
-	fbo.AttachTexture(758, 453);
+	RenderBuffer rbo(758, 453);
+	rbo.Configure();
 	rbo.AttachBuffer();
+
 	fbo.Unbind();
 
 	glEnable(GL_BLEND);
@@ -139,16 +141,14 @@ int main(void)
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
-		renderer.Clear();
-
-		glEnable(GL_DEPTH_TEST);
-
 		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		// Render reflected objects to frame buffer
 		fbo.Bind();
+		renderer.Clear();
+		glEnable(GL_DEPTH_TEST);
 
 		landscape.OnRender(view, projection);
 		fox.OnRender(view, projection);
@@ -173,6 +173,8 @@ int main(void)
 		fbo.Unbind();
 
 		// Render screen-space quad
+		renderer.Clear();
+		glDisable(GL_DEPTH_TEST);
 		fbo.BindTexture(0);
 		renderer.Draw(screenVAO, screenEBO, screenShader);
 
