@@ -36,9 +36,9 @@ void Camera::CameraInput(GLFWwindow* window, float deltaTime)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		m_CameraPosition += glm::normalize(glm::cross(m_CameraFront, m_CameraUp)) * velocity;
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
-		m_CameraPosition += velocity * m_CameraUp;
+		m_CameraPosition += velocity * m_WorldUp;
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-		m_CameraPosition += velocity * -m_CameraUp;
+		m_CameraPosition += velocity * -m_WorldUp;
 
 	// Control camera mouse mode
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
