@@ -22,6 +22,8 @@
 #include "VertexBufferLayout.h"
 #include "Model.h"
 #include "UniformBuffer.h"
+#include "FrameBuffer.h"
+#include "RenderBuffer.h"
 
 #include "Camera.h"
 
@@ -63,6 +65,9 @@ namespace test {
 	class Test
 	{
 	public:
+		int SCR_WIDTH = 1920;
+		int SCR_HEIGHT = 1080;
+
 		Test() {}
 		virtual ~Test() {}
 

@@ -181,7 +181,8 @@
     <None Include="res\objects\planet\planet.mtl" />
     <None Include="res\objects\rock\rock.mtl" />
     <None Include="res\shaders\instancing\InstanceModel.shader" />
-    <None Include="res\shaders\AntiAliasing.shader" />
+    <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
+    <None Include="res\shaders\antialiasing\AAPost.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">

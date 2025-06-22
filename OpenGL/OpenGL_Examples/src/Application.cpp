@@ -42,6 +42,7 @@
 #include "tests/TestExploding.h"
 #include "tests/TestInstancing.h"
 #include "tests/TestAsteroids.h"
+#include "tests/TestAA.h"
 
 int main(void)
 {
@@ -111,6 +112,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestExploding>("Exploding shader");
 	testMenu->RegisterTest<test::TestInstancing>("Instancing objects");
 	testMenu->RegisterTest<test::TestAsteroids>("Asteroids using instancing");
+	testMenu->RegisterTest<test::TestAA>("Anti Aliasing techniques");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

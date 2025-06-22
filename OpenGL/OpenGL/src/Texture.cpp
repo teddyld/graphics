@@ -1,11 +1,7 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */)
-	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0), m_Target(target)
+void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options)
 {
-	glGenTextures(1, &m_ID);
-	glBindTexture(target, m_ID);
-
 	std::vector<GLenum> validOptions;
 	for (const auto& [pname, param] : defaultOptions)
 	{
@@ -31,6 +27,15 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 	{
 		glTexParameteri(target, pname, defaultOptions.at(pname));
 	}
+}
+
+Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */)
+	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0), m_Target(target)
+{
+	glGenTextures(1, &m_ID);
+	glBindTexture(target, m_ID);
+
+	SetTextureParameters(target, options);
 
 	if (target == GL_TEXTURE_2D)
 	{

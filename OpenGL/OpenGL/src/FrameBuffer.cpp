@@ -1,6 +1,7 @@
 #include "FrameBuffer.h"
 
-FrameBuffer::FrameBuffer()
+FrameBuffer::FrameBuffer(int width, int height, GLenum target /*= GL_TEXTURE_2D */)
+	: m_Width(width), m_Height(height), m_Target(target)
 {
 	glGenFramebuffers(1, &m_ID);
 	Bind();
@@ -11,50 +12,48 @@ FrameBuffer::~FrameBuffer()
 	glDeleteFramebuffers(1, &m_ID);
 }
 
-void FrameBuffer::AttachTexture(int width, int height)
+void FrameBuffer::AttachTexture(std::map<GLenum, GLint> options /*= defaultOptions */)
 {
-	// Allocate memory for texture
 	glGenTextures(1, &m_Texture);
 	glBindTexture(GL_TEXTURE_2D, m_Texture);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-
+	SetTextureParameters(GL_TEXTURE_2D, options);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	Bind();
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-	Unbind();
 }
 
-void FrameBuffer::AttachTexture(int width, int height, std::map<GLenum, GLint> options)
+void FrameBuffer::AttachTexture(int samples, std::map<GLenum, GLint> options /*= defaultOptions */)
 {
-	// Allocate memory for texture
 	glGenTextures(1, &m_Texture);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_Texture);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	SetTextureParameters(GL_TEXTURE_2D_MULTISAMPLE, options);
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, m_Width, m_Height, GL_TRUE);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 
-	for (const auto& [pname, param] : options)
-	{
-		glTexParameteri(GL_TEXTURE_2D, pname, param);
-	}
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	Bind();
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
-	Unbind();
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, m_Texture, 0);
 }
 
 void FrameBuffer::BindTexture(unsigned int slot /*= 0*/) const
 {
 	glActiveTexture(GL_TEXTURE0 + slot);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glBindTexture(m_Target, m_Texture);
+}
+
+void FrameBuffer::CopyToScreen(GLbitfield mask /*= GL_COLOR_BUFFER_BIT*/, GLenum filter /*= GL_NEAREST */)
+{
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, m_ID);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+	glBlitFramebuffer(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height, mask, filter);
+}
+
+void FrameBuffer::CopyToBuffer(const FrameBuffer& fbo, GLbitfield mask /*= GL_COLOR_BUFFER_BIT*/, GLenum filter /*= GL_NEAREST */)
+{
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, m_ID);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo.m_ID);
+	glBlitFramebuffer(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height, mask, filter);
 }
 
 void FrameBuffer::Bind() const

@@ -17,6 +17,8 @@ static std::map<GLenum, GLint> defaultOptions =
 	{ GL_TEXTURE_WRAP_R, GL_CLAMP_TO_BORDER }
 };
 
+void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options);
+
 class Texture
 {
 private:
