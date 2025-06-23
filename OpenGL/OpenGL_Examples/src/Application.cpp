@@ -43,6 +43,7 @@
 #include "tests/TestInstancing.h"
 #include "tests/TestAsteroids.h"
 #include "tests/TestAA.h"
+#include "tests/TestBlinnPhong.h"
 
 int main(void)
 {
@@ -118,6 +119,8 @@ int main(void)
 	testMenu->RegisterTest<test::TestInstancing>("Instancing objects");
 	testMenu->RegisterTest<test::TestAsteroids>("Asteroids using instancing");
 	testMenu->RegisterTest<test::TestAA>("Anti Aliasing techniques");
+	testMenu->RegisterGroup("Advanced Lighting");
+	testMenu->RegisterTest<test::TestBlinnPhong>("Blinn-Phong lighting model");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

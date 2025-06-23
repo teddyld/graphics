@@ -164,8 +164,8 @@
     <None Include="res\shaders\Texture16.shader" />
     <None Include="res\shaders\Fractal.shader" />
     <None Include="res\shaders\LightCube.shader" />
-    <None Include="res\shaders\PhongObject.shader" />
-    <None Include="res\shaders\GouradObject.shader" />
+    <None Include="res\shaders\lighting\PhongObject.shader" />
+    <None Include="res\shaders\lighting\GouradObject.shader" />
     <None Include="res\shaders\Material.shader" />
     <None Include="res\shaders\LightCast.shader" />
     <None Include="res\shaders\Depth.shader" />
@@ -189,6 +189,7 @@
     <None Include="res\shaders\instancing\InstanceModel.shader" />
     <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
     <None Include="res\shaders\antialiasing\AAPost.shader" />
+    <None Include="res\shaders\lighting\BlinnPhongObject.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
@@ -265,6 +266,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\objects\rock\rock.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\wood_floor.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

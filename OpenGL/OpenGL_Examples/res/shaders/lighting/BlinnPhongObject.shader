@@ -39,10 +39,10 @@ uniform vec3 u_LightPosition;
 uniform vec3 u_ViewPosition;
 uniform float u_AmbientStrength; 
 uniform float u_SpecularStrength;
-uniform int u_Shininess; // Impacts the scattering/radius of the specular highlight
+uniform float u_Shininess; // Impacts the scattering/radius of the specular highlight
 uniform sampler2D u_Texture;
 
-// Phong lighting model
+// Blinn-Phong lighting model
 void main()
 {
 	// Ambient component
@@ -54,10 +54,11 @@ void main()
 	float diff = max(dot(norm, lightDir), 0.0);
 	vec3 diffuse = diff * u_LightColor;
 
-	// Specular component
+	// Specular component (uses angle between normal and halfway vector instead of view and reflection vector)
+	// Note: since the angle between the halfway vector and surface normal is often shorter, we need to set the specular shininess exponent higher to get similar results as Phong shading by 2-4 times
 	vec3 viewDir = normalize(u_ViewPosition - v_FragPosition);
-	vec3 reflectDir = reflect(-lightDir, norm); // Negating lightDir to get direction of light source to frag
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shininess);
+	vec3 halfwayDir = normalize(lightDir + viewDir);  
+	float spec = pow(max(dot(norm, halfwayDir), 0.0), u_Shininess);
 	vec3 specular = u_SpecularStrength * spec * u_LightColor;
 
 	vec3 result = (ambient + diffuse + specular) * vec3(texture(u_Texture, v_TexCoords));

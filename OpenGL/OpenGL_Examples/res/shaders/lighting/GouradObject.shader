@@ -17,7 +17,7 @@ uniform vec3 u_LightPosition;
 uniform vec3 u_ViewPosition;
 uniform float u_AmbientStrength;
 uniform float u_SpecularStrength;
-uniform int u_Shininess;
+uniform float u_Shininess;
 
 // Phong lighting model implemented in the vertex shader 
 // Gourad shading; efficient, generally less vertices than fragments but not very realistic unless large amounts of vertices are used due to interpolation of lighting values

@@ -2,7 +2,7 @@
 
 namespace test {
 	TestLighting::TestLighting()
-		: m_AmbientStrength(0.1f), m_SpecularStrength(0.5f), m_Shininess(32), m_LightColor{ 1.0, 1.0, 1.0 }, m_ShaderType(0)
+		: m_AmbientStrength(0.1f), m_SpecularStrength(0.5f), m_Shininess(32.0f), m_LightColor{ 1.0, 1.0, 1.0 }, m_ShaderType(0)
 	{
 		float vertices[] = {
 			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f,
@@ -103,9 +103,9 @@ namespace test {
 		m_Container->Bind(0);
 
 		if (m_ShaderType == 0)
-			m_ObjectShader = std::make_unique<Shader>("res/shaders/PhongObject.shader");
+			m_ObjectShader = std::make_unique<Shader>("res/shaders/lighting/PhongObject.shader");
 		else
-			m_ObjectShader = std::make_unique<Shader>("res/shaders/GouradObject.shader");
+			m_ObjectShader = std::make_unique<Shader>("res/shaders/lighting/GouradObject.shader");
 
 		m_ObjectShader->Bind();
 
@@ -121,7 +121,7 @@ namespace test {
 
 		m_ObjectShader->SetUniform1f("u_AmbientStrength", m_AmbientStrength);
 		m_ObjectShader->SetUniform1f("u_SpecularStrength", m_SpecularStrength);
-		m_ObjectShader->SetUniform1i("u_Shininess", m_Shininess);
+		m_ObjectShader->SetUniform1f("u_Shininess", m_Shininess);
 
 		renderer.Draw(*m_ObjectVAO, *m_ObjectShader, 36);
 
@@ -144,6 +144,6 @@ namespace test {
 		ImGui::Spacing();
 		ImGui::SliderFloat("Ambient Strength", &m_AmbientStrength, 0.0, 1.0);
 		ImGui::SliderFloat("Specular Strength", &m_SpecularStrength, 0.0, 1.0);
-		ImGui::SliderInt("Shininess Factor", &m_Shininess, 0, 128);
+		ImGui::SliderFloat("Shininess Factor", &m_Shininess, 0.0, 128.0);
 	}
 }
