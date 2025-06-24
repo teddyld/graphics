@@ -87,6 +87,9 @@
     <ClCompile Include="src\tests\TestBlinnPhong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestGammaCorrection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -158,6 +161,9 @@
     <ClInclude Include="src\tests\TestBlinnPhong.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestGammaCorrection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -190,6 +196,7 @@
     <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
     <None Include="res\shaders\antialiasing\AAPost.shader" />
     <None Include="res\shaders\lighting\BlinnPhongObject.shader" />
+    <None Include="res\shaders\lighting\GammaCorrection.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">

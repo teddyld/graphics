@@ -29,7 +29,33 @@ void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options)
 	}
 }
 
-Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */)
+TextureFormat GetTextureFormat(int nrComponents, bool gammaCorrection)
+{
+	GLenum internalFormat;
+	GLenum dataFormat;
+
+	if (nrComponents == 1)
+	{
+		internalFormat = GL_RED;
+		dataFormat = GL_RED;
+	}
+	else if (nrComponents == 3)
+	{
+		internalFormat = gammaCorrection ? GL_SRGB : GL_RGB;
+		dataFormat = GL_RGB;
+	}
+	else // (nrComponents == 4)
+	{
+		internalFormat = gammaCorrection ? GL_SRGB_ALPHA : GL_RGBA;
+		dataFormat = GL_RGBA;
+	}
+
+	return {
+		internalFormat, dataFormat
+	};
+}
+
+Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, std::map<GLenum, GLint> options /*= defaultOptions */, bool gammaCorrection /*= false */)
 	: m_ID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0), m_Target(target)
 {
 	glGenTextures(1, &m_ID);
@@ -41,8 +67,9 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 	{
 		stbi_set_flip_vertically_on_load(1);
 		m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
+		TextureFormat format = GetTextureFormat(m_BPP, gammaCorrection);
 
-		glTexImage2D(target, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+		glTexImage2D(target, 0, format.internalFormat, m_Width, m_Height, 0, format.dataFormat, GL_UNSIGNED_BYTE, m_LocalBuffer);
 		glBindTexture(target, 0);
 
 		if (m_LocalBuffer)
@@ -69,8 +96,9 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 		for (unsigned int i = 0; i < faces.size(); i++)
 		{
 			m_LocalBuffer = stbi_load((path + "/" + faces[i]).c_str(), &m_Width, &m_Height, &m_BPP, 4);
+			TextureFormat format = GetTextureFormat(m_BPP, gammaCorrection);
 
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, format.internalFormat, m_Width, m_Height, 0, format.dataFormat, GL_UNSIGNED_BYTE, m_LocalBuffer);
 
 			if (m_LocalBuffer)
 			{

@@ -12,12 +12,25 @@ uniform mat4 u_Model;
 uniform mat4 u_Projection;
 uniform mat4 u_View;
 
-uniform vec3 u_LightColor;
-uniform vec3 u_LightPosition;
 uniform vec3 u_ViewPosition;
-uniform float u_AmbientStrength;
-uniform float u_SpecularStrength;
-uniform float u_Shininess;
+
+struct Light
+{
+	vec3 position;
+
+	vec3 diffuse;
+	vec3 ambient;
+	vec3 specular;
+};
+
+struct Material
+{
+	sampler2D diffuse;
+	float shininess; // Impacts the scattering/radius of the specular highlight
+};
+
+uniform Light u_Light;
+uniform Material u_Material;
 
 // Phong lighting model implemented in the vertex shader 
 // Gourad shading; efficient, generally less vertices than fragments but not very realistic unless large amounts of vertices are used due to interpolation of lighting values
@@ -29,19 +42,19 @@ void main()
 	vec3 v_Normal = mat3(transpose(inverse(u_Model))) * a_Normal;
 
 	// Ambient component
-	vec3 ambient = u_AmbientStrength * u_LightColor;
+	vec3 ambient =  u_Light.ambient * u_Light.diffuse;
 
 	// Diffuse component
 	vec3 norm = normalize(v_Normal);
-	vec3 lightDir = normalize(u_LightPosition - v_FragPosition);
+	vec3 lightDir = normalize(u_Light.position - v_FragPosition);
 	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = diff * u_LightColor;
+	vec3 diffuse = diff * u_Light.diffuse;
 
 	// Specular component
 	vec3 viewDir = normalize(u_ViewPosition - v_FragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm); // Negating lightDir to get direction of light source to frag
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Shininess);
-	vec3 specular = u_SpecularStrength * spec * u_LightColor;
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
+	vec3 specular = u_Light.specular * spec * u_Light.diffuse;
 
 	v_Result = ambient + diffuse + specular;
 	v_TexCoords = a_TexCoords;
@@ -58,10 +71,16 @@ layout(location = 0) out vec4 FragColor;
 in vec3 v_Result;
 in vec2 v_TexCoords;
 
-uniform sampler2D u_Texture;
+struct Material
+{
+	sampler2D diffuse;
+	float shininess; // Impacts the scattering/radius of the specular highlight
+};
+
+uniform Material u_Material;
 
 void main()
 {
-	vec3 result = v_Result * vec3(texture(u_Texture, v_TexCoords));
+	vec3 result = v_Result * vec3(texture(u_Material.diffuse, v_TexCoords));
 	FragColor = vec4(result, 1.0);
 }

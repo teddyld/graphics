@@ -2,7 +2,7 @@
 
 namespace test {
 	TestBlinnPhong::TestBlinnPhong()
-		: m_Blinn(false), m_AmbientStrength(0.05f), m_SpecularStrength(0.3f), m_Shininess(0.5f), m_LightColor{ 1.0, 1.0, 1.0 }
+		: m_Blinn(false), m_AmbientStrength(0.05f), m_SpecularStrength(0.3f), m_Shininess(0.5f)
 	{
 		float planeVertices[] = {
 			 10.0, -0.5f,  10.0, 0.0f, 1.0f, 0.0f, 10.0f, 0.0f,
@@ -69,19 +69,19 @@ namespace test {
 			m_PlaneShader = std::make_unique<Shader>("res/shaders/lighting/PhongObject.shader");
 
 		m_PlaneShader->Bind();
-		m_PlaneShader->SetUniform1i("u_Texture", 0);
+		m_PlaneShader->SetUniform1i("u_Material.diffuse", 0);
+		m_PlaneShader->SetUniform1f("u_Material.shininess", m_Shininess);
 
 		m_PlaneShader->SetUniformMat4f("u_Model", model);
 		m_PlaneShader->SetUniformMat4f("u_View", view);
 		m_PlaneShader->SetUniformMat4f("u_Projection", projection);
-
-		m_PlaneShader->SetUniform3f("u_LightColor", m_LightColor[0], m_LightColor[1], m_LightColor[2]);
-		m_PlaneShader->SetUniform3f("u_LightPosition", lightPosition.x, lightPosition.y, lightPosition.z);
 		m_PlaneShader->SetUniform3f("u_ViewPosition", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
 
-		m_PlaneShader->SetUniform1f("u_AmbientStrength", m_AmbientStrength);
-		m_PlaneShader->SetUniform1f("u_SpecularStrength", m_SpecularStrength);
-		m_PlaneShader->SetUniform1f("u_Shininess", m_Shininess);
+		m_PlaneShader->SetUniform3f("u_Light.position", lightPosition.x, lightPosition.y, lightPosition.z);
+		m_PlaneShader->SetUniform3f("u_Light.diffuse", 1.0f, 1.0f, 1.0f);
+		m_PlaneShader->SetUniform3f("u_Light.ambient", m_AmbientStrength, m_AmbientStrength, m_AmbientStrength);
+		m_PlaneShader->SetUniform3f("u_Light.specular", m_SpecularStrength, m_SpecularStrength, m_SpecularStrength);
+
 		renderer.Draw(*m_VAO, *m_PlaneShader, 6);
 	}
 

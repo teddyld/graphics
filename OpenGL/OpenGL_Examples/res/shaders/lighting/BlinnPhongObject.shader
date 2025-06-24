@@ -34,33 +34,45 @@ in vec3 v_FragPosition;
 in vec3 v_Normal;
 in vec2 v_TexCoords;
 
-uniform vec3 u_LightColor;
-uniform vec3 u_LightPosition;
 uniform vec3 u_ViewPosition;
-uniform float u_AmbientStrength; 
-uniform float u_SpecularStrength;
-uniform float u_Shininess; // Impacts the scattering/radius of the specular highlight
-uniform sampler2D u_Texture;
+
+struct Light
+{
+	vec3 position;
+
+	vec3 diffuse;
+	vec3 ambient;
+	vec3 specular;
+};
+
+struct Material
+{
+	sampler2D diffuse;
+	float shininess; // Impacts the scattering/radius of the specular highlight
+};
+
+uniform Light u_Light;
+uniform Material u_Material;
 
 // Blinn-Phong lighting model
 void main()
 {
 	// Ambient component
-	vec3 ambient = u_AmbientStrength * u_LightColor;
+	vec3 ambient = u_Light.ambient * u_Light.diffuse;
 
 	// Diffuse component
 	vec3 norm = normalize(v_Normal);
-	vec3 lightDir = normalize(u_LightPosition - v_FragPosition);
+	vec3 lightDir = normalize(u_Light.position - v_FragPosition);
 	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = diff * u_LightColor;
+	vec3 diffuse = diff * u_Light.diffuse;
 
 	// Specular component (uses angle between normal and halfway vector instead of view and reflection vector)
 	// Note: since the angle between the halfway vector and surface normal is often shorter, we need to set the specular shininess exponent higher to get similar results as Phong shading by 2-4 times
 	vec3 viewDir = normalize(u_ViewPosition - v_FragPosition);
 	vec3 halfwayDir = normalize(lightDir + viewDir);  
-	float spec = pow(max(dot(norm, halfwayDir), 0.0), u_Shininess);
-	vec3 specular = u_SpecularStrength * spec * u_LightColor;
+	float spec = pow(max(dot(norm, halfwayDir), 0.0), u_Material.shininess);
+	vec3 specular = u_Light.specular * spec * u_Light.diffuse;
 
-	vec3 result = (ambient + diffuse + specular) * vec3(texture(u_Texture, v_TexCoords));
+	vec3 result = (ambient + diffuse + specular) * vec3(texture(u_Material.diffuse, v_TexCoords));
 	FragColor = vec4(result, 1.0);
 }

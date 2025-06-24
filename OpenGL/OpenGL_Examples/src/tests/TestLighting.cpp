@@ -109,19 +109,18 @@ namespace test {
 
 		m_ObjectShader->Bind();
 
-		m_ObjectShader->SetUniform1i("u_Texture", 0);
+		m_ObjectShader->SetUniform1i("u_Material.diffuse", 0);
+		m_ObjectShader->SetUniform1f("u_Material.shininess", m_Shininess);
 
 		m_ObjectShader->SetUniformMat4f("u_Model", objectModel);
 		m_ObjectShader->SetUniformMat4f("u_View", view);
 		m_ObjectShader->SetUniformMat4f("u_Projection", projection);
-
-		m_ObjectShader->SetUniform3f("u_LightColor", m_LightColor[0], m_LightColor[1], m_LightColor[2]);
-		m_ObjectShader->SetUniform3f("u_LightPosition", lightPosition.x, lightPosition.y, lightPosition.z);
 		m_ObjectShader->SetUniform3f("u_ViewPosition", m_ViewPos.x, m_ViewPos.y, m_ViewPos.z);
 
-		m_ObjectShader->SetUniform1f("u_AmbientStrength", m_AmbientStrength);
-		m_ObjectShader->SetUniform1f("u_SpecularStrength", m_SpecularStrength);
-		m_ObjectShader->SetUniform1f("u_Shininess", m_Shininess);
+		m_ObjectShader->SetUniform3f("u_Light.position", lightPosition.x, lightPosition.y, lightPosition.z);
+		m_ObjectShader->SetUniform3f("u_Light.diffuse", m_LightColor[0], m_LightColor[1], m_LightColor[2]);
+		m_ObjectShader->SetUniform3f("u_Light.ambient", m_AmbientStrength, m_AmbientStrength, m_AmbientStrength);
+		m_ObjectShader->SetUniform3f("u_Light.specular", m_SpecularStrength, m_SpecularStrength, m_SpecularStrength);
 
 		renderer.Draw(*m_ObjectVAO, *m_ObjectShader, 36);
 
