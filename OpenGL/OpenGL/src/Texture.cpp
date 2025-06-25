@@ -39,12 +39,7 @@ TextureFormat GetTextureFormat(int nrComponents, bool gammaCorrection)
 		internalFormat = GL_RED;
 		dataFormat = GL_RED;
 	}
-	else if (nrComponents == 3)
-	{
-		internalFormat = gammaCorrection ? GL_SRGB : GL_RGB;
-		dataFormat = GL_RGB;
-	}
-	else // (nrComponents == 4)
+	else
 	{
 		internalFormat = gammaCorrection ? GL_SRGB_ALPHA : GL_RGBA;
 		dataFormat = GL_RGBA;
