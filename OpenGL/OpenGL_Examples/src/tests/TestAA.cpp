@@ -82,7 +82,7 @@ namespace test {
 
 		// Configure MSAA framebuffer
 		m_FBO = std::make_unique<FrameBuffer>(SCR_WIDTH, SCR_HEIGHT, GL_TEXTURE_2D_MULTISAMPLE);
-		m_FBO->AttachTexture(m_Samples);
+		m_FBO->AttachTextureMultisample(m_Samples);
 
 		// Create multisampled renderbuffer object so all depth and stencil operations read from the currently bound framebuffer's depth and stencil attachments
 		// Because the rbo is write-only (except using the slow glReadPixels) and the data is in native format (stored directly without conversions to texture-specific formats), rbo's are quite fast for writing data or copying data to other buffers

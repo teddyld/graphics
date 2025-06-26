@@ -91,7 +91,7 @@ namespace test {
 		{
 			m_Shader->SetUniform3f("u_Lights[" + std::to_string(i) + "].position", lightPositions[i].x, lightPositions[i].y, lightPositions[i].z);
 			m_Shader->SetUniform3f("u_Lights[" + std::to_string(i) + "].diffuse", lightColors[i].x, lightColors[i].y, lightColors[i].z);
-			m_Shader->SetUniform3f("u_Lights[" + std::to_string(i) + "].ambient", 0.0f, 0.0f, 0.05f);
+			m_Shader->SetUniform3f("u_Lights[" + std::to_string(i) + "].ambient", 0.05f, 0.05f, 0.05f);
 			m_Shader->SetUniform3f("u_Lights[" + std::to_string(i) + "].specular", 0.3f, 0.3f, 0.3f);
 		}
 

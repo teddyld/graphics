@@ -90,6 +90,9 @@
     <ClCompile Include="src\tests\TestGammaCorrection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestShadowMapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -164,6 +167,9 @@
     <ClInclude Include="src\tests\TestGammaCorrection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestShadowMapping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -197,6 +203,9 @@
     <None Include="res\shaders\antialiasing\AAPost.shader" />
     <None Include="res\shaders\lighting\BlinnPhongObject.shader" />
     <None Include="res\shaders\lighting\GammaCorrection.shader" />
+    <None Include="res\shaders\shadow_mapping\DepthMap.shader" />
+    <None Include="res\shaders\shadow_mapping\DebugDepthMap.shader" />
+    <None Include="res\shaders\shadow_mapping\Shadow.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">

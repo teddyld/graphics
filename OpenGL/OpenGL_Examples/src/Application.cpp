@@ -45,6 +45,7 @@
 #include "tests/TestAA.h"
 #include "tests/TestBlinnPhong.h"
 #include "tests/TestGammaCorrection.h"
+#include "tests/TestShadowMapping.h"
 
 int main(void)
 {
@@ -123,6 +124,7 @@ int main(void)
 	testMenu->RegisterGroup("Advanced Lighting");
 	testMenu->RegisterTest<test::TestBlinnPhong>("Blinn-Phong lighting model");
 	testMenu->RegisterTest<test::TestGammaCorrection>("Gamma correction");
+	testMenu->RegisterTest<test::TestShadowMapping>("Shadow mapping");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);
