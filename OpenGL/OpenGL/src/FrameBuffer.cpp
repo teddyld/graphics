@@ -18,13 +18,33 @@ void FrameBuffer::AttachTexture(std::map<GLenum, GLint> options /*= fboDefaultOp
 	glBindTexture(GL_TEXTURE_2D, m_Texture);
 
 	SetTextureParameters(GL_TEXTURE_2D, options);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
 }
 
-void FrameBuffer::AttachTexture(int samples, std::map<GLenum, GLint> options /*= fboDefaultOptions */)
+void FrameBuffer::AttachDepthMap()
+{
+	glGenTextures(1, &m_Texture);
+	glBindTexture(GL_TEXTURE_2D, m_Texture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, m_Width, m_Height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	// Attach depth texture as framebuffer's depth buffer and invalidate the required colour buffer
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_Texture, 0);
+	glDrawBuffer(GL_NONE);
+	glReadBuffer(GL_NONE);
+}
+
+void FrameBuffer::AttachTextureMultisample(int samples, std::map<GLenum, GLint> options /*= fboDefaultOptions */)
 {
 	glGenTextures(1, &m_Texture);
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_Texture);

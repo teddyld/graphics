@@ -3,7 +3,7 @@
 void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options)
 {
 	std::vector<GLenum> validOptions;
-	for (const auto& [pname, param] : defaultOptions)
+	for (const auto& [pname, param] : Texture::defaultOptions)
 	{
 		validOptions.push_back(pname);
 	}
@@ -11,7 +11,7 @@ void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options)
 	// Set provided parameters
 	for (const auto& [pname, param] : options)
 	{
-		if (!defaultOptions.count(pname))
+		if (!Texture::defaultOptions.count(pname))
 			std::cout << "Invalid option attribute \"" << pname << "\" \n";
 		else
 		{
@@ -25,7 +25,7 @@ void SetTextureParameters(GLenum target, std::map<GLenum, GLint> options)
 	// Give remaining parameters default values
 	for (const auto& pname : validOptions)
 	{
-		glTexParameteri(target, pname, defaultOptions.at(pname));
+		glTexParameteri(target, pname, Texture::defaultOptions.at(pname));
 	}
 }
 

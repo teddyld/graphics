@@ -8,15 +8,6 @@
 
 #include "stb_image/stb_image.h"
 
-static std::map<GLenum, GLint> defaultOptions =
-{
-	{ GL_TEXTURE_MIN_FILTER, GL_LINEAR },
-	{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
-	{ GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER },
-	{ GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER },
-	{ GL_TEXTURE_WRAP_R, GL_CLAMP_TO_BORDER }
-};
-
 struct TextureFormat
 {
 	GLenum internalFormat;
@@ -35,6 +26,15 @@ private:
 	int m_Width, m_Height, m_BPP;
 	GLenum m_Target;
 public:
+	inline static std::map<GLenum, GLint> defaultOptions =
+	{
+		{ GL_TEXTURE_MIN_FILTER, GL_LINEAR },
+		{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
+		{ GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER },
+		{ GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER },
+		{ GL_TEXTURE_WRAP_R, GL_CLAMP_TO_BORDER }
+	};
+
 	Texture(const std::string& path, GLenum target = GL_TEXTURE_2D, std::map<GLenum, GLint> options = defaultOptions, bool gammaCorrected = false);
 	~Texture();
 
