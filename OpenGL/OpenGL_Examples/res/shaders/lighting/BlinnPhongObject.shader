@@ -10,8 +10,8 @@ out vec3 v_Normal;
 out vec2 v_TexCoords;
 
 uniform mat4 u_Model;
-uniform mat4 u_Projection;
 uniform mat4 u_View;
+uniform mat4 u_Projection;
 
 void main()
 {
