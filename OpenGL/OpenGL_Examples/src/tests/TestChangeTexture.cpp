@@ -10,7 +10,7 @@ namespace test {
 
 		m_VAO = std::make_unique<VertexArray>();
 		m_EBO = std::make_unique<IndexBuffer>(indices, 6);
-		m_VBO = std::make_unique<VertexBuffer>(nullptr, 4 * sizeof(Vertex2D), GL_DYNAMIC_DRAW);
+		m_VBO = std::make_unique<VertexBuffer>(nullptr, 4 * 5 * sizeof(float), GL_DYNAMIC_DRAW);
 
 		VertexBufferLayout layout;
 		layout.Push(GL_FLOAT, 2, GL_FALSE);
@@ -59,7 +59,7 @@ namespace test {
 			120.0f, 220.0f, 0.0f, 1.0f, textureID,
 		};
 
-		m_VBO->UpdateBufferSubData(0, 4 * sizeof(Vertex2D), vertices);
+		m_VBO->UpdateBufferSubData(0, 4 * 5 * sizeof(float), vertices);
 
 		renderer.Draw(*m_VAO, *m_EBO, *m_Shader);
 	}

@@ -32,6 +32,33 @@ namespace test {
 		m_Shader->Unbind();
 	}
 
+	Vertex2D* TestDynamicBatchRendering::CreateQuad(Vertex2D* target, float x, float y, float textureIndex)
+	{
+		float size = 100.0f;
+
+		target->positions = { x, y };
+		target->texCoords = { 0.0f, 0.0f };
+		target->texIndex = textureIndex;
+		target++;
+
+		target->positions = { x + size, y };
+		target->texCoords = { 1.0f, 0.0f };
+		target->texIndex = textureIndex;
+		target++;
+
+		target->positions = { x + size, y + size };
+		target->texCoords = { 1.0f, 1.0f };
+		target->texIndex = textureIndex;
+		target++;
+
+		target->positions = { x, y + size };
+		target->texCoords = { 0.0f, 1.0f };
+		target->texIndex = textureIndex;
+		target++;
+
+		return target;
+	}
+
 	void TestDynamicBatchRendering::OnRender()
 	{
 		Renderer renderer;

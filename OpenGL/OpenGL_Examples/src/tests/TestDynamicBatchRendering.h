@@ -3,6 +3,13 @@
 #include "Test.h"
 
 namespace test {
+	struct Vertex2D
+	{
+		glm::vec2 positions;
+		glm::vec2 texCoords;
+		float texIndex;
+	};
+
 	class TestDynamicBatchRendering : public Test
 	{
 	private:
@@ -18,6 +25,8 @@ namespace test {
 		int m_NumQuadsBear;
 	public:
 		TestDynamicBatchRendering();
+
+		Vertex2D* CreateQuad(Vertex2D* target, float x, float y, float textureIndex);
 
 		void OnRender() override;
 		void OnImGuiRender() override;
