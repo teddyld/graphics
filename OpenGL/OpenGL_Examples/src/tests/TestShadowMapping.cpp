@@ -192,7 +192,7 @@ namespace test {
 	{
 		if (ImGui::RadioButton("Shadow map", m_Selected == 0))
 			m_Selected = 0;
-		if (ImGui::RadioButton("Disable shadows", m_Selected == 1))
+		if (ImGui::RadioButton("Enable shadows", m_Selected == 1))
 			m_Selected = 1;
 	}
 
