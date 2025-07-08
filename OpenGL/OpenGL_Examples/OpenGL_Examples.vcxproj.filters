@@ -219,6 +219,9 @@
     <None Include="res\shaders\shadow_mapping\DebugDepthMap.shader" />
     <None Include="res\shaders\shadow_mapping\Shadow.shader" />
     <None Include="res\shaders\normal_mapping\Normal.shader" />
+    <None Include="res\shaders\parallax_mapping\Parallax.shader" />
+    <None Include="res\shaders\parallax_mapping\SteepParallax.shader" />
+    <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
@@ -304,6 +307,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\opengl\brickwall_normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\bricks2\bricks2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\bricks2\bricks2_disp.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\opengl\bricks2\bricks2_normal.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

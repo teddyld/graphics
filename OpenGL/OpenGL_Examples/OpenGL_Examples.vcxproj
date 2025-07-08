@@ -217,6 +217,9 @@
     <None Include="res\shaders\antialiasing\AAPost.shader" />
     <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
     <None Include="res\shaders\normal_mapping\Normal.shader" />
+    <None Include="res\shaders\parallax_mapping\Parallax.shader" />
+    <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />
+    <None Include="res\shaders\parallax_mapping\SteepParallax.shader" />
     <None Include="res\shaders\shadow_mapping\DebugDepthMap.shader" />
     <None Include="res\shaders\shadow_mapping\DepthMap.shader" />
     <None Include="res\shaders\lighting\BlinnPhongObject.shader" />
@@ -259,6 +262,9 @@
     <Image Include="res\textures\minecraft\grass_top.jpg" />
     <Image Include="res\textures\opengl\awesomeface.png" />
     <Image Include="res\textures\opengl\blending_transparent_window.png" />
+    <Image Include="res\textures\opengl\bricks2\bricks2.jpg" />
+    <Image Include="res\textures\opengl\bricks2\bricks2_disp.jpg" />
+    <Image Include="res\textures\opengl\bricks2\bricks2_normal.jpg" />
     <Image Include="res\textures\opengl\brickwall.jpg" />
     <Image Include="res\textures\opengl\brickwall_normal.jpg" />
     <Image Include="res\textures\opengl\container.jpg" />
