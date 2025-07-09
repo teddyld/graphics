@@ -92,6 +92,7 @@ namespace test {
 		m_RBO->AttachBuffer();
 
 		m_FBO->Unbind();
+		m_RBO->Unbind();
 
 		// Configure second post-processing framebuffer (only need color buffer, ignoring depth and stencil buffers)
 		m_IntermediateFBO = std::make_unique<FrameBuffer>(SCR_WIDTH, SCR_HEIGHT, GL_TEXTURE_2D);
