@@ -25,6 +25,19 @@ void FrameBuffer::AttachTexture(std::map<GLenum, GLint> options /*= fboDefaultOp
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
 }
 
+void FrameBuffer::AttachTexturef(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
+{
+	glGenTextures(1, &m_Texture);
+	glBindTexture(GL_TEXTURE_2D, m_Texture);
+
+	SetTextureParameters(GL_TEXTURE_2D, options);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_Width, m_Height, 0, GL_RGB, GL_FLOAT, nullptr);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
+}
+
 void FrameBuffer::AttachDepthMap()
 {
 	glGenTextures(1, &m_Texture);

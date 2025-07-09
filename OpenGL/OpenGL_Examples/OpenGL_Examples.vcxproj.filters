@@ -99,6 +99,9 @@
     <ClCompile Include="src\tests\TestParallaxMapping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestHDR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -182,6 +185,9 @@
     <ClInclude Include="src\tests\TestParallaxMapping.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestHDR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -222,6 +228,8 @@
     <None Include="res\shaders\parallax_mapping\Parallax.shader" />
     <None Include="res\shaders\parallax_mapping\SteepParallax.shader" />
     <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />
+    <None Include="res\shaders\lighting\HDR.shader" />
+    <None Include="res\shaders\lighting\LightCast2.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">

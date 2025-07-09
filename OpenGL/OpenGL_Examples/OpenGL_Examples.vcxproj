@@ -159,6 +159,7 @@
     <ClCompile Include="src\tests\TestGammaCorrection.cpp" />
     <ClCompile Include="src\tests\TestGeometry.cpp" />
     <ClCompile Include="src\tests\TestGLSL.cpp" />
+    <ClCompile Include="src\tests\TestHDR.cpp" />
     <ClCompile Include="src\tests\TestInstancing.cpp" />
     <ClCompile Include="src\tests\TestLightCasters.cpp" />
     <ClCompile Include="src\tests\TestLighting.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="src\tests\TestGammaCorrection.h" />
     <ClInclude Include="src\tests\TestGeometry.h" />
     <ClInclude Include="src\tests\TestGLSL.h" />
+    <ClInclude Include="src\tests\TestHDR.h" />
     <ClInclude Include="src\tests\TestInstancing.h" />
     <ClInclude Include="src\tests\TestLightCasters.h" />
     <ClInclude Include="src\tests\TestLighting.h" />
@@ -216,6 +218,8 @@
     <None Include="res\shaders\advanced_glsl\Yellow.shader" />
     <None Include="res\shaders\antialiasing\AAPost.shader" />
     <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
+    <None Include="res\shaders\lighting\HDR.shader" />
+    <None Include="res\shaders\lighting\LightCast2.shader" />
     <None Include="res\shaders\normal_mapping\Normal.shader" />
     <None Include="res\shaders\parallax_mapping\Parallax.shader" />
     <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />

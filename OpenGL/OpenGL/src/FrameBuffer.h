@@ -27,6 +27,7 @@ public:
 	~FrameBuffer();
 
 	void AttachTexture(std::map<GLenum, GLint> options = fboDefaultOptions);
+	void AttachTexturef(std::map<GLenum, GLint> options = fboDefaultOptions);
 	void AttachDepthMap();
 	void AttachTextureMultisample(int samples, std::map<GLenum, GLint> options = fboDefaultOptions);
 	void BindTexture(unsigned int slot) const;
