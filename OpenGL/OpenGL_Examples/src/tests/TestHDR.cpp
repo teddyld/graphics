@@ -138,6 +138,7 @@ namespace test {
 
 		// Render scene into floating point framebuffer
 		m_FBO->Bind();
+		renderer.Clear();
 
 		m_Texture->Bind(0);
 
