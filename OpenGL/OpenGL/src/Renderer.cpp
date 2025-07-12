@@ -57,3 +57,20 @@ void Renderer::DrawInstance(const VertexArray& va, const Shader& shader, int cou
 
 	glDrawArraysInstanced(GL_TRIANGLES, 0, count, instanceCount);
 }
+
+void Renderer::EnableColorBuffers(unsigned int number)
+{
+	if (number > GL_MAX_COLOR_ATTACHMENTS)
+	{
+		std::cout << "Maximum number of color attachments (" + std::to_string(GL_MAX_COLOR_ATTACHMENTS) + ") exceeded. Got " + std::to_string(number) << "\n";
+		return;
+	}
+
+	std::vector<unsigned int> attachments;
+	for (unsigned int i = 0; i < number; i++)
+	{
+		attachments.push_back(GL_COLOR_ATTACHMENT0 + i);
+	}
+
+	glDrawBuffers(number, attachments.data());
+}

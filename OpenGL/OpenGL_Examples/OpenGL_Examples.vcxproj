@@ -148,6 +148,7 @@
     <ClCompile Include="src\tests\TestAsteroids.cpp" />
     <ClCompile Include="src\tests\TestBlending.cpp" />
     <ClCompile Include="src\tests\TestBlinnPhong.cpp" />
+    <ClCompile Include="src\tests\TestBloom.cpp" />
     <ClCompile Include="src\tests\TestChangeTexture.cpp" />
     <ClCompile Include="src\tests\Test.cpp" />
     <ClCompile Include="src\tests\TestBatchRendering.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\tests\TestBatchRendering.h" />
     <ClInclude Include="src\tests\TestBlending.h" />
     <ClInclude Include="src\tests\TestBlinnPhong.h" />
+    <ClInclude Include="src\tests\TestBloom.h" />
     <ClInclude Include="src\tests\TestChangeTexture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
     <ClInclude Include="src\tests\TestCubemaps.h" />
@@ -218,8 +220,11 @@
     <None Include="res\shaders\advanced_glsl\Yellow.shader" />
     <None Include="res\shaders\antialiasing\AAPost.shader" />
     <None Include="res\shaders\antialiasing\AntiAliasing.shader" />
+    <None Include="res\shaders\lighting\bloom\Bloom.shader" />
+    <None Include="res\shaders\lighting\bloom\GaussianBlur.shader" />
     <None Include="res\shaders\lighting\HDR.shader" />
     <None Include="res\shaders\lighting\LightCast2.shader" />
+    <None Include="res\shaders\lighting\bloom\LightBox.shader" />
     <None Include="res\shaders\normal_mapping\Normal.shader" />
     <None Include="res\shaders\parallax_mapping\Parallax.shader" />
     <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />

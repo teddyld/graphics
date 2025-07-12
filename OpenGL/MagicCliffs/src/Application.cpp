@@ -127,7 +127,7 @@ int main(void)
 	screenShader.SetUniformMat4f("u_MVP", projection);
 
 	FrameBuffer fbo(758, 453, GL_TEXTURE_2D);
-	fbo.AttachTexture();
+	fbo.AttachTexture1i();
 
 	RenderBuffer rbo(758, 453);
 	rbo.Configure();

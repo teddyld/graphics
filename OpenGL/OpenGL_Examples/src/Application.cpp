@@ -49,6 +49,7 @@
 #include "tests/TestNormalMapping.h"
 #include "tests/TestParallaxMapping.h"
 #include "tests/TestHDR.h"
+#include "tests/TestBloom.h"
 
 int main(void)
 {
@@ -131,6 +132,7 @@ int main(void)
 	testMenu->RegisterTest<test::TestNormalMapping>("Normal mapping");
 	testMenu->RegisterTest<test::TestParallaxMapping>("Parallax mapping");
 	testMenu->RegisterTest<test::TestHDR>("HDR");
+	testMenu->RegisterTest<test::TestBloom>("Bloom");
 
 	Renderer renderer;
 	Camera camera(glm::vec3(-3.0f, 0.0f, 0.0f), mode->width, mode->height);

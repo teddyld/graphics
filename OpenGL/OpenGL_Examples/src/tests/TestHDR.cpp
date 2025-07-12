@@ -83,13 +83,13 @@ namespace test {
 		quadLayout.Push(GL_FLOAT, 2, GL_FALSE);
 		m_QuadVAO->AddBuffer(*m_QuadVBO, quadLayout);
 
-		m_QuadShader = std::make_unique<Shader>("res/shaders/lighting/HDR.shader");
-		m_QuadShader->Bind();
-		m_QuadShader->SetUniform1i("u_HDRBuffer", 0);
-		m_QuadShader->Unbind();
+		m_HDRShader = std::make_unique<Shader>("res/shaders/lighting/HDR.shader");
+		m_HDRShader->Bind();
+		m_HDRShader->SetUniform1i("u_HDRBuffer", 0);
+		m_HDRShader->Unbind();
 
 		m_FBO = std::make_unique<FrameBuffer>(SCR_WIDTH, SCR_HEIGHT);
-		m_FBO->AttachTexturef();
+		m_FBO->AttachTexture1f();
 
 		m_RBO = std::make_unique<RenderBuffer>(SCR_WIDTH, SCR_HEIGHT);
 		m_RBO->Configure();
@@ -122,14 +122,14 @@ namespace test {
 
 		glEnable(GL_DEPTH_TEST);
 
-		std::vector<glm::vec3> lightPosition = {
+		std::vector<glm::vec3> lightPositions = {
 			glm::vec3(0.0f,  0.0f, 49.5f),
 			glm::vec3(-1.4f, -1.9f, 9.0f),
 			glm::vec3(0.0f, -1.8f, 4.0f),
 			glm::vec3(0.8f, -1.7f, 6.0f),
 		};
 
-		std::vector<glm::vec3> lightColor = {
+		std::vector<glm::vec3> lightColors = {
 			glm::vec3(200.0f, 200.0f, 200.0f),
 			glm::vec3(0.1f, 0.0f, 0.0f),
 			glm::vec3(0.0f, 0.0f, 0.2f),
@@ -146,10 +146,10 @@ namespace test {
 		m_CubeShader->SetUniformMat4f("u_Projection", m_Transforms.projection);
 		m_CubeShader->SetUniformMat4f("u_View", m_Transforms.view);
 
-		for (unsigned int i = 0; i < lightPosition.size(); i++)
+		for (unsigned int i = 0; i < lightPositions.size(); i++)
 		{
-			m_CubeShader->SetUniform3f("u_Lights[" + std::to_string(i) + "].position", lightPosition[i].x, lightPosition[i].y, lightPosition[i].z);
-			m_CubeShader->SetUniform3f("u_Lights[" + std::to_string(i) + "].color", lightColor[i].x, lightColor[i].y, lightColor[i].z);
+			m_CubeShader->SetUniform3f("u_Lights[" + std::to_string(i) + "].position", lightPositions[i].x, lightPositions[i].y, lightPositions[i].z);
+			m_CubeShader->SetUniform3f("u_Lights[" + std::to_string(i) + "].color", lightColors[i].x, lightColors[i].y, lightColors[i].z);
 		}
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 25.0f));
@@ -161,12 +161,12 @@ namespace test {
 		m_FBO->Unbind();
 		renderer.Clear();
 
-		m_QuadShader->Bind();
+		m_HDRShader->Bind();
 		m_FBO->BindTexture(0);
-		m_QuadShader->SetUniform1f("u_HDR", m_EnableHDR);
-		m_QuadShader->SetUniform1f("u_Exposure", m_Exposure);
+		m_HDRShader->SetUniform1f("u_HDR", m_EnableHDR);
+		m_HDRShader->SetUniform1f("u_Exposure", m_Exposure);
 
-		renderer.Draw(*m_QuadVAO, *m_QuadEBO, *m_QuadShader);
+		renderer.Draw(*m_QuadVAO, *m_QuadEBO, *m_HDRShader);
 	}
 
 	void TestHDR::OnImGuiRender()

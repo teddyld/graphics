@@ -12,36 +12,44 @@ FrameBuffer::~FrameBuffer()
 	glDeleteFramebuffers(1, &m_ID);
 }
 
-void FrameBuffer::AttachTexture(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
+void FrameBuffer::AttachTexture1i(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
 {
-	glGenTextures(1, &m_Texture);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	unsigned int texture;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	SetTextureParameters(GL_TEXTURE_2D, options);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D, texture, 0);
+	m_Textures.push_back(texture);
 }
 
-void FrameBuffer::AttachTexturef(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
+void FrameBuffer::AttachTexture1f(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
 {
-	glGenTextures(1, &m_Texture);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	unsigned int texture;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	SetTextureParameters(GL_TEXTURE_2D, options);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_Width, m_Height, 0, GL_RGB, GL_FLOAT, nullptr);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D, texture, 0);
+	m_Textures.push_back(texture);
 }
 
 void FrameBuffer::AttachDepthMap()
 {
-	glGenTextures(1, &m_Texture);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	unsigned int depthMap;
+
+	glGenTextures(1, &depthMap);
+	glBindTexture(GL_TEXTURE_2D, depthMap);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -56,27 +64,32 @@ void FrameBuffer::AttachDepthMap()
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Attach depth texture as framebuffer's depth buffer and invalidate the required colour buffer
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_Texture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
+
+	m_Textures.push_back(depthMap);
 }
 
 void FrameBuffer::AttachTextureMultisample(int samples, std::map<GLenum, GLint> options /*= fboDefaultOptions */)
 {
-	glGenTextures(1, &m_Texture);
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_Texture);
+	unsigned int texture;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, texture);
 
 	SetTextureParameters(GL_TEXTURE_2D_MULTISAMPLE, options);
 	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, m_Width, m_Height, GL_TRUE);
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, m_Texture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D_MULTISAMPLE, texture, 0);
+	m_Textures.push_back(texture);
 }
 
-void FrameBuffer::BindTexture(unsigned int slot /*= 0*/) const
+void FrameBuffer::BindTexture(unsigned int slot /*= 0*/, unsigned int index /*= 0*/) const
 {
 	glActiveTexture(GL_TEXTURE0 + slot);
-	glBindTexture(m_Target, m_Texture);
+	glBindTexture(m_Target, m_Textures[index]);
 }
 
 void FrameBuffer::CopyToScreen(GLbitfield mask /*= GL_COLOR_BUFFER_BIT*/, GLenum filter /*= GL_NEAREST */)

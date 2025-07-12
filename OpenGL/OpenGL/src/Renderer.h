@@ -21,4 +21,6 @@ public:
 	void Draw(const VertexArray& va, const Shader& shader, int count) const;
 	void DrawInstance(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, int instanceCount) const;
 	void DrawInstance(const VertexArray& va, const Shader& shader, int count, int instanceCount) const;
+
+	void EnableColorBuffers(unsigned int number);
 };

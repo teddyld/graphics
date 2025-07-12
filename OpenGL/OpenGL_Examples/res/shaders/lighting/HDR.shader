@@ -23,10 +23,19 @@ uniform sampler2D u_HDRBuffer;
 uniform bool u_HDR;
 uniform float u_Exposure;
 
+uniform bool u_Bloom;
+uniform sampler2D u_BloomBlur;
+
 void main()
 {
 	const float gamma = 2.2;
 	vec3 hdrColor = texture(u_HDRBuffer, v_TexCoords).rgb;
+
+	// Bloom before tone mapping to transform to LDR
+	if (u_Bloom)
+	{
+		hdrColor += texture(u_BloomBlur, v_TexCoords).rgb;
+	}
 
 	vec3 result = vec3(1.0);
 	if (u_HDR)
@@ -39,5 +48,6 @@ void main()
 	{
 		result = pow(hdrColor, vec3(1.0 / gamma));
 	}
+
 	FragColor = vec4(result, 1.0);
 }

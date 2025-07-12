@@ -102,6 +102,9 @@
     <ClCompile Include="src\tests\TestHDR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\TestBloom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\tests\Test.h">
@@ -188,6 +191,9 @@
     <ClInclude Include="src\tests\TestHDR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tests\TestBloom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Texture.shader" />
@@ -230,6 +236,9 @@
     <None Include="res\shaders\parallax_mapping\ParallaxOcclusion.shader" />
     <None Include="res\shaders\lighting\HDR.shader" />
     <None Include="res\shaders\lighting\LightCast2.shader" />
+    <None Include="res\shaders\lighting\bloom\Bloom.shader" />
+    <None Include="res\shaders\lighting\bloom\GaussianBlur.shader" />
+    <None Include="res\shaders\lighting\bloom\LightBox.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\minecraft\grass_bottom.jpg">
