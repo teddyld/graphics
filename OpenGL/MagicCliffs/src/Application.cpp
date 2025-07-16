@@ -102,18 +102,18 @@ int main(void)
 	waterShader.Unbind();
 
 	float screenVertices[] = {
-		0.0f, 0.0f, 0.0f, 0.0f,
-		512.0f, 0.0f, 1.0f, 0.0f,
-		512.0f, 302.0f, 1.0f, 1.0f,
-		0.0f,  302.0f, 0.0f, 1.0f,
+		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+		1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+		1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
 	};
 
 	VertexArray screenVAO;
 	IndexBuffer screenEBO(indices, 6);
-	VertexBuffer screenVBO(screenVertices, 4 * 4 * sizeof(float), GL_STATIC_DRAW);
+	VertexBuffer screenVBO(screenVertices, 4 * 5 * sizeof(float), GL_STATIC_DRAW);
 
 	VertexBufferLayout screenLayout;
-	screenLayout.Push(GL_FLOAT, 2, GL_FALSE);
+	screenLayout.Push(GL_FLOAT, 3, GL_FALSE);
 	screenLayout.Push(GL_FLOAT, 2, GL_FALSE);
 	screenVAO.AddBuffer(screenVBO, screenLayout);
 
@@ -124,7 +124,7 @@ int main(void)
 	Shader screenShader("res/shaders/Screen.shader");
 	screenShader.Bind();
 	screenShader.SetUniform1i("u_Texture", 0);
-	screenShader.SetUniformMat4f("u_MVP", projection);
+	screenShader.Unbind();
 
 	FrameBuffer fbo(758, 453, GL_TEXTURE_2D);
 	fbo.AttachTexture1i();
@@ -134,6 +134,7 @@ int main(void)
 	rbo.AttachBuffer();
 
 	fbo.Unbind();
+	rbo.Unbind();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

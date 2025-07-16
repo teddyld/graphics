@@ -36,6 +36,7 @@ public:
 	};
 
 	Texture(const std::string& path, GLenum target = GL_TEXTURE_2D, std::map<GLenum, GLint> options = defaultOptions, bool gammaCorrected = false);
+	Texture(const void* data, int width, int height);
 	~Texture();
 
 	void Bind(unsigned int slot = 0) const;

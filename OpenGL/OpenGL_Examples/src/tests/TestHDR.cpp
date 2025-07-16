@@ -113,7 +113,6 @@ namespace test {
 	{
 		camera.CameraInput(window, deltaTime);
 		m_Transforms = camera.GetTransformMatrices();
-		m_ViewPos = camera.GetPosition();
 	}
 
 	void TestHDR::OnRender()
@@ -171,11 +170,7 @@ namespace test {
 
 	void TestHDR::OnImGuiRender()
 	{
-		if (ImGui::RadioButton("HDR disabled", !m_EnableHDR))
-			m_EnableHDR = false;
-		if (ImGui::RadioButton("HDR enabled", m_EnableHDR))
-			m_EnableHDR = true;
-
+		ImGui::Checkbox("HDR", &m_EnableHDR);
 		ImGui::SliderFloat("Exposure", &m_Exposure, 0.0f, 100.0f);
 	}
 }

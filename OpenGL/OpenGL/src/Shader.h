@@ -38,8 +38,11 @@ public:
 	void SetUniform1iv(const std::string& name, int count, int* value);
 	void SetUniform1f(const std::string& name, float value);
 	void SetUniform2f(const std::string& name, float v0, float v1);
+	void SetUniform2f(const std::string& name, glm::vec2 v);
 	void SetUniform3f(const std::string& name, float v0, float v1, float v2);
+	void SetUniform3f(const std::string& name, glm::vec3 v);
 	void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+	void SetUniform4f(const std::string& name, glm::vec4 v);
 	void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
 
 	inline unsigned int GetID() const { return m_ID; };

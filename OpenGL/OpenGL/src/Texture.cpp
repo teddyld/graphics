@@ -107,6 +107,27 @@ Texture::Texture(const std::string& path, GLenum target /*= GL_TEXTURE_2D */, st
 	}
 }
 
+Texture::Texture(const void* data, int width, int height)
+	: m_ID(0), m_FilePath(""), m_LocalBuffer(nullptr), m_Width(width), m_Height(height), m_BPP(0), m_Target(GL_TEXTURE_2D)
+{
+	glGenTextures(1, &m_ID);
+	glBindTexture(GL_TEXTURE_2D, m_ID);
+
+	std::map<GLenum, GLint> options =
+	{
+		{ GL_TEXTURE_MIN_FILTER, GL_NEAREST },
+		{ GL_TEXTURE_MAG_FILTER, GL_NEAREST },
+		{ GL_TEXTURE_WRAP_S, GL_REPEAT },
+		{ GL_TEXTURE_WRAP_T, GL_REPEAT },
+		{ GL_TEXTURE_WRAP_R, GL_REPEAT }
+	};
+
+	SetTextureParameters(GL_TEXTURE_2D, options);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, m_Width, m_Height, 0, GL_RGB, GL_FLOAT, data);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 Texture::~Texture()
 {
 	glDeleteTextures(1, &m_ID);

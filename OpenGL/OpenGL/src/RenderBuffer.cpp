@@ -25,8 +25,6 @@ void RenderBuffer::ConfigureMultisampled(int samples)
 void RenderBuffer::AttachBuffer()
 {
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_ID);
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
 }
 
 void RenderBuffer::Bind() const

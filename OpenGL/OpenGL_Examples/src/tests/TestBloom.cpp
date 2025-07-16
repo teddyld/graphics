@@ -263,9 +263,6 @@ namespace test {
 
 	void TestBloom::OnImGuiRender()
 	{
-		if (ImGui::RadioButton("Enable bloom", m_EnableBloom))
-			m_EnableBloom = true;
-		if (ImGui::RadioButton("Disable bloom", !m_EnableBloom))
-			m_EnableBloom = false;
+		ImGui::Checkbox("Bloom", &m_EnableBloom);
 	}
 }

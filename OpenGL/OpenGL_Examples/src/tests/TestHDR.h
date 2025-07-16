@@ -22,7 +22,6 @@ namespace test {
 		std::unique_ptr<Shader> m_HDRShader;
 
 		CameraTransformMatrices m_Transforms;
-		glm::vec3 m_ViewPos;
 
 		bool m_EnableHDR;
 		float m_Exposure;

@@ -20,12 +20,14 @@ void FrameBuffer::AttachTexture1i(std::map<GLenum, GLint> options /*= fboDefault
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	SetTextureParameters(GL_TEXTURE_2D, options);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D, texture, 0);
 	m_Textures.push_back(texture);
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
 }
 
 void FrameBuffer::AttachTexture1f(std::map<GLenum, GLint> options /*= fboDefaultOptions */)
@@ -36,12 +38,15 @@ void FrameBuffer::AttachTexture1f(std::map<GLenum, GLint> options /*= fboDefault
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	SetTextureParameters(GL_TEXTURE_2D, options);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_Width, m_Height, 0, GL_RGB, GL_FLOAT, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_Width, m_Height, 0, GL_RGBA, GL_FLOAT, nullptr);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D, texture, 0);
 	m_Textures.push_back(texture);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
 }
 
 void FrameBuffer::AttachDepthMap()
@@ -69,6 +74,9 @@ void FrameBuffer::AttachDepthMap()
 	glReadBuffer(GL_NONE);
 
 	m_Textures.push_back(depthMap);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
 }
 
 void FrameBuffer::AttachTextureMultisample(int samples, std::map<GLenum, GLint> options /*= fboDefaultOptions */)
@@ -84,6 +92,9 @@ void FrameBuffer::AttachTextureMultisample(int samples, std::map<GLenum, GLint> 
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + (GLenum)m_Textures.size(), GL_TEXTURE_2D_MULTISAMPLE, texture, 0);
 	m_Textures.push_back(texture);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete" << std::endl;
 }
 
 void FrameBuffer::BindTexture(unsigned int slot /*= 0*/, unsigned int index /*= 0*/) const
